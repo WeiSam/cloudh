@@ -1,0 +1,7 @@
+cloud:
+  config:
+    server:
+      git:
+        search-paths: spring-cloud-samples
+        uri: https://github.com/WeiSam/spring-cloud-samples.git
+    label: master
