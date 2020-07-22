@@ -1,6 +1,8 @@
 package eunms;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * @Auther: zhuweimu
@@ -8,13 +10,10 @@ import lombok.Getter;
  * @Description:
  */
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public enum EnumPaymentType {
     PAYPAL(1,"paypal");
     private Integer type;
     private String name;
-
-    EnumPaymentType(Integer type, String name) {
-        this.type = type;
-        this.name = name;
-    }
 }

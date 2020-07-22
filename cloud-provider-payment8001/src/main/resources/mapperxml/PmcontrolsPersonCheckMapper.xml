@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.PmcontrolsPersonCheckMapper">
+  <resultMap id="BaseResultMap" type="com.domain.PmcontrolsPersonCheck">
+    <!--@mbg.generated-->
+    <!--@Table pmcontrols_person_check-->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="MAGIC_ID" jdbcType="VARCHAR" property="magicId" />
+    <result column="PERSON_MAGIC_ID" jdbcType="VARCHAR" property="personMagicId" />
+    <result column="HAS_SICK" jdbcType="OTHER" property="hasSick" />
+    <result column="SICK_HISTORY" jdbcType="VARCHAR" property="sickHistory" />
+    <result column="SICK_DESC" jdbcType="VARCHAR" property="sickDesc" />
+    <result column="HAS_INJURY" jdbcType="OTHER" property="hasInjury" />
+    <result column="INJURY_DESC" jdbcType="VARCHAR" property="injuryDesc" />
+    <result column="INJURY_REASON" jdbcType="VARCHAR" property="injuryReason" />
+    <result column="HAS_SURFACE_INJURY" jdbcType="OTHER" property="hasSurfaceInjury" />
+    <result column="IS_DRINKED" jdbcType="OTHER" property="isDrinked" />
+    <result column="IS_NEED_CURE" jdbcType="OTHER" property="isNeedCure" />
+    <result column="IS_DELETED" jdbcType="OTHER" property="isDeleted" />
+    <result column="CREATE_USER" jdbcType="VARCHAR" property="createUser" />
+    <result column="UPDATED_USER" jdbcType="VARCHAR" property="updatedUser" />
+    <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    ID, MAGIC_ID, PERSON_MAGIC_ID, HAS_SICK, SICK_HISTORY, SICK_DESC, HAS_INJURY, INJURY_DESC, 
+    INJURY_REASON, HAS_SURFACE_INJURY, IS_DRINKED, IS_NEED_CURE, IS_DELETED, CREATE_USER, 
+    UPDATED_USER, CREATED_TIME, UPDATED_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from pmcontrols_person_check
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from pmcontrols_person_check
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.domain.PmcontrolsPersonCheck" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into pmcontrols_person_check (MAGIC_ID, PERSON_MAGIC_ID, HAS_SICK, 
+      SICK_HISTORY, SICK_DESC, HAS_INJURY, 
+      INJURY_DESC, INJURY_REASON, HAS_SURFACE_INJURY, 
+      IS_DRINKED, IS_NEED_CURE, IS_DELETED, 
+      CREATE_USER, UPDATED_USER, CREATED_TIME, 
+      UPDATED_TIME)
+    values (#{magicId,jdbcType=VARCHAR}, #{personMagicId,jdbcType=VARCHAR}, #{hasSick,jdbcType=OTHER}, 
+      #{sickHistory,jdbcType=VARCHAR}, #{sickDesc,jdbcType=VARCHAR}, #{hasInjury,jdbcType=OTHER}, 
+      #{injuryDesc,jdbcType=VARCHAR}, #{injuryReason,jdbcType=VARCHAR}, #{hasSurfaceInjury,jdbcType=OTHER}, 
+      #{isDrinked,jdbcType=OTHER}, #{isNeedCure,jdbcType=OTHER}, #{isDeleted,jdbcType=OTHER}, 
+      #{createUser,jdbcType=VARCHAR}, #{updatedUser,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{updatedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.domain.PmcontrolsPersonCheck" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into pmcontrols_person_check
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="magicId != null">
+        MAGIC_ID,
+      </if>
+      <if test="personMagicId != null">
+        PERSON_MAGIC_ID,
+      </if>
+      <if test="hasSick != null">
+        HAS_SICK,
+      </if>
+      <if test="sickHistory != null">
+        SICK_HISTORY,
+      </if>
+      <if test="sickDesc != null">
+        SICK_DESC,
+      </if>
+      <if test="hasInjury != null">
+        HAS_INJURY,
+      </if>
+      <if test="injuryDesc != null">
+        INJURY_DESC,
+      </if>
+      <if test="injuryReason != null">
+        INJURY_REASON,
+      </if>
+      <if test="hasSurfaceInjury != null">
+        HAS_SURFACE_INJURY,
+      </if>
+      <if test="isDrinked != null">
+        IS_DRINKED,
+      </if>
+      <if test="isNeedCure != null">
+        IS_NEED_CURE,
+      </if>
+      <if test="isDeleted != null">
+        IS_DELETED,
+      </if>
+      <if test="createUser != null">
+        CREATE_USER,
+      </if>
+      <if test="updatedUser != null">
+        UPDATED_USER,
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME,
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="magicId != null">
+        #{magicId,jdbcType=VARCHAR},
+      </if>
+      <if test="personMagicId != null">
+        #{personMagicId,jdbcType=VARCHAR},
+      </if>
+      <if test="hasSick != null">
+        #{hasSick,jdbcType=OTHER},
+      </if>
+      <if test="sickHistory != null">
+        #{sickHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="sickDesc != null">
+        #{sickDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="hasInjury != null">
+        #{hasInjury,jdbcType=OTHER},
+      </if>
+      <if test="injuryDesc != null">
+        #{injuryDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="injuryReason != null">
+        #{injuryReason,jdbcType=VARCHAR},
+      </if>
+      <if test="hasSurfaceInjury != null">
+        #{hasSurfaceInjury,jdbcType=OTHER},
+      </if>
+      <if test="isDrinked != null">
+        #{isDrinked,jdbcType=OTHER},
+      </if>
+      <if test="isNeedCure != null">
+        #{isNeedCure,jdbcType=OTHER},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=OTHER},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedUser != null">
+        #{updatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.domain.PmcontrolsPersonCheck">
+    <!--@mbg.generated-->
+    update pmcontrols_person_check
+    <set>
+      <if test="magicId != null">
+        MAGIC_ID = #{magicId,jdbcType=VARCHAR},
+      </if>
+      <if test="personMagicId != null">
+        PERSON_MAGIC_ID = #{personMagicId,jdbcType=VARCHAR},
+      </if>
+      <if test="hasSick != null">
+        HAS_SICK = #{hasSick,jdbcType=OTHER},
+      </if>
+      <if test="sickHistory != null">
+        SICK_HISTORY = #{sickHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="sickDesc != null">
+        SICK_DESC = #{sickDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="hasInjury != null">
+        HAS_INJURY = #{hasInjury,jdbcType=OTHER},
+      </if>
+      <if test="injuryDesc != null">
+        INJURY_DESC = #{injuryDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="injuryReason != null">
+        INJURY_REASON = #{injuryReason,jdbcType=VARCHAR},
+      </if>
+      <if test="hasSurfaceInjury != null">
+        HAS_SURFACE_INJURY = #{hasSurfaceInjury,jdbcType=OTHER},
+      </if>
+      <if test="isDrinked != null">
+        IS_DRINKED = #{isDrinked,jdbcType=OTHER},
+      </if>
+      <if test="isNeedCure != null">
+        IS_NEED_CURE = #{isNeedCure,jdbcType=OTHER},
+      </if>
+      <if test="isDeleted != null">
+        IS_DELETED = #{isDeleted,jdbcType=OTHER},
+      </if>
+      <if test="createUser != null">
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedUser != null">
+        UPDATED_USER = #{updatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.domain.PmcontrolsPersonCheck">
+    <!--@mbg.generated-->
+    update pmcontrols_person_check
+    set MAGIC_ID = #{magicId,jdbcType=VARCHAR},
+      PERSON_MAGIC_ID = #{personMagicId,jdbcType=VARCHAR},
+      HAS_SICK = #{hasSick,jdbcType=OTHER},
+      SICK_HISTORY = #{sickHistory,jdbcType=VARCHAR},
+      SICK_DESC = #{sickDesc,jdbcType=VARCHAR},
+      HAS_INJURY = #{hasInjury,jdbcType=OTHER},
+      INJURY_DESC = #{injuryDesc,jdbcType=VARCHAR},
+      INJURY_REASON = #{injuryReason,jdbcType=VARCHAR},
+      HAS_SURFACE_INJURY = #{hasSurfaceInjury,jdbcType=OTHER},
+      IS_DRINKED = #{isDrinked,jdbcType=OTHER},
+      IS_NEED_CURE = #{isNeedCure,jdbcType=OTHER},
+      IS_DELETED = #{isDeleted,jdbcType=OTHER},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      UPDATED_USER = #{updatedUser,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
