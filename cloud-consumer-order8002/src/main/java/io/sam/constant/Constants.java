@@ -7,5 +7,5 @@ package io.sam.constant;
  */
 public class Constants {
 
-    public static final String PAYMENT_DOMAIN = "http://cloud-provider-payment8001";
+    public static final String PAYMENT_DOMAIN = "http://cloud-provider-payment";
 }

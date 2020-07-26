@@ -2,7 +2,6 @@ package eunms;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 /**
  * @Auther: zhuweimu
@@ -11,9 +10,13 @@ import lombok.NoArgsConstructor;
  */
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
 public enum EnumPaymentType {
+
+    /**
+     * 支付类型枚举
+     */
     PAYPAL(1,"paypal");
+
     private Integer type;
     private String name;
 }

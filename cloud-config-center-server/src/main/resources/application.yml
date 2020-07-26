@@ -5,7 +5,10 @@ spring:
     config:
       server:
         native:
-          search-locations: src\main\resources\local
+          search-locations: classpath:/local
+
+  profiles:
+    active: native
 #  cloud:
 #    config:
 #      server:
@@ -16,6 +19,8 @@ spring:
 
 server:
   port: 3344
+
+
 
 
 eureka:

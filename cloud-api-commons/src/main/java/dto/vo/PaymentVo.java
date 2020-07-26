@@ -3,7 +3,6 @@ package dto.vo;
 import eunms.EnumPaymentType;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -27,6 +26,6 @@ public class PaymentVo implements Serializable {
     /**
      * 类型 {@link EnumPaymentType}
      */
-    EnumPaymentType type;
+    private EnumPaymentType type;
 
 }

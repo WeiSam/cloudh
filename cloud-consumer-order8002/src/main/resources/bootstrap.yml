@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: cloud-consumer-order
+  cloud:
+    config:
+      uri: http://127.0.0.1:3344
+  profiles:
+    active: test
