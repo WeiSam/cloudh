@@ -44,7 +44,7 @@ public class OrderController {
      */
     @GetMapping("getOrderPayment/detail/{orderId}")
     public BaseResponse getPayment(@PathVariable Long orderId){
-        return BaseResponse.success(new PaymentVo());
+        return BaseResponse.success(PaymentVo.builder().build());
     }
 
     /**

@@ -14,11 +14,12 @@
     <module>cloud-eureka-server7001</module>
     <module>cloud-provider-payment-zookeeper8004</module>
     <module>cloud-provider-hystrix-payment8001</module>
+    <module>cloud-provider-payment8008</module>
     <module>cloud-config-center-server</module>
   </modules>
   <packaging>pom</packaging>
 
-  <name>Maven</name>
+  <name>cloudh</name>
   <!-- FIXME change it to the project's website -->
   <url>http://maven.apache.org/</url>
   <inceptionYear>2001</inceptionYear>

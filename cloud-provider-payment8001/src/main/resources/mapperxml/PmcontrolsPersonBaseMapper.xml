@@ -1,0 +1,664 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.PmcontrolsPersonBaseMapper">
+  <resultMap id="BaseResultMap" type="com.domain.PmcontrolsPersonBase">
+    <!--@mbg.generated-->
+    <!--@Table pmcontrols_person_base-->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="MAGIC_ID" jdbcType="VARCHAR" property="magicId" />
+    <result column="FACE_PEASON_ID" jdbcType="VARCHAR" property="facePeasonId" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="NUM" jdbcType="VARCHAR" property="num" />
+    <result column="CASE_TYPE" jdbcType="OTHER" property="caseType" />
+    <result column="IDENTITY_TYPE" jdbcType="OTHER" property="identityType" />
+    <result column="PERSON_TYPE" jdbcType="OTHER" property="personType" />
+    <result column="IDENTITY_NUM" jdbcType="VARCHAR" property="identityNum" />
+    <result column="GENDER" jdbcType="OTHER" property="gender" />
+    <result column="AGE" jdbcType="INTEGER" property="age" />
+    <result column="NATIONALITY" jdbcType="VARCHAR" property="nationality" />
+    <result column="NATIONALITY_CODE" jdbcType="VARCHAR" property="nationalityCode" />
+    <result column="REG_ADDRESS" jdbcType="VARCHAR" property="regAddress" />
+    <result column="TEMP_ADDRESS" jdbcType="VARCHAR" property="tempAddress" />
+    <result column="WORK_UINT" jdbcType="LONGVARCHAR" property="workUint" />
+    <result column="BIRTH_DATE" jdbcType="VARCHAR" property="birthDate" />
+    <result column="TEL" jdbcType="VARCHAR" property="tel" />
+    <result column="CASE_REASON_DETAIL" jdbcType="VARCHAR" property="caseReasonDetail" />
+    <result column="DETAIL_REASON" jdbcType="VARCHAR" property="detailReason" />
+    <result column="REASON_TYPE" jdbcType="VARCHAR" property="reasonType" />
+    <result column="ENTER_TYPE" jdbcType="VARCHAR" property="enterType" />
+    <result column="FINGER_PRINT" jdbcType="VARCHAR" property="fingerPrint" />
+    <result column="COLLECTION_CHECKED" jdbcType="VARCHAR" property="collectionChecked" />
+    <result column="DELAY_STATUS" jdbcType="OTHER" property="delayStatus" />
+    <result column="ORG_NAME" jdbcType="VARCHAR" property="orgName" />
+    <result column="ORG_CODE" jdbcType="VARCHAR" property="orgCode" />
+    <result column="ORG_MAGIC_ID" jdbcType="VARCHAR" property="orgMagicId" />
+    <result column="POLICE_NAME" jdbcType="VARCHAR" property="policeName" />
+    <result column="POLICE_CODE" jdbcType="VARCHAR" property="policeCode" />
+    <result column="POLICE_MAGIC_ID" jdbcType="VARCHAR" property="policeMagicId" />
+    <result column="MASTER_ORG_MAGIC_ID" jdbcType="VARCHAR" property="masterOrgMagicId" />
+    <result column="IS_CHECKED" jdbcType="OTHER" property="isChecked" />
+    <result column="IS_PERSISTED" jdbcType="OTHER" property="isPersisted" />
+    <result column="STEP_PROGRESS_STATUS" jdbcType="VARCHAR" property="stepProgressStatus" />
+    <result column="IS_PERSON_CONTROLS" jdbcType="BOOLEAN" property="isPersonControls" />
+    <result column="DOC_NO" jdbcType="VARCHAR" property="docNo" />
+    <result column="CASE_CODE" jdbcType="VARCHAR" property="caseCode" />
+    <result column="CASE_MAGIC_ID" jdbcType="VARCHAR" property="caseMagicId" />
+    <result column="FACE_IMG_URL" jdbcType="VARCHAR" property="faceImgUrl" />
+    <result column="ENTRUST_NAME" jdbcType="VARCHAR" property="entrustName" />
+    <result column="ENTRUST_CONTACT" jdbcType="VARCHAR" property="entrustContact" />
+    <result column="CURRENT_ROOM_MAGIC_ID" jdbcType="VARCHAR" property="currentRoomMagicId" />
+    <result column="INFO_COLLECTION" jdbcType="LONGVARCHAR" property="infoCollection" />
+    <result column="CHANNEL" jdbcType="VARCHAR" property="channel" />
+    <result column="IS_DELETED" jdbcType="OTHER" property="isDeleted" />
+    <result column="LEAVE_TIME" jdbcType="TIMESTAMP" property="leaveTime" />
+    <result column="LEAVE_DEADLINE" jdbcType="TIMESTAMP" property="leaveDeadline" />
+    <result column="CREATE_USER" jdbcType="VARCHAR" property="createUser" />
+    <result column="UPDATED_USER" jdbcType="VARCHAR" property="updatedUser" />
+    <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="TEMPERATURE" jdbcType="VARCHAR" property="temperature" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    ID, MAGIC_ID, FACE_PEASON_ID, `NAME`, NUM, CASE_TYPE, IDENTITY_TYPE, PERSON_TYPE, 
+    IDENTITY_NUM, GENDER, AGE, NATIONALITY, NATIONALITY_CODE, REG_ADDRESS, TEMP_ADDRESS, 
+    WORK_UINT, BIRTH_DATE, TEL, CASE_REASON_DETAIL, DETAIL_REASON, REASON_TYPE, ENTER_TYPE, 
+    FINGER_PRINT, COLLECTION_CHECKED, DELAY_STATUS, ORG_NAME, ORG_CODE, ORG_MAGIC_ID, 
+    POLICE_NAME, POLICE_CODE, POLICE_MAGIC_ID, MASTER_ORG_MAGIC_ID, IS_CHECKED, IS_PERSISTED, 
+    STEP_PROGRESS_STATUS, IS_PERSON_CONTROLS, DOC_NO, CASE_CODE, CASE_MAGIC_ID, FACE_IMG_URL, 
+    ENTRUST_NAME, ENTRUST_CONTACT, CURRENT_ROOM_MAGIC_ID, INFO_COLLECTION, CHANNEL, IS_DELETED, 
+    LEAVE_TIME, LEAVE_DEADLINE, CREATE_USER, UPDATED_USER, CREATED_TIME, UPDATED_TIME, 
+    TEMPERATURE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from pmcontrols_person_base
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from pmcontrols_person_base
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.domain.PmcontrolsPersonBase" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into pmcontrols_person_base (MAGIC_ID, FACE_PEASON_ID, `NAME`, 
+      NUM, CASE_TYPE, IDENTITY_TYPE, 
+      PERSON_TYPE, IDENTITY_NUM, GENDER, 
+      AGE, NATIONALITY, NATIONALITY_CODE, 
+      REG_ADDRESS, TEMP_ADDRESS, WORK_UINT, 
+      BIRTH_DATE, TEL, CASE_REASON_DETAIL, 
+      DETAIL_REASON, REASON_TYPE, ENTER_TYPE, 
+      FINGER_PRINT, COLLECTION_CHECKED, DELAY_STATUS, 
+      ORG_NAME, ORG_CODE, ORG_MAGIC_ID, 
+      POLICE_NAME, POLICE_CODE, POLICE_MAGIC_ID, 
+      MASTER_ORG_MAGIC_ID, IS_CHECKED, IS_PERSISTED, 
+      STEP_PROGRESS_STATUS, IS_PERSON_CONTROLS, DOC_NO, 
+      CASE_CODE, CASE_MAGIC_ID, FACE_IMG_URL, 
+      ENTRUST_NAME, ENTRUST_CONTACT, CURRENT_ROOM_MAGIC_ID, 
+      INFO_COLLECTION, CHANNEL, IS_DELETED, 
+      LEAVE_TIME, LEAVE_DEADLINE, CREATE_USER, 
+      UPDATED_USER, CREATED_TIME, UPDATED_TIME, 
+      TEMPERATURE)
+    values (#{magicId,jdbcType=VARCHAR}, #{facePeasonId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{num,jdbcType=VARCHAR}, #{caseType,jdbcType=OTHER}, #{identityType,jdbcType=OTHER}, 
+      #{personType,jdbcType=OTHER}, #{identityNum,jdbcType=VARCHAR}, #{gender,jdbcType=OTHER}, 
+      #{age,jdbcType=INTEGER}, #{nationality,jdbcType=VARCHAR}, #{nationalityCode,jdbcType=VARCHAR}, 
+      #{regAddress,jdbcType=VARCHAR}, #{tempAddress,jdbcType=VARCHAR}, #{workUint,jdbcType=LONGVARCHAR}, 
+      #{birthDate,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{caseReasonDetail,jdbcType=VARCHAR}, 
+      #{detailReason,jdbcType=VARCHAR}, #{reasonType,jdbcType=VARCHAR}, #{enterType,jdbcType=VARCHAR}, 
+      #{fingerPrint,jdbcType=VARCHAR}, #{collectionChecked,jdbcType=VARCHAR}, #{delayStatus,jdbcType=OTHER}, 
+      #{orgName,jdbcType=VARCHAR}, #{orgCode,jdbcType=VARCHAR}, #{orgMagicId,jdbcType=VARCHAR}, 
+      #{policeName,jdbcType=VARCHAR}, #{policeCode,jdbcType=VARCHAR}, #{policeMagicId,jdbcType=VARCHAR}, 
+      #{masterOrgMagicId,jdbcType=VARCHAR}, #{isChecked,jdbcType=OTHER}, #{isPersisted,jdbcType=OTHER}, 
+      #{stepProgressStatus,jdbcType=VARCHAR}, #{isPersonControls,jdbcType=BOOLEAN}, #{docNo,jdbcType=VARCHAR}, 
+      #{caseCode,jdbcType=VARCHAR}, #{caseMagicId,jdbcType=VARCHAR}, #{faceImgUrl,jdbcType=VARCHAR}, 
+      #{entrustName,jdbcType=VARCHAR}, #{entrustContact,jdbcType=VARCHAR}, #{currentRoomMagicId,jdbcType=VARCHAR}, 
+      #{infoCollection,jdbcType=LONGVARCHAR}, #{channel,jdbcType=VARCHAR}, #{isDeleted,jdbcType=OTHER}, 
+      #{leaveTime,jdbcType=TIMESTAMP}, #{leaveDeadline,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+      #{updatedUser,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}, 
+      #{temperature,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.domain.PmcontrolsPersonBase" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into pmcontrols_person_base
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="magicId != null">
+        MAGIC_ID,
+      </if>
+      <if test="facePeasonId != null">
+        FACE_PEASON_ID,
+      </if>
+      <if test="name != null">
+        `NAME`,
+      </if>
+      <if test="num != null">
+        NUM,
+      </if>
+      <if test="caseType != null">
+        CASE_TYPE,
+      </if>
+      <if test="identityType != null">
+        IDENTITY_TYPE,
+      </if>
+      <if test="personType != null">
+        PERSON_TYPE,
+      </if>
+      <if test="identityNum != null">
+        IDENTITY_NUM,
+      </if>
+      <if test="gender != null">
+        GENDER,
+      </if>
+      <if test="age != null">
+        AGE,
+      </if>
+      <if test="nationality != null">
+        NATIONALITY,
+      </if>
+      <if test="nationalityCode != null">
+        NATIONALITY_CODE,
+      </if>
+      <if test="regAddress != null">
+        REG_ADDRESS,
+      </if>
+      <if test="tempAddress != null">
+        TEMP_ADDRESS,
+      </if>
+      <if test="workUint != null">
+        WORK_UINT,
+      </if>
+      <if test="birthDate != null">
+        BIRTH_DATE,
+      </if>
+      <if test="tel != null">
+        TEL,
+      </if>
+      <if test="caseReasonDetail != null">
+        CASE_REASON_DETAIL,
+      </if>
+      <if test="detailReason != null">
+        DETAIL_REASON,
+      </if>
+      <if test="reasonType != null">
+        REASON_TYPE,
+      </if>
+      <if test="enterType != null">
+        ENTER_TYPE,
+      </if>
+      <if test="fingerPrint != null">
+        FINGER_PRINT,
+      </if>
+      <if test="collectionChecked != null">
+        COLLECTION_CHECKED,
+      </if>
+      <if test="delayStatus != null">
+        DELAY_STATUS,
+      </if>
+      <if test="orgName != null">
+        ORG_NAME,
+      </if>
+      <if test="orgCode != null">
+        ORG_CODE,
+      </if>
+      <if test="orgMagicId != null">
+        ORG_MAGIC_ID,
+      </if>
+      <if test="policeName != null">
+        POLICE_NAME,
+      </if>
+      <if test="policeCode != null">
+        POLICE_CODE,
+      </if>
+      <if test="policeMagicId != null">
+        POLICE_MAGIC_ID,
+      </if>
+      <if test="masterOrgMagicId != null">
+        MASTER_ORG_MAGIC_ID,
+      </if>
+      <if test="isChecked != null">
+        IS_CHECKED,
+      </if>
+      <if test="isPersisted != null">
+        IS_PERSISTED,
+      </if>
+      <if test="stepProgressStatus != null">
+        STEP_PROGRESS_STATUS,
+      </if>
+      <if test="isPersonControls != null">
+        IS_PERSON_CONTROLS,
+      </if>
+      <if test="docNo != null">
+        DOC_NO,
+      </if>
+      <if test="caseCode != null">
+        CASE_CODE,
+      </if>
+      <if test="caseMagicId != null">
+        CASE_MAGIC_ID,
+      </if>
+      <if test="faceImgUrl != null">
+        FACE_IMG_URL,
+      </if>
+      <if test="entrustName != null">
+        ENTRUST_NAME,
+      </if>
+      <if test="entrustContact != null">
+        ENTRUST_CONTACT,
+      </if>
+      <if test="currentRoomMagicId != null">
+        CURRENT_ROOM_MAGIC_ID,
+      </if>
+      <if test="infoCollection != null">
+        INFO_COLLECTION,
+      </if>
+      <if test="channel != null">
+        CHANNEL,
+      </if>
+      <if test="isDeleted != null">
+        IS_DELETED,
+      </if>
+      <if test="leaveTime != null">
+        LEAVE_TIME,
+      </if>
+      <if test="leaveDeadline != null">
+        LEAVE_DEADLINE,
+      </if>
+      <if test="createUser != null">
+        CREATE_USER,
+      </if>
+      <if test="updatedUser != null">
+        UPDATED_USER,
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME,
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME,
+      </if>
+      <if test="temperature != null">
+        TEMPERATURE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="magicId != null">
+        #{magicId,jdbcType=VARCHAR},
+      </if>
+      <if test="facePeasonId != null">
+        #{facePeasonId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="caseType != null">
+        #{caseType,jdbcType=OTHER},
+      </if>
+      <if test="identityType != null">
+        #{identityType,jdbcType=OTHER},
+      </if>
+      <if test="personType != null">
+        #{personType,jdbcType=OTHER},
+      </if>
+      <if test="identityNum != null">
+        #{identityNum,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=OTHER},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="nationality != null">
+        #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="nationalityCode != null">
+        #{nationalityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="regAddress != null">
+        #{regAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="tempAddress != null">
+        #{tempAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="workUint != null">
+        #{workUint,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="birthDate != null">
+        #{birthDate,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="caseReasonDetail != null">
+        #{caseReasonDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="detailReason != null">
+        #{detailReason,jdbcType=VARCHAR},
+      </if>
+      <if test="reasonType != null">
+        #{reasonType,jdbcType=VARCHAR},
+      </if>
+      <if test="enterType != null">
+        #{enterType,jdbcType=VARCHAR},
+      </if>
+      <if test="fingerPrint != null">
+        #{fingerPrint,jdbcType=VARCHAR},
+      </if>
+      <if test="collectionChecked != null">
+        #{collectionChecked,jdbcType=VARCHAR},
+      </if>
+      <if test="delayStatus != null">
+        #{delayStatus,jdbcType=OTHER},
+      </if>
+      <if test="orgName != null">
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null">
+        #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgMagicId != null">
+        #{orgMagicId,jdbcType=VARCHAR},
+      </if>
+      <if test="policeName != null">
+        #{policeName,jdbcType=VARCHAR},
+      </if>
+      <if test="policeCode != null">
+        #{policeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="policeMagicId != null">
+        #{policeMagicId,jdbcType=VARCHAR},
+      </if>
+      <if test="masterOrgMagicId != null">
+        #{masterOrgMagicId,jdbcType=VARCHAR},
+      </if>
+      <if test="isChecked != null">
+        #{isChecked,jdbcType=OTHER},
+      </if>
+      <if test="isPersisted != null">
+        #{isPersisted,jdbcType=OTHER},
+      </if>
+      <if test="stepProgressStatus != null">
+        #{stepProgressStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="isPersonControls != null">
+        #{isPersonControls,jdbcType=BOOLEAN},
+      </if>
+      <if test="docNo != null">
+        #{docNo,jdbcType=VARCHAR},
+      </if>
+      <if test="caseCode != null">
+        #{caseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="caseMagicId != null">
+        #{caseMagicId,jdbcType=VARCHAR},
+      </if>
+      <if test="faceImgUrl != null">
+        #{faceImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustName != null">
+        #{entrustName,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustContact != null">
+        #{entrustContact,jdbcType=VARCHAR},
+      </if>
+      <if test="currentRoomMagicId != null">
+        #{currentRoomMagicId,jdbcType=VARCHAR},
+      </if>
+      <if test="infoCollection != null">
+        #{infoCollection,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="channel != null">
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=OTHER},
+      </if>
+      <if test="leaveTime != null">
+        #{leaveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="leaveDeadline != null">
+        #{leaveDeadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedUser != null">
+        #{updatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="temperature != null">
+        #{temperature,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.domain.PmcontrolsPersonBase">
+    <!--@mbg.generated-->
+    update pmcontrols_person_base
+    <set>
+      <if test="magicId != null">
+        MAGIC_ID = #{magicId,jdbcType=VARCHAR},
+      </if>
+      <if test="facePeasonId != null">
+        FACE_PEASON_ID = #{facePeasonId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `NAME` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        NUM = #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="caseType != null">
+        CASE_TYPE = #{caseType,jdbcType=OTHER},
+      </if>
+      <if test="identityType != null">
+        IDENTITY_TYPE = #{identityType,jdbcType=OTHER},
+      </if>
+      <if test="personType != null">
+        PERSON_TYPE = #{personType,jdbcType=OTHER},
+      </if>
+      <if test="identityNum != null">
+        IDENTITY_NUM = #{identityNum,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        GENDER = #{gender,jdbcType=OTHER},
+      </if>
+      <if test="age != null">
+        AGE = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="nationality != null">
+        NATIONALITY = #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="nationalityCode != null">
+        NATIONALITY_CODE = #{nationalityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="regAddress != null">
+        REG_ADDRESS = #{regAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="tempAddress != null">
+        TEMP_ADDRESS = #{tempAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="workUint != null">
+        WORK_UINT = #{workUint,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="birthDate != null">
+        BIRTH_DATE = #{birthDate,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        TEL = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="caseReasonDetail != null">
+        CASE_REASON_DETAIL = #{caseReasonDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="detailReason != null">
+        DETAIL_REASON = #{detailReason,jdbcType=VARCHAR},
+      </if>
+      <if test="reasonType != null">
+        REASON_TYPE = #{reasonType,jdbcType=VARCHAR},
+      </if>
+      <if test="enterType != null">
+        ENTER_TYPE = #{enterType,jdbcType=VARCHAR},
+      </if>
+      <if test="fingerPrint != null">
+        FINGER_PRINT = #{fingerPrint,jdbcType=VARCHAR},
+      </if>
+      <if test="collectionChecked != null">
+        COLLECTION_CHECKED = #{collectionChecked,jdbcType=VARCHAR},
+      </if>
+      <if test="delayStatus != null">
+        DELAY_STATUS = #{delayStatus,jdbcType=OTHER},
+      </if>
+      <if test="orgName != null">
+        ORG_NAME = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null">
+        ORG_CODE = #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgMagicId != null">
+        ORG_MAGIC_ID = #{orgMagicId,jdbcType=VARCHAR},
+      </if>
+      <if test="policeName != null">
+        POLICE_NAME = #{policeName,jdbcType=VARCHAR},
+      </if>
+      <if test="policeCode != null">
+        POLICE_CODE = #{policeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="policeMagicId != null">
+        POLICE_MAGIC_ID = #{policeMagicId,jdbcType=VARCHAR},
+      </if>
+      <if test="masterOrgMagicId != null">
+        MASTER_ORG_MAGIC_ID = #{masterOrgMagicId,jdbcType=VARCHAR},
+      </if>
+      <if test="isChecked != null">
+        IS_CHECKED = #{isChecked,jdbcType=OTHER},
+      </if>
+      <if test="isPersisted != null">
+        IS_PERSISTED = #{isPersisted,jdbcType=OTHER},
+      </if>
+      <if test="stepProgressStatus != null">
+        STEP_PROGRESS_STATUS = #{stepProgressStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="isPersonControls != null">
+        IS_PERSON_CONTROLS = #{isPersonControls,jdbcType=BOOLEAN},
+      </if>
+      <if test="docNo != null">
+        DOC_NO = #{docNo,jdbcType=VARCHAR},
+      </if>
+      <if test="caseCode != null">
+        CASE_CODE = #{caseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="caseMagicId != null">
+        CASE_MAGIC_ID = #{caseMagicId,jdbcType=VARCHAR},
+      </if>
+      <if test="faceImgUrl != null">
+        FACE_IMG_URL = #{faceImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustName != null">
+        ENTRUST_NAME = #{entrustName,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustContact != null">
+        ENTRUST_CONTACT = #{entrustContact,jdbcType=VARCHAR},
+      </if>
+      <if test="currentRoomMagicId != null">
+        CURRENT_ROOM_MAGIC_ID = #{currentRoomMagicId,jdbcType=VARCHAR},
+      </if>
+      <if test="infoCollection != null">
+        INFO_COLLECTION = #{infoCollection,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="channel != null">
+        CHANNEL = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        IS_DELETED = #{isDeleted,jdbcType=OTHER},
+      </if>
+      <if test="leaveTime != null">
+        LEAVE_TIME = #{leaveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="leaveDeadline != null">
+        LEAVE_DEADLINE = #{leaveDeadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedUser != null">
+        UPDATED_USER = #{updatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="temperature != null">
+        TEMPERATURE = #{temperature,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.domain.PmcontrolsPersonBase">
+    <!--@mbg.generated-->
+    update pmcontrols_person_base
+    set MAGIC_ID = #{magicId,jdbcType=VARCHAR},
+      FACE_PEASON_ID = #{facePeasonId,jdbcType=VARCHAR},
+      `NAME` = #{name,jdbcType=VARCHAR},
+      NUM = #{num,jdbcType=VARCHAR},
+      CASE_TYPE = #{caseType,jdbcType=OTHER},
+      IDENTITY_TYPE = #{identityType,jdbcType=OTHER},
+      PERSON_TYPE = #{personType,jdbcType=OTHER},
+      IDENTITY_NUM = #{identityNum,jdbcType=VARCHAR},
+      GENDER = #{gender,jdbcType=OTHER},
+      AGE = #{age,jdbcType=INTEGER},
+      NATIONALITY = #{nationality,jdbcType=VARCHAR},
+      NATIONALITY_CODE = #{nationalityCode,jdbcType=VARCHAR},
+      REG_ADDRESS = #{regAddress,jdbcType=VARCHAR},
+      TEMP_ADDRESS = #{tempAddress,jdbcType=VARCHAR},
+      WORK_UINT = #{workUint,jdbcType=LONGVARCHAR},
+      BIRTH_DATE = #{birthDate,jdbcType=VARCHAR},
+      TEL = #{tel,jdbcType=VARCHAR},
+      CASE_REASON_DETAIL = #{caseReasonDetail,jdbcType=VARCHAR},
+      DETAIL_REASON = #{detailReason,jdbcType=VARCHAR},
+      REASON_TYPE = #{reasonType,jdbcType=VARCHAR},
+      ENTER_TYPE = #{enterType,jdbcType=VARCHAR},
+      FINGER_PRINT = #{fingerPrint,jdbcType=VARCHAR},
+      COLLECTION_CHECKED = #{collectionChecked,jdbcType=VARCHAR},
+      DELAY_STATUS = #{delayStatus,jdbcType=OTHER},
+      ORG_NAME = #{orgName,jdbcType=VARCHAR},
+      ORG_CODE = #{orgCode,jdbcType=VARCHAR},
+      ORG_MAGIC_ID = #{orgMagicId,jdbcType=VARCHAR},
+      POLICE_NAME = #{policeName,jdbcType=VARCHAR},
+      POLICE_CODE = #{policeCode,jdbcType=VARCHAR},
+      POLICE_MAGIC_ID = #{policeMagicId,jdbcType=VARCHAR},
+      MASTER_ORG_MAGIC_ID = #{masterOrgMagicId,jdbcType=VARCHAR},
+      IS_CHECKED = #{isChecked,jdbcType=OTHER},
+      IS_PERSISTED = #{isPersisted,jdbcType=OTHER},
+      STEP_PROGRESS_STATUS = #{stepProgressStatus,jdbcType=VARCHAR},
+      IS_PERSON_CONTROLS = #{isPersonControls,jdbcType=BOOLEAN},
+      DOC_NO = #{docNo,jdbcType=VARCHAR},
+      CASE_CODE = #{caseCode,jdbcType=VARCHAR},
+      CASE_MAGIC_ID = #{caseMagicId,jdbcType=VARCHAR},
+      FACE_IMG_URL = #{faceImgUrl,jdbcType=VARCHAR},
+      ENTRUST_NAME = #{entrustName,jdbcType=VARCHAR},
+      ENTRUST_CONTACT = #{entrustContact,jdbcType=VARCHAR},
+      CURRENT_ROOM_MAGIC_ID = #{currentRoomMagicId,jdbcType=VARCHAR},
+      INFO_COLLECTION = #{infoCollection,jdbcType=LONGVARCHAR},
+      CHANNEL = #{channel,jdbcType=VARCHAR},
+      IS_DELETED = #{isDeleted,jdbcType=OTHER},
+      LEAVE_TIME = #{leaveTime,jdbcType=TIMESTAMP},
+      LEAVE_DEADLINE = #{leaveDeadline,jdbcType=TIMESTAMP},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      UPDATED_USER = #{updatedUser,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      TEMPERATURE = #{temperature,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
