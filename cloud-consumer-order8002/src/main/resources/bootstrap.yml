@@ -1,8 +1,14 @@
 spring:
-  application:
-    name: cloud-consumer-order
   cloud:
     config:
+      label: master
       uri: http://127.0.0.1:3344
-  profiles:
-    active: test
+      name: cloud-consumer-order
+      profile: test
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
