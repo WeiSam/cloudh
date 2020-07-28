@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: cloud-provider-payment8001
+    name: cloud-provider-payment
 
   datasource:
     # 当前数据源操作类型
