@@ -16,6 +16,10 @@
     <module>cloud-provider-hystrix-payment8001</module>
     <module>cloud-provider-payment8008</module>
     <module>cloud-config-center-server</module>
+      <module>cloud-seata-order</module>
+    <module>cloud-seata-account</module>
+    <module>cloud-seata-storage</module>
+      <module>cloud-seata-business</module>
   </modules>
   <packaging>pom</packaging>
 
