@@ -4,6 +4,10 @@ server:
 spring:
   application:
     name: cloud-seata-business
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: my_test_tx_group
 
   datasource:
     # 当前数据源操作类型

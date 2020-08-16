@@ -1,6 +1,7 @@
 package io.sam.controller;
 
 import io.sam.service.BusinessService;
+import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,7 @@ public class BusinessController {
     BusinessService businessService;
 
     @GetMapping("/purchase/{isRollback}")
+    @GlobalTransactional
     public String purchase(@PathVariable Integer isRollback){
         try {
             if (isRollback == 1) {
