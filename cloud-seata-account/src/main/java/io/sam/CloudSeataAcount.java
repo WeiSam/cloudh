@@ -11,9 +11,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  */
 @EnableFeignClients
 @SpringBootApplication
-public class CloudSeataStorage {
+public class CloudSeataAcount {
     public static void main(String[] args) {
-        SpringApplication.run(CloudSeataStorage.class,args);
+        SpringApplication.run(CloudSeataAcount.class,args);
         System.out.println("账号服务启动成功");
     }
 }

@@ -1,5 +1,6 @@
 package io.sam;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -9,6 +10,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @Date: 2020/8/2 14:35
  * @Description:
  */
+@MapperScan(basePackages = {"io.sam.mapper"})
 @EnableFeignClients
 @SpringBootApplication
 public class CloudSeataStorage {

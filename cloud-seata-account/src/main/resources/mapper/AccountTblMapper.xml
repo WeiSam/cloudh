@@ -69,4 +69,9 @@
       money = #{money,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+    <update id="reduce">
+      update account_tbl
+      set money = #{money,jdbcType=INTEGER}
+      where user_id = #{userId,jdbcType=INTEGER}
+    </update>
 </mapper>

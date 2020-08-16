@@ -69,4 +69,7 @@
       `count` = #{count,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <update id="deduct">
+    update storage_tbl set count = count - #{count} where commodity_code = #{commodityCode}
+  </update>
 </mapper>

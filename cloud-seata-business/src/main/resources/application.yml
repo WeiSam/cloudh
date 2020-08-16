@@ -17,7 +17,7 @@ spring:
 #    username: gosuncn
 #    password: gosuncn
 mybatis:
-  mapper-locations: classpath*:mapper/*.xml
+  mapper-locations: classpath:mapper/*.xml
   type-aliases-package: model
 eureka:
   client:

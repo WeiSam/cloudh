@@ -1,9 +1,10 @@
 package io.sam.service;
 
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
 import io.sam.domain.AccountTbl;
 import io.sam.mapper.AccountTblMapper;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 @Service
 public class AccountTblService{
 
@@ -40,4 +41,7 @@ public class AccountTblService{
         return accountTblMapper.updateByPrimaryKey(record);
     }
 
+    public void reduce(String userId, int money) {
+        accountTblMapper.reduce(userId,money);
+    }
 }

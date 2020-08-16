@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(name = "cloud-seata-order")
 public interface OrderFeignClient {
 
-    @GetMapping("/create")
+    @GetMapping("/order/create")
     void create(@RequestParam("userId") String userId,
                 @RequestParam("commodityCode") String commodityCode,
                 @RequestParam("count") Integer count);
