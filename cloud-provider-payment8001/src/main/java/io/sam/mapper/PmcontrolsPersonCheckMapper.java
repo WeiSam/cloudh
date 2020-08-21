@@ -1,6 +1,6 @@
-package com.mapper;
+package io.sam.mapper;
 
-import com.domain.PmcontrolsPersonCheck;
+import io.sam.domain.PmcontrolsPersonCheck;
 
 /**
  * @Classname PmcontrolsPersonCheckMapper

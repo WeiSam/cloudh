@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mapper.PmcontrolsPersonCheckMapper">
-  <resultMap id="BaseResultMap" type="com.domain.PmcontrolsPersonCheck">
+<mapper namespace="io.sam.mapper.PmcontrolsPersonCheckMapper">
+  <resultMap id="BaseResultMap" type="io.sam.domain.PmcontrolsPersonCheck">
     <!--@mbg.generated-->
     <!--@Table pmcontrols_person_check-->
     <id column="ID" jdbcType="INTEGER" property="id" />
@@ -40,7 +40,7 @@
     delete from pmcontrols_person_check
     where ID = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.domain.PmcontrolsPersonCheck" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="io.sam.domain.PmcontrolsPersonCheck" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into pmcontrols_person_check (MAGIC_ID, PERSON_MAGIC_ID, HAS_SICK, 
       SICK_HISTORY, SICK_DESC, HAS_INJURY, 
@@ -55,7 +55,7 @@
       #{createUser,jdbcType=VARCHAR}, #{updatedUser,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
       #{updatedTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.domain.PmcontrolsPersonCheck" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="io.sam.domain.PmcontrolsPersonCheck" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into pmcontrols_person_check
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -159,7 +159,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.domain.PmcontrolsPersonCheck">
+  <update id="updateByPrimaryKeySelective" parameterType="io.sam.domain.PmcontrolsPersonCheck">
     <!--@mbg.generated-->
     update pmcontrols_person_check
     <set>
@@ -214,7 +214,7 @@
     </set>
     where ID = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.domain.PmcontrolsPersonCheck">
+  <update id="updateByPrimaryKey" parameterType="io.sam.domain.PmcontrolsPersonCheck">
     <!--@mbg.generated-->
     update pmcontrols_person_check
     set MAGIC_ID = #{magicId,jdbcType=VARCHAR},
