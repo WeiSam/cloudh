@@ -3,7 +3,6 @@ package io.sam.config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
 @ConfigurationProperties(prefix = "sam.json")
 public class MyJsonProperties {
 

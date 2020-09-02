@@ -2,6 +2,7 @@ package io.sam;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @author zhuweimu
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Description
  * @date 2020/8/24 9:16
  */
+@EnableScheduling
 @SpringBootApplication
 public class CloudSample {
     public static void main(String[] args) {

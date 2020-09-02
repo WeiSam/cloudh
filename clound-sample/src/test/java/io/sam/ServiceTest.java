@@ -8,6 +8,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import common.BaseResponse;
 import dto.vo.PaymentVo;
 import io.sam.service.MyJsonService;
 import org.junit.Test;
@@ -43,16 +44,11 @@ public class ServiceTest {
         }else if (StrUtil.containsIgnoreCase(str1,"time") && StrUtil.containsIgnoreCase(str1,"end")){
             symbol = "<=";
         }
-        System.out.println(Short.MAX_VALUE);
-        System.out.println(Integer.MAX_VALUE);
-        System.out.println(Long.MAX_VALUE);
 
-        System.out.println(Long.parseLong(StrUtil.format("{}{}",new Date().getTime(),Integer.MAX_VALUE)));
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("5643564").append("12");
 
-        System.out.println(Integer.MAX_VALUE+String.valueOf(new Date().getTime()));
-
-
-        System.out.println(String.valueOf(new Date().getTime())+RandomUtil.randomString(13));
+        System.out.println(stringBuffer.length());
 
 //        PaymentVo paymentVo = PaymentVo.builder().id(12819L).build();
 //        System.out.println("null".matches("^[a-z0-9A-Z]+$"));
