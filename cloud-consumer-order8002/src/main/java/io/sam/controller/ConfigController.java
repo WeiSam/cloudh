@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Description:
  */
 @RestController
-@RequestMapping("config/")
+@RequestMapping("order/config/")
 public class ConfigController {
 
     @Value("${server.port}")
