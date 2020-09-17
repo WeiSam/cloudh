@@ -18,4 +18,10 @@ public class CloudSeataStorage {
         SpringApplication.run(CloudSeataStorage.class,args);
         System.out.println("库存服务启动成功");
     }
+
+/*    @Primary
+    @Bean("dataSourceProxy")
+    public DataSourceProxy dataSourceProxy(@Autowired @Qualifier("druidDataSource") DataSource dataSource) {
+        return new DataSourceProxy(dataSource);
+    }*/
 }

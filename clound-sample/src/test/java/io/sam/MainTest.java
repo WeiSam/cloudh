@@ -7,6 +7,7 @@ import io.jsonwebtoken.impl.crypto.MacProvider;
 import org.junit.Test;
 
 import java.security.Key;
+import java.text.MessageFormat;
 
 /**
  * @author zhuweimu
@@ -25,5 +26,14 @@ public class MainTest {
                 .setSubject("Joe")
                 .signWith(SignatureAlgorithm.HS256, key)
                 .compact();
+
+    }
+
+    private static String CONDITION = "{0}='{1}'";
+    private static String CONDITION2 = "%s='%s'";
+    @Test
+    public void test02(){
+        System.out.println(MessageFormat.format(CONDITION,"abc",123));
+        System.out.println(String.format(CONDITION2,"abc",123));
     }
 }

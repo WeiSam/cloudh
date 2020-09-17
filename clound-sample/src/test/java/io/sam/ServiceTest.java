@@ -1,25 +1,14 @@
 package io.sam;
 
-import cn.hutool.core.map.MapUtil;
-import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.RandomUtil;
-import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import common.BaseResponse;
-import dto.vo.PaymentVo;
 import io.sam.service.MyJsonService;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Date;
 import java.util.Map;
-import java.util.Random;
 import java.util.UUID;
 
 /**
@@ -44,6 +33,8 @@ public class ServiceTest {
         }else if (StrUtil.containsIgnoreCase(str1,"time") && StrUtil.containsIgnoreCase(str1,"end")){
             symbol = "<=";
         }
+
+        StrUtil.format("","");
 
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append("5643564").append("12");

@@ -51,7 +51,7 @@ public class OrderTblService{
         Integer orderMoney = 100 * count;
         //创建订单
         OrderTbl orderTbl = new OrderTbl();
-        orderTbl.setUserId(userId).setCommodityCode(commodityCode).setCount(count);
+        orderTbl.setUserId(userId).setCommodityCode(commodityCode).setCount(count).setMoney(orderMoney);
         this.insert(orderTbl);
         //扣减金额
         userFeignClient.reduce(userId, orderMoney);

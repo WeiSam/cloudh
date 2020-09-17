@@ -16,4 +16,10 @@ public class CloudSeataOrder {
         SpringApplication.run(CloudSeataOrder.class,args);
         System.out.println("订单服务启动成功");
     }
+
+/*    @Primary
+    @Bean("dataSourceProxy")
+    public DataSourceProxy dataSourceProxy(@Autowired @Qualifier("druidDataSource") DataSource dataSource) {
+        return new DataSourceProxy(dataSource);
+    }*/
 }

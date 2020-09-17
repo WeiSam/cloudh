@@ -16,4 +16,10 @@ public class CloudSeataAcount {
         SpringApplication.run(CloudSeataAcount.class,args);
         System.out.println("账号服务启动成功");
     }
+
+/*    @Primary
+    @Bean("dataSourceProxy")
+    public DataSourceProxy dataSourceProxy(@Autowired @Qualifier("druidDataSource") DataSource dataSource) {
+        return new DataSourceProxy(dataSource);
+    }*/
 }
