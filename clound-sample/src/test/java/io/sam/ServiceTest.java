@@ -4,9 +4,13 @@ import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import io.sam.service.LogService;
 import io.sam.service.MyJsonService;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Map;
 import java.util.UUID;
@@ -17,12 +21,14 @@ import java.util.UUID;
  * @Description
  * @date 2020/8/24 9:33
  */
-//@RunWith(SpringRunner.class)
-//@SpringBootTest
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class ServiceTest {
 
     @Autowired
     MyJsonService myJsonService;
+
+    Map<String,LogService> sqlLogService;
 
     @Test
     public void test01(){
@@ -70,5 +76,10 @@ public class ServiceTest {
         String substring = logContent.substring(last, logContent.lastIndexOf("}"));
         return substring;
 
+    }
+
+    @Test
+    public void testLog(){
+        sqlLogService.get("sqlLogServiceImpl").print();
     }
 }

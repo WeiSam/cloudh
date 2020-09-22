@@ -2,6 +2,7 @@ package io.sam.service;
 
 import io.sam.feign.OrderFeignClient;
 import io.sam.feign.StorageFeignClient;
+import io.seata.spring.annotation.GlobalLock;
 import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ public class BusinessService {
     private OrderFeignClient orderFeignClient;
 
     @GlobalTransactional
+    @GlobalLock
     public void purchase(String userId, String commodityCode, int orderCount) {
         storageFeignClient.deduct(commodityCode, orderCount);
         orderFeignClient.create(userId, commodityCode, orderCount);

@@ -12,6 +12,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>myjson-springboot-start</module>
+        <module>distributed-lock-springboot-start</module>
     </modules>
 
     <artifactId>my-springboot-start</artifactId>
@@ -23,6 +24,7 @@
                 <artifactId>spring-boot-autoconfigure</artifactId>
                 <version>2.2.2.RELEASE</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 
