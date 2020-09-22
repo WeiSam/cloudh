@@ -1,1 +1,3 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=io.sam.config.RedissonAutoConfig
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+io.sam.config.RedissonAutoConfig
+#sam.ImportTestConfig

@@ -1,10 +1,12 @@
 package io.sam.service;
 
+import com.alibaba.fastjson.JSON;
 import io.sam.BaseTest;
 import io.sam.service.impl.LockTestServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import sam.TestModel;
 
 /**
  * @author zhuweimu
@@ -26,6 +28,13 @@ public class TestLockService extends BaseTest {
             }).start();
         }
         Thread.sleep(1000*100);
+    }
 
+    @Autowired
+    TestModel testModel;
+
+    @Test
+    public void testImport(){
+        log.info(JSON.toJSONString(testModel));
     }
 }
