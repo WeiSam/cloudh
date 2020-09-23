@@ -1,3 +1,7 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-io.sam.config.RedissonAutoConfig
+io.sam.config.RedissonAutoConfig,\
+io.sam.lock.DistributedLockInterceptor
+#io.sam.service.impl.RedissonLockService,\
+#io.sam.service.impl.DefaultRedisKeyGenerator
+
 #sam.ImportTestConfig

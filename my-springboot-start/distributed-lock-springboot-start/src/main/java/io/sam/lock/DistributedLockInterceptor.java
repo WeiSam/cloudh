@@ -8,11 +8,10 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
@@ -24,8 +23,8 @@ import java.util.Map;
  * @description
  * @date 2020/9/21 16:20
  */
+@ConditionalOnBean(LockService.class)
 @Aspect
-@ConditionalOnClass({RedissonClient.class})
 @Component
 public class DistributedLockInterceptor {
     Logger log = LoggerFactory.getLogger(DistributedLockInterceptor.class);
