@@ -39,7 +39,8 @@ public class RedissonLockServiceImpl implements LockService<RLock> {
 
     @Override
     public void unlock(LockResult<RLock> lockResult) {
-        if (lockResult != null && lockResult.getT() != null && lockResult.isSuccess()) {
+        if (lockResult != null && lockResult.getT() != null
+                && lockResult.isSuccess() && lockResult.getT().isHeldByCurrentThread()) {
             lockResult.getT().unlock();
         }
     }
