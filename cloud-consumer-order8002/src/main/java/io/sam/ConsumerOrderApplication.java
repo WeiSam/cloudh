@@ -1,6 +1,6 @@
 package io.sam;
 
-import io.sam.config.MySelfRuleConfig;
+import io.ribbon.MyRuleConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
@@ -11,8 +11,8 @@ import org.springframework.cloud.netflix.ribbon.RibbonClient;
  * @Date: 2020/3/28 11:38
  * @Description:
  */
-//@EnableEurekaClient
-@RibbonClient(name = "cloud-provider-payment",configuration = {MySelfRuleConfig.class})
+@RibbonClient(name = "cloud-provider-payment",configuration = {MyRuleConfig.class})
+@EnableEurekaClient
 @SpringBootApplication
 public class ConsumerOrderApplication {
 

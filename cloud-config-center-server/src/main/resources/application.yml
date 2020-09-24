@@ -1,21 +1,25 @@
 spring:
   application:
     name: cloud-config-center-server
-  cloud:
-    config:
-      server:
-        native:
-          search-locations: src\main\resources\local
 #  cloud:
 #    config:
 #      server:
-#        git:
-#          search-paths: spring-cloud-samples
-#          uri: https://github.com/WeiSam/spring-cloud-samples.git
-#      label: master
+#        native:
+#          search-locations: classpath:/local
+#  profiles:
+#    active: native
+  cloud:
+    config:
+      server:
+        git:
+          search-paths: spring-cloud-samples
+          uri: https://github.com/WeiSam/spring-cloud-samples.git
+      label: master
 
 server:
   port: 3344
+
+
 
 
 eureka:

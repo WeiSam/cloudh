@@ -694,11 +694,11 @@ instanceKlass com/sun/jersey/core/spi/component/ComponentProviderFactory
 instanceKlass com/sun/jersey/client/impl/CopyOnWriteHashMap
 instanceKlass com/sun/jersey/core/spi/factory/InjectableProviderFactory
 instanceKlass com/sun/jersey/spi/inject/InjectableProviderContext
-instanceKlass com/sun/jersey/spi/service/ServiceFinder$AbstractLazyIterator
-instanceKlass com/sun/jersey/spi/service/ServiceFinder$ServiceIteratorProvider
+instanceKlass com/sun/jersey/spi/io.sam.service/ServiceFinder$AbstractLazyIterator
+instanceKlass com/sun/jersey/spi/io.sam.service/ServiceFinder$ServiceIteratorProvider
 instanceKlass com/sun/jersey/core/reflection/ReflectionHelper$1
 instanceKlass com/sun/jersey/core/reflection/ReflectionHelper
-instanceKlass com/sun/jersey/spi/service/ServiceFinder
+instanceKlass com/sun/jersey/spi/io.sam.service/ServiceFinder
 instanceKlass com/sun/jersey/core/util/LazyVal
 instanceKlass com/sun/jersey/spi/inject/Errors
 instanceKlass com/sun/jersey/api/client/Client$1
