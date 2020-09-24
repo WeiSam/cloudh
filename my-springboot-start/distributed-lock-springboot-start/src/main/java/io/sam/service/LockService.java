@@ -20,11 +20,11 @@ public interface LockService<T> {
      * @param timeUnit
      * @return
      */
-    LockResult<T> lock(String key, long waitTime, long keepTime, TimeUnit timeUnit);
+    LockResult<T> lock(String key, long waitTime, long keepTime, TimeUnit timeUnit) throws Exception;
 
     /**
      *
      * @param lockResult
      */
-    void unlock(LockResult<T> lockResult);
+    void unlock(LockResult<T> lockResult) throws Exception;
 }

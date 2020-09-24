@@ -1,5 +1,9 @@
 package io.sam.config;
 
+import io.sam.constant.Constants;
+import io.sam.properties.RedissonProperties;
+import io.sam.service.LockService;
+import io.sam.service.impl.RedissonLockServiceImpl;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
@@ -8,6 +12,7 @@ import org.redisson.config.SingleServerConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -64,5 +69,11 @@ public class RedissonAutoConfig {
         log.info("Redisson分布式锁哨兵模式初始化成功");
         RedissonClient redissonClient = Redisson.create(config);
         return redissonClient;
+    }
+
+    @ConditionalOnBean(RedissonClient.class)
+    @Bean(Constants.REDISSON_LOCK_SERVICE)
+    public LockService redissonLockServiceImpl(){
+        return new RedissonLockServiceImpl();
     }
 }

@@ -1,6 +1,6 @@
 package io.sam.annotation;
 
-import io.sam.enums.DistributeLockType;
+import io.sam.enums.LockServiceType;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -76,5 +76,5 @@ public @interface DisLock {
      * 使用锁类型
      * @return
      */
-    DistributeLockType distributeLockType() default DistributeLockType.REDISSON_LOCK;
+    LockServiceType lockServiceType() default LockServiceType.REDISSON;
 }

@@ -1,4 +1,4 @@
-package io.sam.config;
+package io.sam.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

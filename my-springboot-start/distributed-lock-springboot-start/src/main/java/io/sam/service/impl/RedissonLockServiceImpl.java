@@ -7,8 +7,6 @@ import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,11 +16,9 @@ import java.util.concurrent.TimeUnit;
  * @description
  * @date 2020/9/21 14:49
  */
-@ConditionalOnBean(RedissonClient.class)
-@Component("REDISSON_LOCK")
-public class RedissonLockService implements LockService<RLock> {
+public class RedissonLockServiceImpl implements LockService<RLock> {
 
-    Logger log = LoggerFactory.getLogger(RedissonLockService.class);
+    Logger log = LoggerFactory.getLogger(RedissonLockServiceImpl.class);
 
     @Autowired
     RedissonClient redissonClient;

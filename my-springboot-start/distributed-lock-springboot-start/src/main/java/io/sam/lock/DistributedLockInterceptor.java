@@ -37,15 +37,18 @@ public class DistributedLockInterceptor {
 
     @Around("execution(public * *(..)) && @annotation(io.sam.annotation.DisLock)")
     public Object interceptor(ProceedingJoinPoint pjp) throws Throwable {
-
         MethodSignature signature = (MethodSignature) pjp.getSignature();
         Method method = signature.getMethod();
         //生成key
         String key = keyGenerator.generate(pjp);
         LockResult lockResult = null;
         DisLock disLock = method.getAnnotation(DisLock.class);
-        LockService lockService = lockServiceMap.get(disLock.distributeLockType().getValue());
+        LockService lockService = lockServiceMap.get(disLock.lockServiceType().getValue());
         try {
+            if (lockService == null) {
+                log.error("{}[{}]未被注册,请检查配置信息。",disLock.lockServiceType().getName(),disLock.lockServiceType().getValue());
+                throw new Exception(disLock.lockServiceType().getName()+"["+disLock.lockServiceType().getValue()+"]未被注册");
+            }
             lockResult = lockService.lock(key, disLock.waitTime(), disLock.keepTime(), disLock.timeUnit());
             boolean isSuccess = lockResult.isSuccess();
             if (log.isDebugEnabled()) {
