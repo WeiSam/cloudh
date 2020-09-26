@@ -43,7 +43,7 @@ public class OrderController {
      * @return
      */
     @GetMapping("getOrderPayment/detail/{orderId}")
-    public BaseResponse getPayment(@PathVariable Long orderId){
+    public BaseResponse<PaymentVo> getPayment(@PathVariable Long orderId){
         return BaseResponse.success(PaymentVo.builder().build());
     }
 
@@ -54,8 +54,8 @@ public class OrderController {
      * @return
      */
     @GetMapping("getOrderPayment/detail01/{orderId}")
-    public BaseResponse01 getPayment01(@PathVariable Long orderId){
-        return new BaseResponse01();
+    public PaymentVo getPayment01(@PathVariable Long orderId){
+        return PaymentVo.builder().build();
     }
 
 }
