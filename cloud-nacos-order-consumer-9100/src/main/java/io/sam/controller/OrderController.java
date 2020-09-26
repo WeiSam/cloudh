@@ -1,5 +1,7 @@
 package io.sam.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import common.BaseResponse;
 import io.sam.config.OrderConfig;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +41,13 @@ public class OrderController {
         return BaseResponse.success(result.getBody());
     }
 
-    @GetMapping("getData")
+    @SentinelResource(value = "getData",blockHandler = "exceptionHandler")
+    @GetMapping(value = "getData")
     public BaseResponse getData(){
         return BaseResponse.success(data);
+    }
+
+    public BaseResponse exceptionHandler(BlockException ex){
+        return BaseResponse.error(500,"兜底异常信息",null);
     }
 }

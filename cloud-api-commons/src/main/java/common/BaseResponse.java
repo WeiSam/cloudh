@@ -53,4 +53,9 @@ public class BaseResponse<T> implements Serializable {
         return baseResponse;
     }
 
+    public static <T> BaseResponse<T> error(Integer code, String msg, T data){
+        BaseResponse<T> baseResponse = new BaseResponse<T>(code,msg,data,System.currentTimeMillis());
+        return baseResponse;
+    }
+
 }
