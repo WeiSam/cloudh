@@ -12,6 +12,14 @@ spring:
     timeout: 3000
     redisson:
       config: classpath:redisson.yml
+
+  #对于RabbitMQ配置
+  rabbitmq:
+    host: 192.168.37.193
+    port: 5671
+    username: root
+    password: gosuncn
+
 sam:
   json:
     prefixName: test
@@ -24,5 +32,8 @@ redisson:
   address: redis://192.168.37.193:6379
   password: gosuncn
   database: 5
+
+
+
 
 

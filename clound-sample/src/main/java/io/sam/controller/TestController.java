@@ -7,14 +7,13 @@ import io.sam.dto.YanTaiLoginResp;
 import io.sam.dto.YanTaiRepositoryResp;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
+import org.springframework.util.StopWatch;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.net.URLDecoder;
 import java.util.UUID;
 
 /**
@@ -31,12 +30,12 @@ public class TestController {
     @RequestMapping({"/oauth2/authorize"})
     public void login(HttpServletResponse response, HttpServletRequest request) throws IOException {
         String str = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1eWNvYzM2Q1k4ZHFjdnRGeUx5NVhFIiwic3ViIjoiOThiNjBkMzgtM2FlMS00ZTIwLTkwNDMtMTRhZTM5NzBmYWM2IiwiZXhwIjoxNTk5NzE3OTI2LCJuYW1lIjoi6K2m5Yqh5rWL6K-VIiwidXNlcm5hbWUiOiIzNTAxMDAyMDIwMDgyNzAwMDEiLCJsb2dpbl9uYW1lIjoiMzUwMTAwMjAyMDA4MjcwMDAxIiwiZUNvZGUiOiJmemdhIiwiaXNzIjoiaHR0cDovLzQ0LjUzLjIyLjIyL3NzbyIsImdtc2Z6IjoiMzUwMTAwMjAyMDA4MjcwMDAxIn0.2hEfGyRB0Fg0Yu4kexDbEm_HUUfkoV_SDYMDag3LlTw";
-        String redirect_uri = request.getParameter("redirect_uri");
-        redirect_uri = URLDecoder.decode(redirect_uri);
-        //获取到认证信息之后进行各业务本地逻辑，比如再次进行系统内权限校验，信息校验，再把相关信息存放到session，
-        HttpSession session=((HttpServletRequest)request).getSession();
-        session.setAttribute("userAuthJsonStr",str);
-        response.sendRedirect(redirect_uri + "?" + "id_token="+str);
+//        String redirect_uri = request.getParameter("redirect_uri");
+//        redirect_uri = URLDecoder.decode(redirect_uri);
+//        //获取到认证信息之后进行各业务本地逻辑，比如再次进行系统内权限校验，信息校验，再把相关信息存放到session，
+//        HttpSession session=((HttpServletRequest)request).getSession();
+//        session.setAttribute("userAuthJsonStr",str);
+        response.sendRedirect("http://192.168.37.193/cmt/view/index.html#/login?aa=90");
     }
 
     @GetMapping(value = "business/api/storage/image",produces = MediaType.IMAGE_JPEG_VALUE)
@@ -62,5 +61,12 @@ public class TestController {
     public YanTaiRepositoryResp getRepository(HttpServletRequest request){
         log.info("session_id = {}",request.getHeader("session_id"));
         return new YanTaiRepositoryResp();
+    }
+
+    @GetMapping("test/test.do")
+    public String testDo(){
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+        return "jkajskj";
     }
 }

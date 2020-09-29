@@ -7,7 +7,10 @@ import io.jsonwebtoken.impl.crypto.MacProvider;
 import org.junit.Test;
 
 import java.security.Key;
-import java.text.MessageFormat;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.StringJoiner;
+import java.util.UUID;
 
 /**
  * @author zhuweimu
@@ -33,7 +36,14 @@ public class MainTest {
     private static String CONDITION2 = "%s='%s'";
     @Test
     public void test02(){
-        System.out.println(MessageFormat.format(CONDITION,"abc",123));
-        System.out.println(String.format(CONDITION2,"abc",123));
+        StringJoiner stringJoiner = new StringJoiner(" AND ");
+        Map<String,String> map = new HashMap<>();
+        map.put("aa","12");
+//        map.put("bb","34");
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            stringJoiner.add(String.format(CONDITION2,entry.getKey(),entry.getValue()));
+        }
+        System.out.println(stringJoiner.toString());
+        System.out.println(UUID.randomUUID().toString().replace("-","").toUpperCase());
     }
 }
