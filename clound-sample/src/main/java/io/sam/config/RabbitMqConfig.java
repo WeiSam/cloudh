@@ -14,6 +14,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMqConfig {
 
+    public String name;
+
     @Bean
     public Jackson2JsonMessageConverter jackson2JsonMessageConverter(ObjectMapper xssObjectMapper) {
         return new Jackson2JsonMessageConverter(xssObjectMapper);
