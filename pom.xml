@@ -25,6 +25,7 @@
         <module>clound-sample</module>
         <module>cloud-test</module>
         <module>cloud-gateway5050</module>
+        <module>spring-design-patterns</module>
     </modules>
     <packaging>pom</packaging>
 
