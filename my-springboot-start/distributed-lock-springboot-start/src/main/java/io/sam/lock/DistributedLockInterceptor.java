@@ -26,6 +26,7 @@ import java.util.Map;
 @ConditionalOnBean(LockService.class)
 @Aspect
 @Component
+@SuppressWarnings("rawtypes")
 public class DistributedLockInterceptor {
     Logger log = LoggerFactory.getLogger(DistributedLockInterceptor.class);
 

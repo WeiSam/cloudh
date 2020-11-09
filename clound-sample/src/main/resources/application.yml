@@ -4,6 +4,17 @@ server:
 spring:
   application:
     name: cloud-sample
+
+  datasource:
+    # 当前数据源操作类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    # mysql驱动类
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/fescar?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: gosuncn
+    enable: true
+
   redis:
     database: 0
     host: 192.168.27.193
@@ -28,11 +39,12 @@ test:
   name: sam
   age: 100
 
-redisson:
-  address: redis://192.168.37.193:6379
-  password: gosuncn
-  database: 5
 
+#redisson:
+#  address: redis://192.168.37.193:6379
+#  password: gosuncn
+#  database: 5
+debug: true
 
 
 

@@ -23,7 +23,7 @@ public class CuratorLockServiceImpl implements LockService<InterProcessMutex> {
 
     @Override
     public LockResult<InterProcessMutex> lock(String key, long waitTime, long keepTime, TimeUnit timeUnit) throws Exception{
-        LockResult<InterProcessMutex> lockResult = new LockResult();
+        LockResult<InterProcessMutex> lockResult = new LockResult<>();
         InterProcessMutex mutex = new InterProcessMutex(client,LOCK_BASE_PATH+key);
         boolean isSuccess = mutex.acquire((int) waitTime, timeUnit);
         lockResult.setSuccess(isSuccess);

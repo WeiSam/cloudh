@@ -1,0 +1,81 @@
+package io.sam.config;
+
+import io.sam.annotation.MyMapper;
+import io.sam.dto.UserDto;
+import io.sam.mymapper.ClassPathMyMapperScanner;
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.MutablePropertyValues;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.BeanFactoryAware;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
+import org.springframework.beans.factory.support.GenericBeanDefinition;
+import org.springframework.context.ResourceLoaderAware;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.core.type.AnnotationMetadata;
+
+/**
+ * @author zhuweimu
+ * @classname AutoConfigMyMapper
+ * @description
+ * @date 2020/10/28 14:16
+ */
+@Slf4j
+@Data
+@Import(MyMapperAutoConfig.MyMapperScannerRegistrar.class)
+public class MyMapperAutoConfig {
+
+    @Value("${test.name}")
+    private String name;
+
+    ResourceLoader resourceLoader;
+
+    public MyMapperAutoConfig(ResourceLoader resourceLoader) {
+        this.resourceLoader = resourceLoader;
+    }
+
+    public static class MyMapperScannerRegistrar implements ImportBeanDefinitionRegistrar, BeanFactoryAware, ResourceLoaderAware {
+
+        private BeanFactory beanFactory;
+
+        private ResourceLoader resourceLoader;
+
+        @Override
+        public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata,
+                                            BeanDefinitionRegistry registry) {
+            log.info("导入bean定义");
+            GenericBeanDefinition beanDefinition = new GenericBeanDefinition();
+            beanDefinition.setBeanClass(UserDto.class);
+            MutablePropertyValues propertyValues = new MutablePropertyValues();
+            propertyValues.addPropertyValue("age","18");
+            beanDefinition.setPropertyValues(propertyValues);
+//            beanDefinition.setAttribute("age","18");
+            registry.registerBeanDefinition("userDto",beanDefinition);
+
+//            List<String> packages = AutoConfigurationPackages.get(this.beanFactory);
+
+            ClassPathMyMapperScanner scanner = new ClassPathMyMapperScanner(registry);
+            if (this.resourceLoader != null) {
+                scanner.setResourceLoader(this.resourceLoader);
+            }
+            scanner.setAnnotationClass(MyMapper.class);
+            scanner.registerFilters();
+            scanner.doScan(new String[]{"io.sam.service"});
+
+        }
+
+        @Override
+        public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+            this.beanFactory = beanFactory;
+        }
+
+        @Override
+        public void setResourceLoader(ResourceLoader resourceLoader) {
+            this.resourceLoader = resourceLoader;
+        }
+    }
+}

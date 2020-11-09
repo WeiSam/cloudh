@@ -26,7 +26,7 @@ public class RedissonLockServiceImpl implements LockService<RLock> {
     @Override
     public LockResult<RLock> lock(String key, long waitTime, long keepTime, TimeUnit timeUnit) {
         RLock lock = redissonClient.getLock(key);
-        LockResult<RLock> lockResult = new LockResult();
+        LockResult<RLock> lockResult = new LockResult<>();
         try {
             lockResult.setSuccess( lock.tryLock(waitTime, keepTime, timeUnit));
             lockResult.setT(lock);

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.sam.db.mapper.InterfaceLogMapper">
+  <resultMap id="BaseResultMap" type="io.sam.db.domain.InterfaceLog">
+    <!--@mbg.generated-->
+    <!--@Table Interface_Log-->
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="Num_ID" jdbcType="OTHER" property="numId" />
+    <result column="Reg_ID" jdbcType="VARCHAR" property="regId" />
+    <result column="User_ID" jdbcType="CHAR" property="userId" />
+    <result column="Organization" jdbcType="VARCHAR" property="organization" />
+    <result column="Organization_ID" jdbcType="CHAR" property="organizationId" />
+    <result column="User_Name" jdbcType="VARCHAR" property="userName" />
+    <result column="Terminal_ID" jdbcType="VARCHAR" property="terminalId" />
+    <result column="Interface_Time" jdbcType="CHAR" property="interfaceTime" />
+    <result column="Requester" jdbcType="VARCHAR" property="requester" />
+    <result column="Interface_Result" jdbcType="CHAR" property="interfaceResult" />
+    <result column="Error_Code" jdbcType="CHAR" property="errorCode" />
+    <result column="Interface_Name" jdbcType="VARCHAR" property="interfaceName" />
+    <result column="Interface_Condition" jdbcType="VARCHAR" property="interfaceCondition" />
+    <result column="Insert_Time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="Collect_Type" jdbcType="CHAR" property="collectType" />
+    <result column="SendID" jdbcType="VARCHAR" property="sendid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    ID, Num_ID, Reg_ID, User_ID, Organization, Organization_ID, User_Name, Terminal_ID, 
+    Interface_Time, Requester, Interface_Result, Error_Code, Interface_Name, Interface_Condition, 
+    Insert_Time, Collect_Type, SendID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from Interface_Log
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from Interface_Log
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="io.sam.db.domain.InterfaceLog">
+    <!--@mbg.generated-->
+    insert into Interface_Log (ID, Num_ID, Reg_ID, 
+      User_ID, Organization, Organization_ID, 
+      User_Name, Terminal_ID, Interface_Time, 
+      Requester, Interface_Result, Error_Code, 
+      Interface_Name, Interface_Condition, Insert_Time, 
+      Collect_Type, SendID)
+    values (#{id,jdbcType=DECIMAL}, #{numId,jdbcType=OTHER}, #{regId,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=CHAR}, #{organization,jdbcType=VARCHAR}, #{organizationId,jdbcType=CHAR}, 
+      #{userName,jdbcType=VARCHAR}, #{terminalId,jdbcType=VARCHAR}, #{interfaceTime,jdbcType=CHAR}, 
+      #{requester,jdbcType=VARCHAR}, #{interfaceResult,jdbcType=CHAR}, #{errorCode,jdbcType=CHAR}, 
+      #{interfaceName,jdbcType=VARCHAR}, #{interfaceCondition,jdbcType=VARCHAR}, #{insertTime,jdbcType=TIMESTAMP}, 
+      #{collectType,jdbcType=CHAR}, #{sendid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="io.sam.db.domain.InterfaceLog">
+    <!--@mbg.generated-->
+    insert into Interface_Log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="numId != null">
+        Num_ID,
+      </if>
+      <if test="regId != null">
+        Reg_ID,
+      </if>
+      <if test="userId != null">
+        User_ID,
+      </if>
+      <if test="organization != null">
+        Organization,
+      </if>
+      <if test="organizationId != null">
+        Organization_ID,
+      </if>
+      <if test="userName != null">
+        User_Name,
+      </if>
+      <if test="terminalId != null">
+        Terminal_ID,
+      </if>
+      <if test="interfaceTime != null">
+        Interface_Time,
+      </if>
+      <if test="requester != null">
+        Requester,
+      </if>
+      <if test="interfaceResult != null">
+        Interface_Result,
+      </if>
+      <if test="errorCode != null">
+        Error_Code,
+      </if>
+      <if test="interfaceName != null">
+        Interface_Name,
+      </if>
+      <if test="interfaceCondition != null">
+        Interface_Condition,
+      </if>
+      <if test="insertTime != null">
+        Insert_Time,
+      </if>
+      <if test="collectType != null">
+        Collect_Type,
+      </if>
+      <if test="sendid != null">
+        SendID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="numId != null">
+        #{numId,jdbcType=OTHER},
+      </if>
+      <if test="regId != null">
+        #{regId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=CHAR},
+      </if>
+      <if test="organization != null">
+        #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationId != null">
+        #{organizationId,jdbcType=CHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalId != null">
+        #{terminalId,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceTime != null">
+        #{interfaceTime,jdbcType=CHAR},
+      </if>
+      <if test="requester != null">
+        #{requester,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceResult != null">
+        #{interfaceResult,jdbcType=CHAR},
+      </if>
+      <if test="errorCode != null">
+        #{errorCode,jdbcType=CHAR},
+      </if>
+      <if test="interfaceName != null">
+        #{interfaceName,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceCondition != null">
+        #{interfaceCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null">
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="collectType != null">
+        #{collectType,jdbcType=CHAR},
+      </if>
+      <if test="sendid != null">
+        #{sendid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="io.sam.db.domain.InterfaceLog">
+    <!--@mbg.generated-->
+    update Interface_Log
+    <set>
+      <if test="numId != null">
+        Num_ID = #{numId,jdbcType=OTHER},
+      </if>
+      <if test="regId != null">
+        Reg_ID = #{regId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        User_ID = #{userId,jdbcType=CHAR},
+      </if>
+      <if test="organization != null">
+        Organization = #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationId != null">
+        Organization_ID = #{organizationId,jdbcType=CHAR},
+      </if>
+      <if test="userName != null">
+        User_Name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalId != null">
+        Terminal_ID = #{terminalId,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceTime != null">
+        Interface_Time = #{interfaceTime,jdbcType=CHAR},
+      </if>
+      <if test="requester != null">
+        Requester = #{requester,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceResult != null">
+        Interface_Result = #{interfaceResult,jdbcType=CHAR},
+      </if>
+      <if test="errorCode != null">
+        Error_Code = #{errorCode,jdbcType=CHAR},
+      </if>
+      <if test="interfaceName != null">
+        Interface_Name = #{interfaceName,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceCondition != null">
+        Interface_Condition = #{interfaceCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null">
+        Insert_Time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="collectType != null">
+        Collect_Type = #{collectType,jdbcType=CHAR},
+      </if>
+      <if test="sendid != null">
+        SendID = #{sendid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="io.sam.db.domain.InterfaceLog">
+    <!--@mbg.generated-->
+    update Interface_Log
+    set Num_ID = #{numId,jdbcType=OTHER},
+      Reg_ID = #{regId,jdbcType=VARCHAR},
+      User_ID = #{userId,jdbcType=CHAR},
+      Organization = #{organization,jdbcType=VARCHAR},
+      Organization_ID = #{organizationId,jdbcType=CHAR},
+      User_Name = #{userName,jdbcType=VARCHAR},
+      Terminal_ID = #{terminalId,jdbcType=VARCHAR},
+      Interface_Time = #{interfaceTime,jdbcType=CHAR},
+      Requester = #{requester,jdbcType=VARCHAR},
+      Interface_Result = #{interfaceResult,jdbcType=CHAR},
+      Error_Code = #{errorCode,jdbcType=CHAR},
+      Interface_Name = #{interfaceName,jdbcType=VARCHAR},
+      Interface_Condition = #{interfaceCondition,jdbcType=VARCHAR},
+      Insert_Time = #{insertTime,jdbcType=TIMESTAMP},
+      Collect_Type = #{collectType,jdbcType=CHAR},
+      SendID = #{sendid,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>
