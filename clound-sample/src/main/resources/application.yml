@@ -30,6 +30,9 @@ spring:
     port: 5671
     username: root
     password: gosuncn
+    template:
+      retry:
+        enabled: false
 
 sam:
   json:

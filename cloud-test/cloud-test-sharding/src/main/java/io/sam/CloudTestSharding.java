@@ -1,6 +1,7 @@
 package io.sam;
 
 import lombok.extern.slf4j.Slf4j;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Description:
  */
 @Slf4j
+@MapperScan(basePackages = "io.sam.db.mapper")
 @SpringBootApplication
 public class CloudTestSharding {
 

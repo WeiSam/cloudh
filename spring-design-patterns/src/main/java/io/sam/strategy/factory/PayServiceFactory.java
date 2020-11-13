@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * @author zhuweimu
  * @classname PayServiceFactory
- * @description
+ * @description 策略 +工厂模式
  * @date 2020/10/3 16:49
  */
 @Slf4j

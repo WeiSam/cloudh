@@ -2,7 +2,9 @@ package io.sam;
 
 
 import cn.hutool.bloomfilter.BitMapBloomFilter;
+import cn.hutool.core.util.ReflectUtil;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.ValueFilter;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.crypto.MacProvider;
@@ -17,6 +19,7 @@ import org.springframework.util.StringUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.security.Key;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -166,6 +169,27 @@ public class MainTest {
         map.values().stream()
                 .sorted(Comparator.comparingInt(UserDto::getAge))
                 .forEach(userDto -> System.out.println(userDto.getAge()));
+    }
+
+    @Test
+    public void jsonStr() {
+        UserDto userDto = new UserDto();
+        String s = jsonNullToStr(userDto);
+        UserDto userDto1 = JSON.parseObject(s, UserDto.class);
+        System.out.println(s);
+    }
+
+    public static String jsonNullToStr(Object obj){
+        return JSON.toJSONString(obj, (ValueFilter)(object, name, value) ->{
+            if (value == null) {
+                Field field = ReflectUtil.getField(object.getClass(), name);
+                if (String.class.getName().equals(field.getGenericType().getTypeName())) {
+                    return "";
+                }
+                return "";
+            }
+            return value;
+        });
     }
 }
 

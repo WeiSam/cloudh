@@ -1,6 +1,5 @@
 package io.sam.service.impl;
 
-import io.sam.annotation.MyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -9,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @description
  * @date 2020/10/28 15:26
  */
-@MyMapper
+//@MyMapper(name = "TestMyMapperServiceImpl")
 public class TestMyMapperServiceImpl {
 
     @Autowired

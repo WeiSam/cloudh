@@ -1,7 +1,11 @@
 package io.sam.mymapper;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
+import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
+import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 
@@ -14,9 +18,11 @@ import java.util.Set;
  * @description
  * @date 2020/11/2 11:00
  */
+@Slf4j
 public class ClassPathMyMapperScanner extends ClassPathBeanDefinitionScanner {
 
     private Class<? extends Annotation> annotationClass;
+    private Class<? extends MyMypperFactoryBean> mapperFactoryBeanClass = MyMypperFactoryBean.class;
 
     public ClassPathMyMapperScanner(BeanDefinitionRegistry registry) {
         super(registry, false);
@@ -25,7 +31,29 @@ public class ClassPathMyMapperScanner extends ClassPathBeanDefinitionScanner {
     @Override
     public Set<BeanDefinitionHolder> doScan(String ... basePackages){
         Set<BeanDefinitionHolder> beanDefinitionHolders = super.doScan(basePackages);
+        processBeanDefinitions(beanDefinitionHolders);
         return beanDefinitionHolders;
+    }
+
+    private void processBeanDefinitions(Set<BeanDefinitionHolder> beanDefinitions) {
+        GenericBeanDefinition definition;
+        for (BeanDefinitionHolder holder : beanDefinitions) {
+            definition = (GenericBeanDefinition) holder.getBeanDefinition();
+            String beanClassName = definition.getBeanClassName();
+            log.debug("Creating MapperFactoryBean with name '" + holder.getBeanName()
+                    + "' and '" + beanClassName + "' mapperInterface");
+
+            // the mapper interface is the original class of the bean
+            // but, the actual class of the bean is MapperFactoryBean
+            definition.getConstructorArgumentValues().addGenericArgumentValue(beanClassName); // issue #59
+            definition.setBeanClass(this.mapperFactoryBeanClass);
+
+            boolean explicitFactoryUsed = false;
+            if (!explicitFactoryUsed) {
+                log.debug("Enabling autowire by type for MapperFactoryBean with name '" + holder.getBeanName() + "'.");
+                definition.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
+            }
+        }
     }
 
     /**
@@ -60,5 +88,10 @@ public class ClassPathMyMapperScanner extends ClassPathBeanDefinitionScanner {
 
     public void setAnnotationClass(Class<? extends Annotation> annotationClass) {
         this.annotationClass = annotationClass;
+    }
+
+    @Override
+    protected boolean isCandidateComponent(AnnotatedBeanDefinition beanDefinition) {
+        return beanDefinition.getMetadata().isInterface() && beanDefinition.getMetadata().isIndependent();
     }
 }

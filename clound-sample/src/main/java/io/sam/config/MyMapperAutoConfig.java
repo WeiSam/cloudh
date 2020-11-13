@@ -1,5 +1,6 @@
 package io.sam.config;
 
+import io.sam.annotation.EnableMyMapper;
 import io.sam.annotation.MyMapper;
 import io.sam.dto.UserDto;
 import io.sam.mymapper.ClassPathMyMapperScanner;
@@ -15,8 +16,15 @@ import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.context.ResourceLoaderAware;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
+import org.springframework.core.annotation.MergedAnnotation;
+import org.springframework.core.annotation.MergedAnnotations;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.type.AnnotationMetadata;
+import org.springframework.util.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author zhuweimu
@@ -27,7 +35,7 @@ import org.springframework.core.type.AnnotationMetadata;
 @Slf4j
 @Data
 @Import(MyMapperAutoConfig.MyMapperScannerRegistrar.class)
-public class MyMapperAutoConfig {
+public class MyMapperAutoConfig implements ImportBeanDefinitionRegistrar{
 
     @Value("${test.name}")
     private String name;
@@ -36,6 +44,15 @@ public class MyMapperAutoConfig {
 
     public MyMapperAutoConfig(ResourceLoader resourceLoader) {
         this.resourceLoader = resourceLoader;
+    }
+
+    @Override
+    public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
+        String className = importingClassMetadata.getClassName();
+        MergedAnnotations annotations = importingClassMetadata.getAnnotations();
+        MergedAnnotation<EnableMyMapper> enableMyMapperMergedAnnotation = annotations.get(EnableMyMapper.class);
+        Map<String, Object> packages = importingClassMetadata.getAnnotationAttributes("EnableMyMapper");
+        log.info("");
     }
 
     public static class MyMapperScannerRegistrar implements ImportBeanDefinitionRegistrar, BeanFactoryAware, ResourceLoaderAware {
@@ -58,13 +75,15 @@ public class MyMapperAutoConfig {
 
 //            List<String> packages = AutoConfigurationPackages.get(this.beanFactory);
 
+            List<String> packages = new ArrayList<>();
+            packages.add("io.sam.service");
             ClassPathMyMapperScanner scanner = new ClassPathMyMapperScanner(registry);
             if (this.resourceLoader != null) {
                 scanner.setResourceLoader(this.resourceLoader);
             }
             scanner.setAnnotationClass(MyMapper.class);
             scanner.registerFilters();
-            scanner.doScan(new String[]{"io.sam.service"});
+            scanner.doScan(StringUtils.toStringArray(packages));
 
         }
 

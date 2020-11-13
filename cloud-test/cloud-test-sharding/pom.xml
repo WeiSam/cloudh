@@ -11,6 +11,23 @@
 
     <artifactId>cloud-test-sharding</artifactId>
 
+    <repositories>
+        <repository>
+            <id>central</id>
+            <name>central repository</name>
+            <url>https://repo.maven.apache.org/maven2/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <dependencies>
 
         <dependency>
@@ -51,6 +68,12 @@
             <artifactId>druid</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+        </dependency>
+
     </dependencies>
+
 
 </project>

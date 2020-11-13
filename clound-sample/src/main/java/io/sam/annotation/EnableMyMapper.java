@@ -16,6 +16,7 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
-@Import(MyMapperAutoConfig.class)
+@Import(value = {MyMapperAutoConfig.class,MyMapperAutoConfig.MyMapperScannerRegistrar.class})
 public @interface EnableMyMapper {
+    String packages() default "";
 }
