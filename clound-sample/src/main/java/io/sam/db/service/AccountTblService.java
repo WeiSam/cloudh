@@ -1,9 +1,11 @@
 package io.sam.db.service;
 
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
-import io.sam.db.mapper.AccountTblMapper;
 import io.sam.db.domain.AccountTbl;
+import io.sam.db.mapper.AccountTblMapper;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 /**
  * @classname AccountTblService
  * @description 
@@ -16,7 +18,7 @@ public class AccountTblService{
     @Resource
     private AccountTblMapper accountTblMapper;
 
-    
+    @Cacheable
     public int deleteByPrimaryKey(Integer id) {
         return accountTblMapper.deleteByPrimaryKey(id);
     }
@@ -31,7 +33,7 @@ public class AccountTblService{
         return accountTblMapper.insertSelective(record);
     }
 
-    
+    @Cacheable(value = "Acount",key = "#id",unless = "#result == null ")
     public AccountTbl selectByPrimaryKey(Integer id) {
         return accountTblMapper.selectByPrimaryKey(id);
     }

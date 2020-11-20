@@ -2,10 +2,13 @@ package io.sam.controller;
 
 import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSON;
+import common.BaseResponse;
+import io.sam.db.service.AccountTblService;
 import io.sam.dto.YanTaiLoginReq;
 import io.sam.dto.YanTaiLoginResp;
 import io.sam.dto.YanTaiRepositoryResp;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.util.StopWatch;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +29,9 @@ import java.util.UUID;
 @RestController
 @RequestMapping
 public class TestController {
+
+    @Autowired
+    AccountTblService accountTblService;
 
     @RequestMapping({"/oauth2/authorize"})
     public void login(HttpServletResponse response, HttpServletRequest request) throws IOException {
@@ -68,5 +74,10 @@ public class TestController {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
         return "jkajskj";
+    }
+
+    @GetMapping("cache/{id}")
+    public BaseResponse testCache(@PathVariable Integer id){
+        return BaseResponse.success(accountTblService.selectByPrimaryKey(id));
     }
 }

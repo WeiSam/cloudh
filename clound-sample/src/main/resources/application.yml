@@ -17,7 +17,7 @@ spring:
 
   redis:
     database: 0
-    host: 192.168.27.193
+    host: 192.168.37.193
     port: 6379
     password: gosuncn
     timeout: 3000
@@ -49,6 +49,10 @@ test:
 #  database: 5
 debug: true
 
+#打印sql，方便调试
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 
 

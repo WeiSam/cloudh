@@ -12,7 +12,7 @@ import java.util.Date;
  */
 @Data
 public class Order {
-    private Integer id;
+    private String id;
 
     private String name;
 

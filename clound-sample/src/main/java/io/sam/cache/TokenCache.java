@@ -1,5 +1,7 @@
 package io.sam.cache;
 
+import io.sam.service.ValueFuntional;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -20,9 +22,9 @@ public class TokenCache<K,V> {
     private final WriteLock writeLock = cacheLock.writeLock();
 
     public V get(K key) {
+        V value;
         // 尝试读取缓存
         readLock.lock();
-        V value;
         try {
             value = cache.get(key);
         } finally {
@@ -37,14 +39,16 @@ public class TokenCache<K,V> {
      * @param value 值
      * @return 值
      */
-    public V put(K key, V value){
+    public V put(K key, ValueFuntional<V> value){
+        V v;
         writeLock.lock();
         try {
-            cache.put(key, value);
+            v = value.value();
+            cache.put(key, v);
         } finally {
             writeLock.unlock();
         }
-        return value;
+        return v;
     }
 
     public Map<K, V> getCache() {

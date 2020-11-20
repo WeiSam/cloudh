@@ -1,10 +1,11 @@
 package io.sam;
-
 import cn.hutool.core.bean.BeanDesc;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ReflectUtil;
 import com.alibaba.fastjson.JSON;
 import io.sam.cache.TokenCache;
+import io.sam.constant.MQContants;
+import io.sam.db.domain.QbBaqry;
 import io.sam.dto.GetEnclosingClassOfClass;
 import io.sam.dto.UserDto;
 import io.sam.service.LogService;
@@ -12,11 +13,14 @@ import io.sam.service.impl.DataLogServiceImpl;
 import io.sam.service.impl.LockTestServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import org.springframework.util.StopWatch;
 import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -61,7 +65,7 @@ public class ReflectUtilTest {
                 log.info("token = {}",getToken02("123"));
             }).start();
         }
-        Thread.sleep(1000*100);
+        Thread.sleep(1000*5);
         System.out.println(JSON.toJSONString(tokenCache.getCache()));
     }
 
@@ -73,8 +77,8 @@ public class ReflectUtilTest {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            token = UUID.randomUUID().toString();
-            tokenCache.put(key,token);
+
+            token = tokenCache.put(key,() -> UUID.randomUUID().toString());
         }
         return token;
     }
@@ -100,4 +104,99 @@ public class ReflectUtilTest {
         return token;
     }
 
+    @Test
+    public void getStatic() throws IllegalAccessException {
+        Field[] fields = ReflectUtil.getFields(MQContants.class);
+        for (Field field : fields) {
+            if (Modifier.isStatic(field.getModifiers()) && field.getName().contains("LEAVE")
+                    && String.class.getName().equals(field.getType().getName())) {
+//                String value = (String) ReflectUtil.getStaticFieldValue(field);
+                String value = (String) field.get(null);
+                System.out.println(value);
+            }
+        }
+    }
+
+    @Test
+    public void testX() throws Exception {
+        StopWatch stopWatch = new StopWatch();
+        int count = 10000000;
+        QbBaqry qbBaqry = new QbBaqry();
+
+        Class<QbBaqry> qbBaqryClass = QbBaqry.class;
+        QbBaqry qbBaqry1 = qbBaqryClass.newInstance();
+
+        Long start = System.currentTimeMillis();
+        for (int i = 0; i < count; i++) {
+            new QbBaqry();
+        }
+        Long end = System.currentTimeMillis();
+        log.info("正常创建耗时：{} ms",end - start);
+
+        start = System.currentTimeMillis();
+        for (int i = 0; i < count; i++) {
+            qbBaqryClass.newInstance();
+        }
+        end = System.currentTimeMillis();
+        log.info("Class创建耗时：{} ms",end - start);
+
+       /* start = System.currentTimeMillis();
+        for (int i = 0; i < count; i++) {
+            Class.forName("io.sam.db.domain.QbBaqry").newInstance();
+        }
+        end = System.currentTimeMillis();
+        log.info("forName创建耗时：{} ms",end - start);*/
+
+        start = System.currentTimeMillis();
+        for (int i = 0; i < count; i++) {
+            qbBaqry1.setAjbh("");
+            qbBaqry1.setRybh("");
+            qbBaqry1.setXm("");
+            qbBaqry1.setSfzh("");
+            qbBaqry1.setRssj(new Date());
+            qbBaqry1.setLssj(new Date());
+            qbBaqry1.setRygj("");
+            qbBaqry1.setSfcj("");
+            qbBaqry1.setSfstjc("");
+            qbBaqry1.setSswp("");
+            qbBaqry1.setQcsp("");
+            qbBaqry1.setCbdwBh("");
+            qbBaqry1.setCbrSfzh("");
+            qbBaqry1.setSfcjdz("");
+            qbBaqry1.setSfstjcdz("");
+        }
+        end = System.currentTimeMillis();
+        log.info("反射对象执行耗时：{} ms",end - start);
+
+        start = System.currentTimeMillis();
+        for (int i = 0; i < count; i++) {
+            qbBaqry.setAjbh("");
+            qbBaqry.setRybh("");
+            qbBaqry.setXm("");
+            qbBaqry.setSfzh("");
+            qbBaqry.setRssj(new Date());
+            qbBaqry.setLssj(new Date());
+            qbBaqry.setRygj("");
+            qbBaqry.setSfcj("");
+            qbBaqry.setSfstjc("");
+            qbBaqry.setSswp("");
+            qbBaqry.setQcsp("");
+            qbBaqry.setCbdwBh("");
+            qbBaqry.setCbrSfzh("");
+            qbBaqry.setSfcjdz("");
+            qbBaqry.setSfstjcdz("");
+        }
+        end = System.currentTimeMillis();
+        log.info("正常执行耗时：{} ms",end - start);
+
+        stopWatch.start("1");
+        Thread.sleep(100);
+        stopWatch.stop();
+        System.out.println(stopWatch.getTotalTimeMillis());
+
+        stopWatch.start("2");
+        Thread.sleep(200);
+        stopWatch.stop();
+        System.out.println(stopWatch.getTaskInfo()[1].getTimeMillis());
+    }
 }

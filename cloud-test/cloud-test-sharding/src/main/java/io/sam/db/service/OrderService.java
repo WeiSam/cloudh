@@ -2,9 +2,8 @@ package io.sam.db.service;
 
 import io.sam.db.domain.Order;
 import io.sam.db.mapper.OrderMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 /**
  * @classname OrderService
  * @description 
@@ -14,7 +13,7 @@ import javax.annotation.Resource;
 @Service
 public class OrderService{
 
-    @Resource
+    @Autowired
     private OrderMapper orderMapper;
 
     
@@ -33,7 +32,7 @@ public class OrderService{
     }
 
     
-    public Order selectByPrimaryKey(Integer id) {
+    public Order selectByPrimaryKey(String id) {
         return orderMapper.selectByPrimaryKey(id);
     }
 

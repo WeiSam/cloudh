@@ -3,8 +3,8 @@
 <mapper namespace="io.sam.db.mapper.OrderMapper">
   <resultMap id="BaseResultMap" type="io.sam.db.domain.Order">
     <!--@mbg.generated-->
-    <!--@Table t_order01-->
-    <id column="id" jdbcType="INTEGER" property="id" />
+    <!--@Table t_order-->
+    <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="amount" jdbcType="VARCHAR" property="amount" />
     <result column="money" jdbcType="VARCHAR" property="money" />
@@ -15,28 +15,28 @@
     <!--@mbg.generated-->
     id, `name`, amount, money, create_time, update_time
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select 
     <include refid="Base_Column_List" />
-    from t_order01
-    where id = #{id,jdbcType=INTEGER}
+    from t_order
+    where id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     <!--@mbg.generated-->
-    delete from t_order01
-    where id = #{id,jdbcType=INTEGER}
+    delete from t_order
+    where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="io.sam.db.domain.Order" useGeneratedKeys="true">
+  <insert id="insert" parameterType="io.sam.db.domain.Order">
     <!--@mbg.generated-->
-    insert into t_order01 (`name`, amount, money, 
+    insert into t_order (`name`, amount, money,
       create_time, update_time)
-    values (#{name,jdbcType=VARCHAR}, #{amount,jdbcType=VARCHAR}, #{money,jdbcType=VARCHAR}, 
+    values (#{name,jdbcType=VARCHAR}, #{amount,jdbcType=VARCHAR}, #{money,jdbcType=VARCHAR},
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="io.sam.db.domain.Order" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into t_order01
+    insert into t_order
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="name != null">
         `name`,
@@ -74,7 +74,7 @@
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="io.sam.db.domain.Order">
     <!--@mbg.generated-->
-    update t_order01
+    update t_order
     <set>
       <if test="name != null">
         `name` = #{name,jdbcType=VARCHAR},
@@ -92,16 +92,16 @@
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="io.sam.db.domain.Order">
     <!--@mbg.generated-->
-    update t_order01
+    update t_order
     set `name` = #{name,jdbcType=VARCHAR},
       amount = #{amount,jdbcType=VARCHAR},
       money = #{money,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

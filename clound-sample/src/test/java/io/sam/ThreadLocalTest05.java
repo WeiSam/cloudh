@@ -9,7 +9,8 @@ public class ThreadLocalTest05 {
 
     public static String dateToStr(int millisSeconds) {
         Date date = new Date(millisSeconds);
-        SimpleDateFormat simpleDateFormat = ThreadSafeFormatter.dateFormatThreadLocal.get();
+//        SimpleDateFormat simpleDateFormat = ThreadSafeFormatter.dateFormatThreadLocal.get();
+        SimpleDateFormat simpleDateFormat = ThreadSafeFormatter.nonSafe;
         return simpleDateFormat.format(date);
     }
 
@@ -29,6 +30,8 @@ public class ThreadLocalTest05 {
 }
 
 class ThreadSafeFormatter {
+
+    public static SimpleDateFormat nonSafe = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
     public static ThreadLocal<SimpleDateFormat> dateFormatThreadLocal = new ThreadLocal() {
         @Override
         protected SimpleDateFormat initialValue() {

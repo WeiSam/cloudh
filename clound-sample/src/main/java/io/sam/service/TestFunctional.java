@@ -6,7 +6,7 @@ package io.sam.service;
  * @description
  * @date 2020/10/12 17:56
  */
-//@FunctionalInterface
+@FunctionalInterface
 public interface TestFunctional<T,R> {
 
     R test(T t);
