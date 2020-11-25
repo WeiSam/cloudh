@@ -1,18 +1,17 @@
 package io.sam.db.domain;
 
+import java.util.Date;
 import lombok.Data;
 
-import java.util.Date;
-
 /**
+ * @classname TOrder1
+ * @description 
+ * @date 2020/11/20 15:52
  * @author zhuweimu
- * @classname Order
- * @description
- * @date 2020/11/24 10:30
  */
 @Data
-public class Order {
-    private Long id;
+public class TOrder1 {
+    private String id;
 
     private String name;
 

@@ -1,25 +1,29 @@
 package io.sam.db.mapper;
 
 import io.sam.db.domain.Order;
-import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
- * @classname OrderMapper
- * @description 
- * @date 2020/11/13 15:11
  * @author zhuweimu
+ * @classname OrderMapper
+ * @description
+ * @date 2020/11/24 10:30
  */
-@Mapper
 public interface OrderMapper {
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(Order record);
 
     int insertSelective(Order record);
 
-    Order selectByPrimaryKey(String id);
+    Order selectByPrimaryKey(Long id);
 
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
+
+    List<Order> selectAll();
+
+    List<Order> selectByName(String name);
 }

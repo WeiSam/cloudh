@@ -4,6 +4,8 @@ import eunms.EnumPaymentType;
 import lombok.Builder;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @Auther: zhuweimu
  * @Date: 2020/3/28 11:13
@@ -11,7 +13,7 @@ import lombok.Data;
  */
 @Data
 @Builder
-public class Payment {
+public class Payment implements Serializable {
     /**
      * ID
      */
