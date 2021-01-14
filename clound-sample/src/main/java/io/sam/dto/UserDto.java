@@ -3,6 +3,8 @@ package io.sam.dto;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.util.Date;
+
 /**
  * @author zhuweimu
  * @Classname UserDto
@@ -14,4 +16,5 @@ import lombok.experimental.Accessors;
 public class UserDto {
     private String name;
     private Integer age;
+    private Date birth;
 }

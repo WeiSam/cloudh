@@ -26,10 +26,10 @@ public class LeaveApproveConsumer {
             exchange = @Exchange(value = MQContants.LEAVE_APPROVE_EXCHANGE, type = ExchangeTypes.TOPIC),
             key = MQContants.LEAVE_APPROVE_KEY))
     public void receiveMessage(@Payload UserDto userDto){
-        log.info("接收消息，userDto = {}", JSON.toJSONString(userDto));
+        log.info("01接收消息，userDto = {}", JSON.toJSONString(userDto));
     }
 
-    @RabbitListener(bindings = @QueueBinding(value = @Queue(value = MQContants.LEAVE_APPROVE_QUEUE02,durable = "false"),
+    @RabbitListener(bindings = @QueueBinding(value = @Queue(value = MQContants.LEAVE_APPROVE_QUEUE,durable = "false"),
             exchange = @Exchange(value = MQContants.LEAVE_APPROVE_EXCHANGE, type = ExchangeTypes.TOPIC),
             key = MQContants.LEAVE_APPROVE_KEY))
     public void receiveMessage02(@Payload UserDto userDto){

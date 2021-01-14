@@ -27,6 +27,10 @@ public abstract class SqlLogServiceImpl implements LogService {
         log.info("sql日志输出");
     }
 
+    /**
+     * @Lookup 每次创建多例
+     * @return
+     */
     @Lookup
     public abstract PrototypeServiceImpl getPrototypeService();
 }

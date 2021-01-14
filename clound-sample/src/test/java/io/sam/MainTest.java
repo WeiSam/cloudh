@@ -9,8 +9,11 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.crypto.MacProvider;
 import io.sam.config.AutoConfig;
+import io.sam.dto.Derived;
 import io.sam.dto.UserDto;
+import io.sam.dto.YanTaiRepositoryResp;
 import io.sam.service.TestFunctional;
+import org.assertj.core.util.DateUtil;
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
@@ -21,6 +24,8 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.security.Key;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Function;
@@ -153,7 +158,15 @@ public class MainTest {
         CopyOnWriteArrayList<String> copyOnWriteArrayList = new CopyOnWriteArrayList<>();
         copyOnWriteArrayList.add("12");
 
-        Integer aa = -Math.abs(-1);
+        Integer i = 1;
+        YanTaiRepositoryResp yanTaiRepositoryResp = new YanTaiRepositoryResp();
+        Optional<Integer> integer = Optional.ofNullable(yanTaiRepositoryResp)
+                .map(YanTaiRepositoryResp::getResults)
+                .map(repositoryInfos -> repositoryInfos.get(0))
+                .map(YanTaiRepositoryResp.RepositoryInfo::getIid);
+
+        System.out.println(integer.get());
+
 
     }
 
@@ -176,7 +189,7 @@ public class MainTest {
         UserDto userDto = new UserDto();
         String s = jsonNullToStr(userDto);
         UserDto userDto1 = JSON.parseObject(s, UserDto.class);
-        System.out.println(s);
+        System.out.println(JSON.toJSONString(null));
     }
 
     public static String jsonNullToStr(Object obj){
@@ -190,6 +203,75 @@ public class MainTest {
             }
             return value;
         });
+    }
+
+    @Test
+    public void testFather() throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date1 = sdf.parse("2020-12-19 12:30:01");
+        Derived d = new Derived();
+        Date date2 = sdf.parse("2020-12-19 12:30:00");
+        System.out.println(date1.equals(date2));
+        System.out.println( d.whenAmISet );
+    }
+
+    @Test
+    public void testEx() {
+        try {
+            for (int i=0;i<2;i++){
+                try {
+                    if (i==1){
+                        continue;
+                    }
+                    System.out.println("jkdj");
+                }catch (Exception e){
+                }finally {
+                    System.out.println("执行0000");
+                }
+
+            }
+        }catch (Error er){
+            System.out.println("Error");
+        }catch (RuntimeException re){
+            System.out.println("RuntimeException");
+        }catch (Exception e){
+            System.out.println("Exception");
+        }catch (Throwable t){
+
+        }finally {
+//            System.out.println("执行了");
+        }
+    }
+
+    @Test
+    public void sort() throws InterruptedException {
+        List<UserDto> list = new ArrayList();
+        UserDto userDto = new UserDto().setName("sam").setBirth(DateUtil.parse("2020-12-19"));
+        UserDto userDto1 = new UserDto().setName("sam1").setBirth(DateUtil.parse("2020-12-10"));
+        UserDto userDto2 = new UserDto().setName("sam2").setBirth(DateUtil.parse("2020-12-01"));
+        UserDto userDto3 = new UserDto().setName("sam3").setBirth(DateUtil.parse("2020-12-02"));
+        UserDto userDto4 = new UserDto().setName("sam2").setBirth(DateUtil.parse("2020-12-09"));
+        UserDto userDto5 = new UserDto().setName("sam3").setBirth(DateUtil.parse("2020-12-05"));
+        list.add(userDto1);
+        list.add(userDto);
+        list.add(userDto2);
+        list.add(userDto4);
+        list.add(userDto3);
+        list.add(userDto4);
+        list.add(userDto4);
+        list.add(userDto5);
+        List<UserDto> sort = list.stream().sorted(Comparator.comparing(UserDto::getBirth)).collect(Collectors.toList());
+        System.out.println("");
+    }
+
+    @Test
+    public void testE() {
+        try {
+            System.out.println("执行");
+            int i = 1/0;
+        }finally {
+            System.out.println("finally");
+        }
     }
 }
 
