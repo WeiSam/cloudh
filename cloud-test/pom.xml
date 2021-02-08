@@ -14,6 +14,8 @@
     <modules>
         <module>cloud-test-sharding</module>
         <module>cloud-test-websocket</module>
+        <module>cloudh-test-jackson</module>
+        <module>cloudh-test-jvm</module>
     </modules>
 
     <properties>
