@@ -27,6 +27,16 @@ public class YanTaiRepositoryResp extends YanTaiBaseResp{
          */
         private String name;
 
+        private int iid;
+
+        public int getIid() {
+            return iid;
+        }
+
+        public void setIid(int iid) {
+            this.iid = iid;
+        }
+
         public String getId() {
             return id;
         }

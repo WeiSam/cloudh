@@ -47,12 +47,19 @@ test:
 #  address: redis://192.168.37.193:6379
 #  password: gosuncn
 #  database: 5
-debug: true
+debug: false
 
 #打印sql，方便调试
 mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+stu:
+  - name: jhj
+    age: 18
+  - name: ioio
+    age: 19
 
 
 

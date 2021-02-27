@@ -1,7 +1,11 @@
 package io.sam.spring;
 
+import com.alibaba.fastjson.JSON;
+import io.sam.dto.UserDto;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import org.springframework.beans.BeanWrapper;
+import org.springframework.beans.PropertyAccessorFactory;
 
 /**
  * @author zhuweimu
@@ -18,5 +22,12 @@ public class SpringUtilsTest {
 
     }
 
-
+    @Test
+    public void testPropertyAccessorFactory() {
+        UserDto userDto = new UserDto();
+        userDto.setName("sam");
+        userDto.setAge(0);
+        BeanWrapper beanWrapper = PropertyAccessorFactory.forBeanPropertyAccess(userDto);
+        System.out.println(JSON.toJSONString(beanWrapper));
+    }
 }
