@@ -1,0 +1,11 @@
+server:
+  port: 1122
+
+spring:
+  application:
+    name: cloud-test-websocket
+
+test:
+  name: sam
+
+

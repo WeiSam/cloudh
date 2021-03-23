@@ -25,7 +25,14 @@ public class MainTest {
 //        jsonGenerator.writeObjectField("date",new Date());
         jsonGenerator.writeEndObject();
         jsonGenerator.close();
+
     }
 
-
+    @Test
+    public void name01() {
+        int i=0;
+        Integer [] a = new Integer[2];
+        int [] aa = new int[]{i};
+        System.out.println(aa[0]);
+    }
 }
