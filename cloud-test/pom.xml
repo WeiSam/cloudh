@@ -16,6 +16,7 @@
         <module>cloud-test-websocket</module>
         <module>cloudh-test-jackson</module>
         <module>cloudh-test-jvm</module>
+        <module>cloud-test-spring</module>
     </modules>
 
     <properties>
