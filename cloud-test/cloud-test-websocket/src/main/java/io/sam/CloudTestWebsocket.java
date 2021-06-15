@@ -3,6 +3,7 @@ package io.sam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @author: zhuweimu
@@ -10,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Description:
  */
 @Slf4j
+@EnableScheduling
 @SpringBootApplication
 public class CloudTestWebsocket {
 
