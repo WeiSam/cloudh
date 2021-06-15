@@ -1,18 +1,17 @@
 package io.sam.controller;
 
 import cn.hutool.core.io.FileUtil;
+import com.alibaba.fastjson.JSON;
 import io.sam.dto.GuiPingResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.handler.annotation.Header;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * @author zhuweimu
@@ -52,6 +51,24 @@ public class GuiPingController {
     public GuiPingResponse leave(@Header("token") String token, HttpServletRequest httpRequest) throws IOException {
         String token1 = httpRequest.getHeader("token");
         log.info("token = {},token1 = {}",token,token1);
-        return new GuiPingResponse();
+        GuiPingResponse guiPingResponse = new GuiPingResponse();
+        guiPingResponse.setData("");
+        guiPingResponse.setDate("");
+        return guiPingResponse;
     }
+
+    @PostMapping(value = "/checkToken/ajAqBaqsyqkdjb/save")
+    public String save(HttpServletRequest httpRequest,@RequestBody Map map) throws IOException {
+        log.info("map={}", JSON.toJSONString(map));
+        String str = "{\"count\":0,\"content\":{},\"statusMessage\":\"string\",\"statusCode\":\"string\"}";
+        return str;
+    }
+
+    @PostMapping(value = "/checkToken/ajAqBaqsyqkdjb/saveBatch")
+    public String saveBatch(@RequestBody Map map) throws IOException {
+        log.info("map={}", JSON.toJSONString(map));
+        String str = "{\"count\":0,\"content\":{},\"statusMessage\":\"string\",\"statusCode\":\"string\"}";
+        return str;
+    }
+
 }

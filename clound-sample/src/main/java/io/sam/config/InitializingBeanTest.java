@@ -24,7 +24,7 @@ public class InitializingBeanTest implements InitializingBean, FactoryBean<UserD
     }
 
     @Override
-    public UserDto getObject() throws Exception {
+    public UserDto getObject(){
         return new UserDto().setName(name);
     }
 

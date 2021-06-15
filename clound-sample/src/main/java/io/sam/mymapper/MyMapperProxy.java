@@ -32,7 +32,7 @@ public class MyMapperProxy<T> implements InvocationHandler {
         }else if(isDefaultMethod(method)){
             return invokeDefaultMethod(proxy,method,args);
         }else {
-            return "name";
+            return method.getName();
         }
     }
 

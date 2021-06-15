@@ -6,3 +6,5 @@
 *.iml
 **/*.iml
 cloudh.iml
+**/*.log
+*.log

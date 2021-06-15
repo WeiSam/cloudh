@@ -28,6 +28,9 @@
         <module>spring-design-patterns</module>
         <module>cloud-dubbo-order-consumer-6060</module>
         <module>cloud-dubbo-provider-6061</module>
+        <module>cloud-test/cloud-test-dubbo</module>
+        <module>cloud-test/cloudh-test-jackson</module>
+        <module>cloud-test/cloudh-test-jvm</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -44,6 +47,7 @@
     </distributionManagement>
 
     <properties>
+        <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -58,6 +62,7 @@
         <shardingsphere.version>4.1.1</shardingsphere.version>
         <dubbo.version>2.7.7</dubbo.version>
         <curator.version>2.13.0</curator.version>
+        <tkmybatis.version>2.1.5</tkmybatis.version>
     </properties>
 
 
@@ -178,11 +183,24 @@
                 <version>${curator.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>tk.mybatis</groupId>
+                <artifactId>mapper-spring-boot-starter</artifactId>
+                <version>${tkmybatis.version}</version>
+            </dependency>
         </dependencies>
 
     </dependencyManagement>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
                 <plugin>
@@ -197,9 +215,24 @@
                     <artifactId>maven-project-info-reports-plugin</artifactId>
                     <version>3.0.0</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>2.3.1.RELEASE</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>UTF-8</encoding>
+                    <skip>true</skip>
+                </configuration>
+                <version>3.8.1</version>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
@@ -209,12 +242,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <reporting>
-        <plugins>
-            <plugin>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </reporting>
 </project>

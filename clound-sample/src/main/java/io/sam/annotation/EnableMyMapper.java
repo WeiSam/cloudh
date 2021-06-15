@@ -1,5 +1,6 @@
 package io.sam.annotation;
 
+import io.sam.config.FactoryBeanRegistrarTest;
 import io.sam.config.MyMapperAutoConfig;
 import org.springframework.context.annotation.Import;
 
@@ -16,7 +17,7 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
-@Import(value = {MyMapperAutoConfig.class,MyMapperAutoConfig.MyMapperScannerRegistrar.class})
+@Import(value = {MyMapperAutoConfig.class,MyMapperAutoConfig.MyMapperScannerRegistrar.class, FactoryBeanRegistrarTest.class})
 public @interface EnableMyMapper {
     String packages() default "";
 }

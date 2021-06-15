@@ -1,10 +1,8 @@
 package io.sam.service;
 
-import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import io.sam.BaseTest;
-import io.sam.config.FuJianConfig;
 import io.sam.db.domain.Order;
 import io.sam.db.mapper.OrderMapper;
 import io.sam.db.service.OrderService;
@@ -69,11 +67,4 @@ public class SharingJdbcTest extends BaseTest {
         orderService.updateByPrimaryKeySelective(order);
     }
 
-    @Autowired
-    FuJianConfig fuJianConfig;
-
-    @Test
-    public void config() {
-        System.out.println(JSON.toJSONString(fuJianConfig));
-    }
 }

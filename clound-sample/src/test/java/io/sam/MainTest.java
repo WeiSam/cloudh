@@ -1,10 +1,9 @@
 package io.sam;
-
-
 import cn.hutool.bloomfilter.BitMapBloomFilter;
 import cn.hutool.core.util.ReflectUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.ValueFilter;
+import eunms.EnumPaymentType;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.crypto.MacProvider;
@@ -12,12 +11,15 @@ import io.sam.config.AutoConfig;
 import io.sam.dto.Derived;
 import io.sam.dto.UserDto;
 import io.sam.dto.YanTaiRepositoryResp;
+import io.sam.enums.OderType;
 import io.sam.service.TestFunctional;
+import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.util.DateUtil;
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.core.type.AnnotationMetadata;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.io.File;
@@ -28,6 +30,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -37,6 +40,7 @@ import java.util.stream.Collectors;
  * @Description
  * @date 2020/9/7 9:31
  */
+@Slf4j
 public class MainTest {
 
     SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
@@ -153,19 +157,26 @@ public class MainTest {
     }
 
     @Test
-    public void testCopyOnWriteArrayList() {
+    public void testCopyOnWriteArrayList() throws Exception {
         ArrayList<String> list = null;
         CopyOnWriteArrayList<String> copyOnWriteArrayList = new CopyOnWriteArrayList<>();
         copyOnWriteArrayList.add("12");
 
         Integer i = 1;
         YanTaiRepositoryResp yanTaiRepositoryResp = new YanTaiRepositoryResp();
-        Optional<Integer> integer = Optional.ofNullable(yanTaiRepositoryResp)
+        yanTaiRepositoryResp.setResults(new ArrayList<>());
+        Integer weikon = Optional.ofNullable(yanTaiRepositoryResp)
                 .map(YanTaiRepositoryResp::getResults)
+                .filter(ss -> !CollectionUtils.isEmpty(ss))
                 .map(repositoryInfos -> repositoryInfos.get(0))
-                .map(YanTaiRepositoryResp.RepositoryInfo::getIid);
+                .map(YanTaiRepositoryResp.RepositoryInfo::getIid)
+                .orElseThrow(() -> new Exception("weikon"));
 
-        System.out.println(integer.get());
+        Optional<List<YanTaiRepositoryResp.RepositoryInfo>> repositoryInfos = Optional.ofNullable(yanTaiRepositoryResp)
+                .map(YanTaiRepositoryResp::getResults);
+
+        System.out.println(repositoryInfos.isPresent());
+
 
 
     }
@@ -190,6 +201,7 @@ public class MainTest {
         String s = jsonNullToStr(userDto);
         UserDto userDto1 = JSON.parseObject(s, UserDto.class);
         System.out.println(JSON.toJSONString(null));
+        System.out.println("123ghjdf".substring(0,1));
     }
 
     public static String jsonNullToStr(Object obj){
@@ -248,30 +260,68 @@ public class MainTest {
         List<UserDto> list = new ArrayList();
         UserDto userDto = new UserDto().setName("sam").setBirth(DateUtil.parse("2020-12-19"));
         UserDto userDto1 = new UserDto().setName("sam1").setBirth(DateUtil.parse("2020-12-10"));
-        UserDto userDto2 = new UserDto().setName("sam2").setBirth(DateUtil.parse("2020-12-01"));
+        UserDto userDto2 = new UserDto().setName("sam2").setBirth(DateUtil.parse("2020-12-10"));
         UserDto userDto3 = new UserDto().setName("sam3").setBirth(DateUtil.parse("2020-12-02"));
-        UserDto userDto4 = new UserDto().setName("sam2").setBirth(DateUtil.parse("2020-12-09"));
-        UserDto userDto5 = new UserDto().setName("sam3").setBirth(DateUtil.parse("2020-12-05"));
+        UserDto userDto4 = new UserDto().setName("sam4").setBirth(DateUtil.parse("2020-12-09"));
+        UserDto userDto5 = new UserDto().setName("sam5");
         list.add(userDto1);
         list.add(userDto);
-        list.add(userDto2);
+        list.add(userDto2.setAge(11));
         list.add(userDto4);
         list.add(userDto3);
         list.add(userDto4);
         list.add(userDto4);
         list.add(userDto5);
-        List<UserDto> sort = list.stream().sorted(Comparator.comparing(UserDto::getBirth)).collect(Collectors.toList());
-        System.out.println("");
+        List<UserDto> sort = list.stream()
+                .sorted(Comparator.nullsLast(Comparator.comparing(UserDto::getBirth).thenComparing(UserDto::getAge)))
+                .collect(Collectors.toList());
+        sort.stream().forEach(System.out::println);
     }
 
     @Test
     public void testE() {
-        try {
-            System.out.println("执行");
-            int i = 1/0;
-        }finally {
-            System.out.println("finally");
+        log.error("fdfd:{}",JSON.toJSONString(null));
+        EnumPaymentType paypal = EnumPaymentType.PAYPAL;
+        System.out.println(paypal.name());
+        System.out.println(paypal.getName());
+        System.out.println(OderType.ONE.name());
+        System.out.println("0".equals(null));
+        ThreadLocalRandom current = ThreadLocalRandom.current();
+        for (int i = 0; i < 10; i++) {
+            System.out.println(current.nextInt(1,10));
         }
+
+    }
+
+    private static final int COUNT_BITS = Integer.SIZE - 3;
+    private static final int CAPACITY   = (1 << COUNT_BITS) - 1;
+    private static final int NCAPACITY = ~CAPACITY;
+    @Test
+    public void name() {
+        System.out.println(COUNT_BITS);
+        System.out.println(CAPACITY);
+        System.out.println(~1);
+        System.out.println(~2);
+        String str = new String("11111110");
+        String str1 = "11111110";
+        System.out.println(11111110);
+        System.out.println(str == str1);
+        System.out.println(Objects.equals(str,str1));
+
+        System.out.println(Optional.ofNullable("").orElse("hjsd"));
+    }
+
+    private final static String C1 = "!\\[CDATA\\[";
+    private final static String C2 = "]]";
+
+    @Test
+    public void test6() {
+        StringBuffer conditionSql = new StringBuffer("&lt;![CDATA[62&lt;5175]]&gt;");
+        System.out.println(C1);
+        String str = "{casecenter}:{QUERYALL}:{管理员}:{查询嫌疑人}:{{\"isDeleted\":\"N\",\"leaveTimeEnd\":\"2021-06-09 23:59:59\",\"leaveTimeStart\":\"2021-06-09 00:00:00\",\"orgMagicId\":\"2e5e51a3d361b66971bbf7d2bd637fd0\"}}";
+        System.out.println(String.format("%s",conditionSql.toString()
+                .replaceAll("&lt;"+C1,"<"+C1)
+                .replaceAll(C2+"&gt;",C2+">")));
     }
 }
 

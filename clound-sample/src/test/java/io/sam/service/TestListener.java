@@ -24,7 +24,7 @@ public class TestListener extends BaseTest {
 
     @Test
     public void testEvent() throws InterruptedException {
-        for (int i = 0;i<10;i++){
+        for (int i = 0;i<1;i++){
             UserDto userDto = new UserDto();
             userDto.setName("sam").setAge(12);
             applicationContext.publishEvent(new TestInfoEvent(userDto));
