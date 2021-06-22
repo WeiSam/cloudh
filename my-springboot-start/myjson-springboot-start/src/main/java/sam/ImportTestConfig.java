@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
  * 文件中添加启动加载，包路径相同不加也可以加载到
  * @date 2020/9/22 13:55
  */
+//通过@Import导入  不加@Configuration同样能被当做配置类解析
 @Configuration
 public class ImportTestConfig {
 

@@ -3,9 +3,12 @@ server:
 
 spring:
   application:
-    name: cloud-test-websocket
+    name: cloud-test-spring
+#  boot:
+#    enableautoconfiguration: false
 
-test:
   name: sam
+
+
 
 

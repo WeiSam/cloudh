@@ -24,6 +24,7 @@
         <module>cloud-nacos-order-consumer-9100</module>
         <module>clound-sample</module>
         <module>cloud-test</module>
+        <module>my-springboot-start</module>
         <module>cloud-gateway5050</module>
         <module>spring-design-patterns</module>
         <module>cloud-dubbo-order-consumer-6060</module>

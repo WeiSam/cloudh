@@ -35,6 +35,7 @@ public class XianJiangController {
     @PostMapping("test")
     public String test(@RequestBody TestRo ro, HttpServletResponse response, HttpServletRequest request){
         System.out.println(ro);
+        log.info("");
         return "str";
     }
 }

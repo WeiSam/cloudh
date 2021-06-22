@@ -84,7 +84,13 @@ public class SpringUtilsTest {
     public void testSpringFactoriesLoader() {
         List<String> names = SpringFactoriesLoader
                 .loadFactoryNames(EnableAutoConfiguration.class, Thread.currentThread().getContextClassLoader());
+        List<EnableAutoConfiguration> factories = SpringFactoriesLoader.loadFactories(EnableAutoConfiguration.class, Thread.currentThread().getContextClassLoader());
         log.info("EnableAutoConfiguration = {}",names);
         log.info("{}",names.contains("io.sam.config.RedissonAutoConfig"));
+
+    }
+
+    @Test
+    public void testAutoConfigurationMetadataLoader() {
     }
 }
