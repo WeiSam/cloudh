@@ -1,4 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 io.sam.config.RedissonAutoConfig,\
-io.sam.lock.DistributedLockInterceptor,\
 io.sam.config.CuratorAutoConfig
