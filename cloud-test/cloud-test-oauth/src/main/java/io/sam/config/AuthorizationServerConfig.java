@@ -54,12 +54,22 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         return new JdbcAuthorizationCodeServices(dataSource);
     }
 
+    /**
+     * ClientDetailsServiceConfigurer:定义客户端详细信息服务的配置器
+     * @param clients
+     * @throws Exception
+     */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         //设置客户端的配置从数据库中读取，存储在oauth_client_details表
         clients.withClientDetails(jdbcClientDetailsService());
     }
 
+    /**
+     * AuthorizationServerEndpointsConfigurer:定义授权和令牌端点以及令牌服务
+     * @param endpoints
+     * @throws Exception
+     */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints
@@ -70,6 +80,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .setClientDetailsService(jdbcClientDetailsService());
     }
 
+    /**
+     * AuthorizationServerSecurityConfigurer:定义令牌端点上的安全约束
+     * @param security
+     * @throws Exception
+     */
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         //  配置Endpoint,允许请求，不被Spring-security拦截
