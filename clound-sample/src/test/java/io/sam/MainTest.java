@@ -28,6 +28,7 @@ import java.lang.reflect.Field;
 import java.security.Key;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ThreadLocalRandom;
@@ -322,6 +323,15 @@ public class MainTest {
         System.out.println(String.format("%s",conditionSql.toString()
                 .replaceAll("&lt;"+C1,"<"+C1)
                 .replaceAll(C2+"&gt;",C2+">")));
+        System.out.println("jkf".equals(null));
+    }
+
+    @Test
+    public void time() {
+        String timestr = "1626139241000";
+        String timestr2 = "1626139241";
+        System.out.println(new Date(Long.parseLong(timestr)));
+        System.out.println(new Date(Long.parseLong(timestr2)));
     }
 }
 

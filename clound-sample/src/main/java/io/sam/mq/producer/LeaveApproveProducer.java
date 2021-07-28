@@ -21,7 +21,7 @@ public class LeaveApproveProducer {
     RabbitTemplate rabbitTemplate;
 
     public void send(UserDto userDto){
-        rabbitTemplate.convertAndSend(MQContants.LEAVE_APPROVE_EXCHANGE,MQContants.LEAVE_APPROVE_KEY,userDto);
+        rabbitTemplate.convertAndSend(MQContants.LEAVE_APPROVE_EXCHANGE,MQContants.LEAVE_APPROVE_KEY02,userDto);
         log.info("成功发送消息");
     }
 }

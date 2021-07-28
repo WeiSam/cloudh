@@ -14,6 +14,7 @@
 
     <properties>
         <retrofit.version>2.3.0</retrofit.version>
+        <sharding-sphere.version>4.1.1</sharding-sphere.version>
     </properties>
 
     <dependencies>
@@ -155,7 +156,7 @@
         </dependency>
         <dependency>
             <groupId>com.squareup.retrofit2</groupId>
-            <artifactId>converter-gson</artifactId>
+            <artifactId>converter-jackson</artifactId>
             <version>${retrofit.version}</version>
         </dependency>
     </dependencies>

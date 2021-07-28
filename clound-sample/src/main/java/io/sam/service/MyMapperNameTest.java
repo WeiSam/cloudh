@@ -1,6 +1,7 @@
 package io.sam.service;
 
 import io.sam.annotation.MyMapper;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author zhuweimu

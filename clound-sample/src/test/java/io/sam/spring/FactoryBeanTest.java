@@ -72,7 +72,7 @@ public class FactoryBeanTest extends BaseTest {
     @Test
     public void testPrototypeScopeBean() {
         for (int i=0;i<5;i++)
-            sqlLogService.print();
+            this.sqlLogService.print();
     }
 
     @Test

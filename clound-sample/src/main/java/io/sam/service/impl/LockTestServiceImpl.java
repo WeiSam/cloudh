@@ -1,6 +1,7 @@
 package io.sam.service.impl;
 
 import io.sam.annotation.DisLock;
+import io.sam.enums.LockServiceType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class LockTestServiceImpl {
 
-    @DisLock(prefix = "LockTestServiceImpl",key = "#key")
+    @DisLock(prefix = "LockTestServiceImpl",key = "#key",lockServiceType = LockServiceType.CURATOR)
     public String getKey(String key){
 
         try {

@@ -5,7 +5,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Slf4j
-@Component
+//@Component
 public class TestTask03 {
 
     @Scheduled(cron = "0/2 * * * * ?")

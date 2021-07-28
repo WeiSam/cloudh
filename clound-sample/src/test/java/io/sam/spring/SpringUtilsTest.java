@@ -2,6 +2,7 @@ package io.sam.spring;
 
 import com.alibaba.fastjson.JSON;
 import io.sam.dto.UserDto;
+import io.sam.service.LogService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.beans.BeanWrapper;
@@ -9,6 +10,7 @@ import org.springframework.beans.PropertyAccessorFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.cglib.beans.BeanMap;
 import org.springframework.core.io.support.SpringFactoriesLoader;
+import org.springframework.util.ClassUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -82,15 +84,21 @@ public class SpringUtilsTest {
 
     @Test
     public void testSpringFactoriesLoader() {
+        ClassLoader defaultClassLoader = ClassUtils.getDefaultClassLoader();
+        ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
+        log.info("{}",defaultClassLoader == contextClassLoader);
         List<String> names = SpringFactoriesLoader
-                .loadFactoryNames(EnableAutoConfiguration.class, Thread.currentThread().getContextClassLoader());
-        List<EnableAutoConfiguration> factories = SpringFactoriesLoader.loadFactories(EnableAutoConfiguration.class, Thread.currentThread().getContextClassLoader());
+                .loadFactoryNames(EnableAutoConfiguration.class, contextClassLoader);
         log.info("EnableAutoConfiguration = {}",names);
         log.info("{}",names.contains("io.sam.config.RedissonAutoConfig"));
+
+        List<LogService> logServices = SpringFactoriesLoader.loadFactories(LogService.class, contextClassLoader);
+        log.info("{}",logServices.size());
 
     }
 
     @Test
     public void testAutoConfigurationMetadataLoader() {
     }
+
 }

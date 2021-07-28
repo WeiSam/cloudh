@@ -123,4 +123,9 @@ public class TestController {
                 "  \"message\": \"ok\"\n" +
                 "}";
     }
+
+    @GetMapping("/")
+    public void base(){
+
+    }
 }

@@ -1,5 +1,10 @@
 server:
   port: 1111
+#  servlet:
+##    context-path: /test
+
+http:
+  port: 1155
 
 spring:
   application:
@@ -14,6 +19,17 @@ spring:
     username: root
     password: gosuncn
     enable: true
+#  shardingsphere:
+#    datasource:
+#      name: ds
+#      ds:
+#        type: com.alibaba.druid.pool.DruidDataSource
+#        # mysql驱动类
+#        driverClassName: com.mysql.cj.jdbc.Driver
+#        url: jdbc:mysql://localhost:3306/fescar?useUnicode=true&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
+#        username: root
+#        password: gosuncn
+
 
   redis:
     database: 0
@@ -34,6 +50,7 @@ spring:
       retry:
         enabled: false
 
+
 sam:
   json:
     prefixName: test
@@ -43,10 +60,10 @@ test:
   age: 100
 
 
-#redisson:
-#  address: redis://192.168.78.193:6379
-#  password: gosuncn
-#  database: 5
+redisson:
+  address: redis://192.168.78.193:6379
+  password: gosuncn
+  database: 5
 debug: false
 
 #打印sql，方便调试
