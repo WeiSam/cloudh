@@ -17,7 +17,7 @@ public abstract class TestTask implements RunTask {
     public abstract void run() throws Exception;
 
     @Override
-    @Scheduled(cron = "0/5 * * * * ?")
+//    @Scheduled(cron = "0/5 * * * * ?")
     public void runTask(){
         try {
             run();

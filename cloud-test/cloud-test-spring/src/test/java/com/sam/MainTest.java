@@ -2,8 +2,10 @@ package com.sam;
 
 import com.alibaba.fastjson.JSON;
 import io.sam.bean.UserBean;
+import io.sam.task.TestTask01;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import org.springframework.core.ResolvableType;
 
 /**
  * @author zhuweimu
@@ -15,6 +17,9 @@ public class MainTest {
 
     @Test
     public void name() {
-        log.info(JSON.toJSONString(new UserBean()));
+        ResolvableType resolvableType = ResolvableType.forClass(MainTest.class);
+        System.out.println(resolvableType.getSource());
+        System.out.println(resolvableType.getGeneric(0).getSource());
+        System.out.println(TestTask01.class.getDeclaringClass());
     }
 }

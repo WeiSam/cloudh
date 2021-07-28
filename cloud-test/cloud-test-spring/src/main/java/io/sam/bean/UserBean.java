@@ -1,6 +1,7 @@
 package io.sam.bean;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * @author zhuweimu
@@ -9,6 +10,7 @@ import lombok.Data;
  * @date 2021/3/22 11:10
  */
 @Data
+@Accessors(chain = true)
 public class UserBean {
     private String name;
     private Integer age;
