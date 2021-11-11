@@ -3,6 +3,7 @@ package io.sam.mq.producer;
 import io.sam.constant.MQContants;
 import io.sam.dto.UserDto;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,5 +24,11 @@ public class LeaveApproveProducer {
     public void send(UserDto userDto){
         rabbitTemplate.convertAndSend(MQContants.LEAVE_APPROVE_EXCHANGE,MQContants.LEAVE_APPROVE_KEY02,userDto);
         log.info("成功发送消息");
+        rabbitTemplate.setConfirmCallback(new RabbitTemplate.ConfirmCallback() {
+            @Override
+            public void confirm(CorrelationData correlationData, boolean ack, String cause) {
+
+            }
+        });
     }
 }

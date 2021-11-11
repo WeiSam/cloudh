@@ -30,7 +30,6 @@ public class EncryptRuleTest extends BaseTest {
     @BeforeTestMethod
     public void insertUser() {
         userinfoService.insertSelective(new Userinfo()
-                .setName("哈哈哈")
-                .setAge(12));
+                .setName("哈哈哈"));
     }
 }

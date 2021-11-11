@@ -1,5 +1,6 @@
 package io.sam.service.impl;
 
+import common.BaseResponse;
 import io.sam.annotation.DisLock;
 import io.sam.enums.LockServiceType;
 import lombok.extern.slf4j.Slf4j;
@@ -27,4 +28,5 @@ public class LockTestServiceImpl {
         }
         return "锁成功，key = "+key;
     }
+
 }

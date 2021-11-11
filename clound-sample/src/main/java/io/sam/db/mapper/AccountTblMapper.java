@@ -2,6 +2,7 @@ package io.sam.db.mapper;
 
 import io.sam.db.domain.AccountTbl;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @classname AccountTblMapper
@@ -17,6 +18,7 @@ public interface AccountTblMapper {
 
     int insertSelective(AccountTbl record);
 
+    @Transactional
     AccountTbl selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(AccountTbl record);

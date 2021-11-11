@@ -8,7 +8,7 @@ import lombok.Getter;
 @Getter
 public enum RedisCaches {
 
-	OrderDetail, DispatcherDetail;
+	OrderDetail,Acount, DispatcherDetail;
 
 	public int ttl = 360; // 过期时间（秒）
 

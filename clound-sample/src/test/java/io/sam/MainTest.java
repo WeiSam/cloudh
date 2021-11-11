@@ -25,6 +25,7 @@ import org.springframework.util.StringUtils;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.math.BigDecimal;
 import java.security.Key;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -33,6 +34,8 @@ import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -230,6 +233,7 @@ public class MainTest {
 
     @Test
     public void testEx() {
+
         try {
             for (int i=0;i<2;i++){
                 try {
@@ -332,6 +336,55 @@ public class MainTest {
         String timestr2 = "1626139241";
         System.out.println(new Date(Long.parseLong(timestr)));
         System.out.println(new Date(Long.parseLong(timestr2)));
+        System.out.println("http2323/fsd/".endsWith("/"));
+        System.out.println(Math.pow(2,2));
+    }
+
+    @Test
+    public void maxString() {
+        StringBuffer str = new StringBuffer();
+        Long count = Double.valueOf(Math.pow(2, 31)).longValue() - 1;
+        System.out.println(count);
+        for (Long i = 1L; i<= count; i++){
+            str.append("a");
+        }
+        log.info("str = {}",str);
+    }
+
+    @Test
+    public void test05() {
+        Map<String, String> map = new HashMap<>();
+        map.put("abc","123");
+
+        String str = null;
+        log.info("{}",JSON.toJSONString(map.putIfAbsent("abc","456")));
+        log.info("{}",JSON.toJSONString(map.putIfAbsent("ab","456")));
+        log.info("{}",JSON.toJSONString(map));
+        log.info("{}","123".equals(null));
+
+        BigDecimal b1 = new BigDecimal("1.0");
+        BigDecimal b2 = new BigDecimal(1);
+        log.info("{}",b1.compareTo(b2) == 0);
+
+    }
+
+    @Test
+    public void test001() {
+        String content = "{casecenter}:{QUERYALL}:{管理员}:{查询嫌疑人}:{{\"isDeleted\":\"N\",\"leaveTimeEnd\":\"2021-09-17 23:59:59\",\"leaveTimeStart\":\"2021-09-17 00:00:00\",\"name\":\"<script>alert(0)</script>\",\"orgMagicId\":\"b0de29a062bd97362b208a966e99d8d1\",\"policeMagicId\":\"\"}}";
+        String reg = "\\{(.*?)}";
+        Pattern pattern = Pattern.compile(reg);
+        Matcher matcher = pattern.matcher(content);
+        System.out.println(UserDto.class.getName());
+        System.out.println(UserDto.class.getSimpleName());
+        System.out.println(UserDto.class.getCanonicalName());
+        System.out.println(UserDto.class.getTypeName());
+    }
+
+    @Test
+    public void test09() {
+        String str = "http://192.168.78.193:9090/default/video/dfeij/fefbn123";
+        String ss = str.replaceAll("http://([\\w-]+\\.)+[\\w-]+:+[\\w+]+/default/video","/home/video");
+        System.out.println(ss);
     }
 }
 
