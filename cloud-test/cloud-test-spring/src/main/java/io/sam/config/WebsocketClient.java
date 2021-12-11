@@ -1,3 +1,4 @@
+/*
 package io.sam.config;
 
 import lombok.extern.slf4j.Slf4j;
@@ -94,3 +95,4 @@ public class WebsocketClient {
         return null;
     }
 }
+*/
