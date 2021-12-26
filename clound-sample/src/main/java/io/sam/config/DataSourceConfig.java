@@ -8,6 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 
@@ -20,6 +21,11 @@ public class DataSourceConfig {
     public DataSource druidDataSource() {
         DruidDataSource druidDataSource = new DruidDataSource();
         return druidDataSource;
+    }
+
+    @Bean
+    public DataSourceTransactionManager transactionManager(DataSource dataSource){
+        return new DataSourceTransactionManager(dataSource);
     }
 
     @Bean

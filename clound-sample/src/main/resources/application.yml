@@ -15,24 +15,24 @@ spring:
     password: gosuncn
     enable: true
 
-  redis:
-    database: 0
-    host: 192.168.37.193
-    port: 6379
-    password: gosuncn
-    timeout: 3000
-    redisson:
-      config: classpath:redisson.yml
-
-  #对于RabbitMQ配置
-  rabbitmq:
-    host: 192.168.37.193
-    port: 5671
-    username: root
-    password: gosuncn
-    template:
-      retry:
-        enabled: false
+#  redis:
+#    database: 0
+#    host: 192.168.37.193
+#    port: 6379
+#    password: gosuncn
+#    timeout: 3000
+#    redisson:
+#      config: classpath:redisson.yml
+#
+#  #对于RabbitMQ配置
+#  rabbitmq:
+#    host: 192.168.37.193
+#    port: 5671
+#    username: root
+#    password: gosuncn
+#    template:
+#      retry:
+#        enabled: false
 
 sam:
   json:

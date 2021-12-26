@@ -1,5 +1,6 @@
 package io.sam.service.impl;
 
+import io.sam.constant.MQContants;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 

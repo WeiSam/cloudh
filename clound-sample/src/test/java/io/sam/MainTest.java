@@ -3,6 +3,7 @@ package io.sam;
 
 import cn.hutool.bloomfilter.BitMapBloomFilter;
 import cn.hutool.core.util.ReflectUtil;
+import cn.hutool.crypto.digest.MD5;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.ValueFilter;
 import io.jsonwebtoken.Jwts;
@@ -13,6 +14,7 @@ import io.sam.dto.Derived;
 import io.sam.dto.UserDto;
 import io.sam.dto.YanTaiRepositoryResp;
 import io.sam.service.TestFunctional;
+import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.util.DateUtil;
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
@@ -37,6 +39,7 @@ import java.util.stream.Collectors;
  * @Description
  * @date 2020/9/7 9:31
  */
+@Slf4j
 public class MainTest {
 
     SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
@@ -272,6 +275,34 @@ public class MainTest {
         }finally {
             System.out.println("finally");
         }
+    }
+
+    @Test
+    public void test11() {
+        Map<Integer,Integer> map = new HashMap<>();
+        for (int i = 0; i < 100000; i++) {
+            String key = UUID.randomUUID().toString().replaceAll("-", "");
+            int index = getIndex(key);
+            Integer count = map.get(index);
+            if (count == null) {
+                map.put(index,1);
+            }else {
+                map.put(index,++count);
+            }
+//            log.info("key = {},index = {}",key, index);
+        }
+        log.info("===========:{}",JSON.toJSONString(map));
+    }
+
+    public int getIndex(String key){
+        int count = 16;
+        int hash = key.hashCode() ^ (key.hashCode() >>> 16);
+
+        // 对hash值取模，将hash值路由到指定的内存队列中，比如内存队列大小8
+        // 用内存队列的数量对hash值取模之后，结果一定是在0~7之间
+        // 所以任何一个商品id都会被固定路由到同样的一个内存队列中去的
+        int index = (count - 1) & hash;
+        return index;
     }
 }
 
