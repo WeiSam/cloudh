@@ -36,4 +36,28 @@ public class DataSourceConfig {
             .getResources("classpath:mapper/*.xml"));
         return factoryBean.getObject();
     }
+
+/*    @Bean("tradePlatformDataSource")
+    public DataSource dataSource(@Qualifier("druidDataSource") DataSource ds) throws SQLException {
+        return EncryptDataSourceFactory.createDataSource(ds, getEncryptRuleConfiguration(), new Properties());
+    }
+
+    public EncryptRuleConfiguration getEncryptRuleConfiguration(){
+        Properties props = new Properties();
+
+        //自带aes算法需要
+        props.setProperty("aes.key.value", "123456");
+        EncryptorRuleConfiguration encryptorConfig = new EncryptorRuleConfiguration("AES", props);
+
+        EncryptRuleConfiguration encryptRuleConfig = new EncryptRuleConfiguration();
+        encryptRuleConfig.getEncryptors().put("aes", encryptorConfig);
+
+        //START: card_info 表的脱敏配置
+        EncryptColumnRuleConfiguration columnConfig1 = new EncryptColumnRuleConfiguration("", "passeord", "", "aes");
+        Map<String, EncryptColumnRuleConfiguration> columnConfigMaps = new HashMap<>();
+        columnConfigMaps.put("passeord", columnConfig1);
+        EncryptTableRuleConfiguration tableConfig = new EncryptTableRuleConfiguration(columnConfigMaps);
+        encryptRuleConfig.getTables().put("t_userinfo", tableConfig);
+        return encryptRuleConfig;
+    }*/
 }

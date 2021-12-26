@@ -6,6 +6,7 @@ import io.sam.service.impl.LockTestServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import sam.ImportTestConfig;
 import sam.TestModel;
 
 /**
@@ -33,8 +34,12 @@ public class TestLockService extends BaseTest {
     @Autowired
     TestModel testModel;
 
+    @Autowired
+    ImportTestConfig importTestConfig;
+
     @Test
     public void testImport(){
         log.info(JSON.toJSONString(testModel));
+        log.info(JSON.toJSONString(importTestConfig));
     }
 }

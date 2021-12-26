@@ -2,6 +2,7 @@ package io.sam.db.service;
 
 import io.sam.db.domain.AccountTbl;
 import io.sam.db.mapper.AccountTblMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +16,11 @@ import javax.annotation.Resource;
 @Service
 public class AccountTblService{
 
-    @Resource
+    @Autowired
     private AccountTblMapper accountTblMapper;
+
+    @Autowired
+    AccountTblService accountTblService;
 
     @Cacheable
     public int deleteByPrimaryKey(Integer id) {

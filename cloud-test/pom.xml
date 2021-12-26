@@ -17,6 +17,7 @@
         <module>cloudh-test-jackson</module>
         <module>cloudh-test-jvm</module>
         <module>cloud-test-spring</module>
+        <module>cloud-test-oauth</module>
         <module>cloud-test-dubbo</module>
         <module>cloud-test-cache</module>
         <module>cloudh-test-netty</module>

@@ -4,6 +4,7 @@ import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSON;
 import common.BaseResponse;
 import io.sam.db.service.AccountTblService;
+import io.sam.dto.ChongqingRequest;
 import io.sam.dto.YanTaiLoginReq;
 import io.sam.dto.YanTaiLoginResp;
 import io.sam.dto.YanTaiRepositoryResp;
@@ -13,10 +14,12 @@ import org.springframework.http.MediaType;
 import org.springframework.util.StopWatch;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.AsyncContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.UUID;
 
 /**
@@ -79,5 +82,50 @@ public class TestController {
     @GetMapping("cache/{id}")
     public BaseResponse testCache(@PathVariable Integer id){
         return BaseResponse.success(accountTblService.selectByPrimaryKey(id));
+    }
+
+
+    /**
+     * 模拟异步响应
+     */
+    HashMap<String, AsyncContext> map = new HashMap<>();
+    @RequestMapping({"/asyncContext/{dataId}"})
+    public void asyncContext(HttpServletResponse response, HttpServletRequest request,@PathVariable String dataId) throws IOException {
+        AsyncContext asyncContext = request.startAsync(request, response);
+        map.put(dataId,asyncContext);
+    }
+
+    /**
+     * 处理异步请求
+     * @param response
+     * @param request
+     * @param dataId
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping({"/dealAsyncContext/{dataId}"})
+    public String dealAsyncContext(HttpServletResponse response, HttpServletRequest request,@PathVariable String dataId) throws IOException {
+        AsyncContext asyncContext = map.get(dataId);
+        HttpServletResponse response1 = (HttpServletResponse) asyncContext.getResponse();
+        response1.setStatus(HttpServletResponse.SC_ACCEPTED);
+        response1.getWriter().println("收到响应了");
+        asyncContext.complete();
+        return "成功";
+    }
+
+    @PostMapping("/receiver/receiveData")
+    public String receiveData(@RequestBody ChongqingRequest chongqingRequest, HttpServletRequest request){
+        log.info("chongqingRequest = {}", JSON.toJSONString(chongqingRequest));
+        return "{\n" +
+                "  \"uuid\": \"c26eec3e-67da-4e5d-9b5a-87bffa73fb85\", \n" +
+                " \"code\": 200,\n" +
+                "\"responseId\": \"ffe3b2f5d31d395b6f26a46fd834b9e1\",\n" +
+                "  \"message\": \"ok\"\n" +
+                "}";
+    }
+
+    @GetMapping("/")
+    public void base(){
+
     }
 }

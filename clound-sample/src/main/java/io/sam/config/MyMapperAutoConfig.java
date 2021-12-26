@@ -70,8 +70,10 @@ public class MyMapperAutoConfig implements ImportBeanDefinitionRegistrar{
             MutablePropertyValues propertyValues = new MutablePropertyValues();
             propertyValues.addPropertyValue("age","18");
             beanDefinition.setPropertyValues(propertyValues);
+            //设置bean定义回调方法初始化创建bean对象
+            beanDefinition.setInstanceSupplier(() -> {return new UserDto().setName("userDtoInstanceSupplier");});
 //            beanDefinition.setAttribute("age","18");
-            registry.registerBeanDefinition("userDto",beanDefinition);
+            registry.registerBeanDefinition("userDtoInstanceSupplier",beanDefinition);
 
 //            List<String> packages = AutoConfigurationPackages.get(this.beanFactory);
 

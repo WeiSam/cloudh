@@ -1,0 +1,1 @@
+io.sam.service.LogService=io.sam.service.impl.DataLogServiceImpl

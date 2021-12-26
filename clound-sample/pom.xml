@@ -12,6 +12,11 @@
     <artifactId>clound-sample</artifactId>
     <packaging>jar</packaging>
 
+    <properties>
+        <retrofit.version>2.3.0</retrofit.version>
+        <sharding-sphere.version>4.1.1</sharding-sphere.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.sam.springcloud</groupId>
@@ -139,6 +144,21 @@
             <version>4.2.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>retrofit</artifactId>
+            <version>${retrofit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>converter-gson</artifactId>
+            <version>${retrofit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>converter-jackson</artifactId>
+            <version>${retrofit.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

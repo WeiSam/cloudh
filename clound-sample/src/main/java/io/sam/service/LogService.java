@@ -1,5 +1,7 @@
 package io.sam.service;
 
+import io.sam.annotation.DisLock;
+
 /**
  * @author zhuweimu
  * @classname LogService

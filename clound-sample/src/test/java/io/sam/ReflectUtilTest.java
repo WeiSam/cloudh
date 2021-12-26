@@ -1,4 +1,5 @@
 package io.sam;
+
 import cn.hutool.core.bean.BeanDesc;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ReflectUtil;
@@ -11,6 +12,9 @@ import io.sam.dto.UserDto;
 import io.sam.service.LogService;
 import io.sam.service.impl.DataLogServiceImpl;
 import io.sam.service.impl.LockTestServiceImpl;
+import io.sam.utils.DictionaryUtils;
+import io.sam.utils.QuanZhouPopulationConfig;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.util.StopWatch;
@@ -198,5 +202,40 @@ public class ReflectUtilTest {
         Thread.sleep(200);
         stopWatch.stop();
         System.out.println(stopWatch.getTaskInfo()[1].getTimeMillis());
+    }
+
+    @Test
+    public void reflect() throws Exception {
+        Thread.currentThread().setName("fanshe-test");
+        int i = 1;
+        while (true){
+            UserDto userDto = UserDto.class.newInstance();
+            userDto.setName("sam"+i++);
+        }
+
+    }
+
+    @Test
+    public void reflect02() throws Exception {
+        Thread.currentThread().setName("fanshe-test01");
+        int i = 1;
+        for (int j = 0; j <10000; j++) {
+            new Thread(new Runnable() {
+                @SneakyThrows
+                @Override
+                public void run() {
+                    UserDto userDto = UserDto.class.newInstance();
+                    userDto.setName("sam");
+                }
+            }).start();
+
+        }
+    }
+
+    @Test
+    public void put() throws Exception {
+        QuanZhouPopulationConfig populationConfig = new QuanZhouPopulationConfig();
+        DictionaryUtils.getDicFieldValue(populationConfig);
+        System.out.println(JSON.toJSONString(populationConfig.getDicConfigMap()));
     }
 }
