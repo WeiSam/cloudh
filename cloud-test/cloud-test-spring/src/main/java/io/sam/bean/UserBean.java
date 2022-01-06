@@ -12,6 +12,7 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class UserBean {
+    private String id;
     private String name;
-    private Integer age;
+    private Integer age = 0;
 }
