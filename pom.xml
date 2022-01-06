@@ -64,6 +64,7 @@
         <dubbo.version>2.7.7</dubbo.version>
         <curator.version>2.13.0</curator.version>
         <tkmybatis.version>2.1.5</tkmybatis.version>
+        <mybatisplus.version>3.4.2</mybatisplus.version>
     </properties>
 
 
@@ -188,6 +189,12 @@
                 <groupId>tk.mybatis</groupId>
                 <artifactId>mapper-spring-boot-starter</artifactId>
                 <version>${tkmybatis.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatisplus.version}</version>
             </dependency>
         </dependencies>
 
