@@ -19,6 +19,9 @@
         <module>cloud-test-spring</module>
         <module>cloud-test-oauth</module>
         <module>cloud-test-mybatisplus</module>
+        <module>cloud-test-dubbo</module>
+        <module>cloud-test-cache</module>
+        <module>cloudh-test-netty</module>
     </modules>
 
     <properties>
