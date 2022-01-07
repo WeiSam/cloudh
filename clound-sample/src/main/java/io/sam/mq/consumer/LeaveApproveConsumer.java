@@ -29,20 +29,33 @@ public class LeaveApproveConsumer {
 
     @RabbitListener(bindings = @QueueBinding(value = @Queue(value = MQContants.LEAVE_APPROVE_QUEUE,durable = "false"),
             exchange = @Exchange(value = MQContants.LEAVE_APPROVE_EXCHANGE, type = ExchangeTypes.TOPIC),
-            key = MQContants.LEAVE_APPROVE_KEY))
-    public void receiveMessage(@Payload UserDto userDto){
+            key = MQContants.LEAVE_APPROVE))
+    public void receiveMessage(@Payload UserDto userDto) throws Exception {
         log.info("01接收消息，userDto = {}", JSON.toJSONString(userDto));
+        log.info("01接收消息结束");
+
     }
 
     @RabbitListener(bindings = @QueueBinding(value = @Queue(value = MQContants.LEAVE_APPROVE_QUEUE02,durable = "false"),
             exchange = @Exchange(value = MQContants.LEAVE_APPROVE_EXCHANGE, type = ExchangeTypes.TOPIC),
-            key = MQContants.LEAVE_APPROVE_KEY02))
+            key = MQContants.LEAVE_APPROVE))
     public void receiveMessage02(@Payload UserDto userDto, Channel channel, @Header(AmqpHeaders.DELIVERY_TAG) long tag){
         log.info("02接收消息，userDto = {}", JSON.toJSONString(userDto));
         try {
+            //true:重新放回队列中
             channel.basicReject(tag,false);
         } catch (IOException e) {
-            log.error("",e);
+            log.error("发生异常",e);
+        }
+    }
+
+    @RabbitListener(bindings = @QueueBinding(value = @Queue(value = MQContants.LEAVE_APPROVE_QUEUE03,durable = "false"),
+            exchange = @Exchange(value = MQContants.LEAVE_APPROVE_EXCHANGE, type = ExchangeTypes.TOPIC),
+            key = MQContants.LEAVE_APPROVE))
+    public void receiveMessage03(@Payload UserDto userDto) throws Exception {
+        log.info("03接收消息，userDto = {}", JSON.toJSONString(userDto));
+        if(1==1){
+            throw new Exception("测试异常");
         }
     }
 }

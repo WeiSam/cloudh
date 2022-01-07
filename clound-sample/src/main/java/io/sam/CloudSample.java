@@ -39,7 +39,7 @@ import java.text.SimpleDateFormat;
 @EnableScheduling
 @SpringBootApplication
 @EnableImportTest
-@EnableMyMapper
+@EnableMyMapper(packages = "io.sam")
 @EnableCaching
 @EnableTransactionManagement
 @Slf4j
@@ -66,4 +66,5 @@ public class CloudSample {
                 .build()
                 .create(TestServiceApi.class);
     }
+
 }

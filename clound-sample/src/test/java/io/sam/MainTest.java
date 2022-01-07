@@ -386,5 +386,10 @@ public class MainTest {
         String ss = str.replaceAll("http://([\\w-]+\\.)+[\\w-]+:+[\\w+]+/default/video","/home/video");
         System.out.println(ss);
     }
+
+    @Test
+    public void test10() {
+        System.out.println(Integer.valueOf(2)==null);
+    }
 }
 

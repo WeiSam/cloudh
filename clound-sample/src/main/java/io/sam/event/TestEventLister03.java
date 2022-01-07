@@ -13,7 +13,7 @@ import org.springframework.transaction.event.TransactionalEventListener;
  * @date 2020/10/26 16:41
  */
 @Slf4j
-@Component
+//@Component
 public class TestEventLister03 {
 
     @TransactionalEventListener

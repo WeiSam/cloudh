@@ -11,4 +11,8 @@ import io.sam.annotation.DisLock;
 public interface LogService {
 
     void print();
+
+    default void print(String data){
+        System.out.println(data);
+    }
 }

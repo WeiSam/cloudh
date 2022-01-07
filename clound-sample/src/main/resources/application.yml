@@ -49,7 +49,10 @@ spring:
     template:
       retry:
         enabled: false
-
+    listener:
+      simple:
+        acknowledge-mode: manual
+    publisher-confirm-type: correlated
 
 sam:
   json:

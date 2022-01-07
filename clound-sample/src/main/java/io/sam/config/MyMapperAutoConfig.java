@@ -16,6 +16,7 @@ import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.context.ResourceLoaderAware;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
+import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.annotation.MergedAnnotation;
 import org.springframework.core.annotation.MergedAnnotations;
 import org.springframework.core.io.ResourceLoader;
@@ -52,6 +53,8 @@ public class MyMapperAutoConfig implements ImportBeanDefinitionRegistrar{
         MergedAnnotations annotations = importingClassMetadata.getAnnotations();
         MergedAnnotation<EnableMyMapper> enableMyMapperMergedAnnotation = annotations.get(EnableMyMapper.class);
         Map<String, Object> packages = importingClassMetadata.getAnnotationAttributes("EnableMyMapper");
+        String string = AnnotationAttributes.fromMap(importingClassMetadata.getAnnotationAttributes("EnableMyMapper"))
+                .getString("packages");
         log.info("");
     }
 
