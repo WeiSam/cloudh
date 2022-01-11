@@ -2,6 +2,7 @@ package io.sam.db.service;
 
 import io.sam.db.domain.AccountTbl;
 import io.sam.db.mapper.AccountTblMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import javax.annotation.Resource;
  * @date 2020/10/27 14:32
  * @author zhuweimu
  */
+@Slf4j
 @Service
 public class AccountTblService{
 
@@ -39,6 +41,7 @@ public class AccountTblService{
 
     @Cacheable(value = "Acount",key = "#id",unless = "#result == null ")
     public AccountTbl selectByPrimaryKey(Integer id) {
+        log.info("查询数据库");
         return accountTblMapper.selectByPrimaryKey(id);
     }
 

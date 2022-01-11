@@ -33,6 +33,9 @@ public class SpringCacheConfig {
 
 	/**
 	 * 混合缓存管理
+	 * 如果多个CacheManager中有相同的cacheName时
+	 * 则按照spring获取bean的顺序来执行 beanFactory.getBean(CacheManager.class)
+	 * 遍历CacheManager,能拿到对应Cache则返回
 	 *
 	 * @return cacheManager
 	 */
@@ -40,9 +43,10 @@ public class SpringCacheConfig {
 	public CacheManager compositeCacheManager(@Autowired RedisConnectionFactory connectionFactory) {
 		CacheManager redisCacheManager = reidsCacheManager(connectionFactory);
 		CacheManager caffeineCacheManager = caffeineCacheManager();
+		//使用优先级按照添加顺序获取
 		CompositeCacheManager cacheManager = new CompositeCacheManager(caffeineCacheManager, redisCacheManager);
+		//是否使用默认的NoOpCacheManager,空操作,不会缓存
 		cacheManager.setFallbackToNoOpCache(true);
-		cacheManager.afterPropertiesSet();
 		return cacheManager;
 	}
 

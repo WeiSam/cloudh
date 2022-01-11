@@ -24,11 +24,12 @@ public class TestListener extends BaseTest {
 
     @Test
     public void testEvent() throws InterruptedException {
-        for (int i = 0;i<1;i++){
+        for (int i = 0;i<100;i++){
             UserDto userDto = new UserDto();
-            userDto.setName("sam").setAge(12);
+            userDto.setName("sam").setAge(i);
             applicationContext.publishEvent(new TestInfoEvent(userDto));
+
         }
-        Thread.sleep(1000);
+        Thread.sleep(10000);
     }
 }

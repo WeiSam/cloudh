@@ -78,6 +78,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .userDetailsService(userDetailsService)// 读取验证用户的信息
                 .authorizationCodeServices(authorizationCodeServices())
                 .setClientDetailsService(jdbcClientDetailsService());
+//        endpoints.pathMapping("/oauth/authorize","/sam/oauth/authorize");
     }
 
     /**

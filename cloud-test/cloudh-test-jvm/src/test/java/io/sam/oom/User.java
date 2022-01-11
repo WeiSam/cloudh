@@ -7,7 +7,7 @@ package io.sam.oom;
  * @date 2021/2/24 17:47
  */
 public class User {
-    private byte [] data = new byte[1000*1000];
+    private byte [] data = new byte[1000];
     public void run() {
         System.out.println("run");
     }

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @description
  * @date 2020/9/21 16:20
  */
-@Component
+//@Component
 @Aspect
 @SuppressWarnings("rawtypes")
 public class TestInterceptor {

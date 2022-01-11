@@ -4,6 +4,9 @@ import cn.hutool.core.lang.Snowflake;
 import cn.hutool.core.util.IdUtil;
 import org.junit.Test;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * @author zhuweimu
  * @classname DistributIdTest
@@ -15,7 +18,12 @@ public class DistributIdTest {
     Snowflake snowflake = IdUtil.getSnowflake(1,2);
     @Test
     public void snId() {
-        long l = snowflake.nextId();
-        System.out.println(l);
+        Set<Integer> set = new HashSet<>();
+        for (int i = 0; i < 10000; i++) {
+            long l = snowflake.nextId();
+            set.add(String.valueOf(l).length());
+        }
+
+        System.out.println(set.size());
     }
 }

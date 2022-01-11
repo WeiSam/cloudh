@@ -1,6 +1,7 @@
 package io.sam.spring;
 
 import com.alibaba.fastjson.JSON;
+import io.sam.config.AutoConfig;
 import io.sam.dto.UserDto;
 import io.sam.service.LogService;
 import lombok.extern.slf4j.Slf4j;
@@ -9,12 +10,19 @@ import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.PropertyAccessorFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.cglib.beans.BeanMap;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.core.io.support.SpringFactoriesLoader;
+import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.util.ClassUtils;
+import org.springframework.util.ResourceUtils;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * @author zhuweimu
@@ -101,4 +109,30 @@ public class SpringUtilsTest {
     public void testAutoConfigurationMetadataLoader() {
     }
 
+    @Test
+    public void testClassPathResource() throws IOException {
+        ClassPathResource classPathResource = new ClassPathResource("application.yml");
+        System.out.println(classPathResource.getPath());
+        //获取yml配置有问题
+        Properties properties = PropertiesLoaderUtils.loadProperties(classPathResource);
+
+        System.out.println(properties.getProperty("test.name"));
+
+        AnnotationMetadata annotationMetadata = AnnotationMetadata.introspect(AutoConfig.class);
+        System.out.println(annotationMetadata.getClassName());
+        annotationMetadata.getAnnotationTypes().stream().forEach(System.out::println);
+//        ConditionEvaluator conditionEvaluator = new ConditionEvaluator(registry, environment, resourceLoader);
+    }
+
+    @Test
+    public void testResuore() {
+        try (InputStream in = ResourceUtils.getURL("classpath:application.yml").openStream()) {
+            Properties properties = new Properties();
+            properties.load(in);
+            String value = properties.getProperty("test.name");
+            
+        } catch (Exception e) {
+            log.error("",e);
+        }
+    }
 }

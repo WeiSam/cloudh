@@ -22,7 +22,7 @@ Stop()方法停止容器时触发该事件。
  * @date 2020/10/26 16:41
  */
 @Slf4j
-@Component
+//@Component
 public class TestEventLister01 implements ApplicationListener<TestInfoEvent> {
 
     @Override

@@ -128,4 +128,9 @@ public class TestController {
     public void base(){
 
     }
+
+    @GetMapping("/test/{name}")
+    public String test(String name){
+        return name;
+    }
 }

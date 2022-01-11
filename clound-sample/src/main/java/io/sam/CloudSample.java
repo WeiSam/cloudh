@@ -9,9 +9,11 @@ import io.sam.annotation.EnableMyMapper;
 import io.sam.api.TestServiceApi;
 import io.sam.config.InitializingBeanTest;
 import lombok.extern.slf4j.Slf4j;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -31,12 +33,13 @@ import java.text.SimpleDateFormat;
  * @date 2020/8/24 9:16
  */
 
-
+@ServletComponentScan("io.sam")
+@MapperScan("io.sam.db.mapper")
 @EnableDisLock
 @EnableScheduling
 @SpringBootApplication
 @EnableImportTest
-@EnableMyMapper
+@EnableMyMapper(packages = "io.sam")
 @EnableCaching
 @EnableTransactionManagement
 @Slf4j
@@ -63,4 +66,5 @@ public class CloudSample {
                 .build()
                 .create(TestServiceApi.class);
     }
+
 }

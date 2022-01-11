@@ -24,7 +24,7 @@ public class OOMTest {
 
     /**
      *
-     * -XX:MetaspaceSize=1m -XX:MaxMetaspaceSize=1m
+     * -XX:MetaspaceSize=1m -XX:MaxMetaspaceSize=1m -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Xloggc:gc.log
      */
     @Test
     public void testMetaspace() throws Exception {

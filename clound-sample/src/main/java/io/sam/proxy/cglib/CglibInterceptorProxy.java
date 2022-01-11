@@ -13,9 +13,16 @@ import java.lang.reflect.Method;
  */
 @Slf4j
 public class CglibInterceptorProxy implements MethodInterceptor {
+
+    private Integer acount;
+
+    public CglibInterceptorProxy(Integer acount) {
+        this.acount = acount;
+    }
+
     @Override
     public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
-        log.info("执行cglib代理对象方法");
+        log.info("执行cglib代理对象方法:{}",acount);
         return methodProxy.invokeSuper(o,objects);
     }
 }

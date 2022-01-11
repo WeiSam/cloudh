@@ -10,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
+import org.springframework.retry.annotation.EnableRetry;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
@@ -20,6 +21,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * exposeProxy = true 保存当前代理对象到当前进程,
  * 使用AopContext.currentProxy()获取,为了解决:a方法调b方法,b也能用上代理
  */
+@EnableRetry
 @EnableAspectJAutoProxy(exposeProxy = true)
 @Slf4j
 @EnableScheduling

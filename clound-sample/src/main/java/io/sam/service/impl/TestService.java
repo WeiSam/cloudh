@@ -18,8 +18,9 @@ public class TestService extends AbstractFaceService<UserDto,UserDto>{
         System.out.println(type.getName());
     }
 
-    public void test(){
-        log.info("io.sam.service.impl.TestService.test");
+    public String test(String msg){
+        log.info("io.sam.service.impl.TestService.test,msg = {}",msg);
+        return "test"+msg;
     }
 
 
