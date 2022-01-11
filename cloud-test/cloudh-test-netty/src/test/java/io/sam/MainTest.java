@@ -1,5 +1,6 @@
 package io.sam;
 
+import io.netty.util.NettyRuntime;
 import org.junit.Test;
 
 import java.nio.channels.FileChannel;
@@ -14,5 +15,6 @@ public class MainTest {
 
     @Test
     public void test01() {
+        System.out.println("结果："+NettyRuntime.availableProcessors());
     }
 }
