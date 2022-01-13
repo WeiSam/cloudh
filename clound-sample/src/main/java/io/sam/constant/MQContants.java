@@ -18,4 +18,8 @@ public class MQContants {
     public final static String LEAVE_APPROVE_KEY03 = "LEAVE_APPROVE_KEY.03";
     public final static String LEAVE_APPROVE_QUEUE03 = "LEAVE_APPROVE_QUEUE03";
 
+    public final static  String LEAVE_LETTER_EXCHANGE = "LEAVE_LETTER_EXCHANGE";
+    public final static  String LEAVE_LETTER_QUEUE = "LEAVE_LETTER_QUEUE";
+    public final static  String LEAVE_LETTER_KEY = "LEAVE_LETTER_KEY";
+
 }

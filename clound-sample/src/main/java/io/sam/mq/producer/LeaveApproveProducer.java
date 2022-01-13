@@ -1,5 +1,6 @@
 package io.sam.mq.producer;
 
+import io.sam.config.ConfirmRabbitTemplate;
 import io.sam.constant.MQContants;
 import io.sam.dto.UserDto;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.stereotype.Component;
+
+import java.util.UUID;
 
 /**
  * @author zhuweimu
@@ -25,8 +28,12 @@ public class LeaveApproveProducer implements InitializingBean {
 
     RabbitTemplate deferRabbitTemplate = new RabbitTemplate();
 
+    @Autowired(required = false)
+    ConfirmRabbitTemplate confirmRabbitTemplate;
+
     public void send(UserDto userDto){
-        deferRabbitTemplate.convertAndSend(MQContants.LEAVE_APPROVE_EXCHANGE,MQContants.LEAVE_APPROVE,userDto);
+//        rabbitTemplate.convertAndSend(MQContants.LEAVE_APPROVE_EXCHANGE,MQContants.LEAVE_APPROVE,userDto);
+        rabbitTemplate.convertAndSend(MQContants.LEAVE_APPROVE_EXCHANGE,MQContants.LEAVE_APPROVE,userDto,new CorrelationData("1"));
         log.info("成功发送消息");
     }
 
@@ -45,9 +52,6 @@ public class LeaveApproveProducer implements InitializingBean {
                 }
 
             }
-        });
-        rabbitTemplate.setReturnCallback((message, replyCode, replyText, exchange, routingKey) -> {
-
         });
     }
 }

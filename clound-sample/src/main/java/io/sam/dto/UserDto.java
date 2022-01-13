@@ -23,7 +23,7 @@ public class UserDto {
     private String name;
     private Integer age = 0;
     private Date birth;
-    private byte [] bb = new byte[1024];
+//    private byte [] bb = new byte[1024];
     private List<Payment> payments;
     YanTaiBaseResp yanTaiBaseResp = new YanTaiBaseResp();
 }

@@ -53,7 +53,7 @@ public class MyMapperAutoConfig implements ImportBeanDefinitionRegistrar{
         MergedAnnotations annotations = importingClassMetadata.getAnnotations();
         MergedAnnotation<EnableMyMapper> enableMyMapperMergedAnnotation = annotations.get(EnableMyMapper.class);
         Map<String, Object> packages = importingClassMetadata.getAnnotationAttributes("EnableMyMapper");
-        String string = AnnotationAttributes.fromMap(importingClassMetadata.getAnnotationAttributes("EnableMyMapper"))
+        String string = AnnotationAttributes.fromMap(importingClassMetadata.getAnnotationAttributes(EnableMyMapper.class.getName()))
                 .getString("packages");
         log.info("");
     }

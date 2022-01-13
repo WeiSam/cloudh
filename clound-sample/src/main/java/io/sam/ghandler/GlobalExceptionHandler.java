@@ -20,7 +20,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public BaseResponse<String> exception(Exception e){
-        log.info("exceptionHandler");
+        log.error("发生异常:{}",e.getMessage(),e);
         return BaseResponse.error(HttpStatus.INTERNAL_SERVER_ERROR.value(),e.getMessage(),"");
     }
 
@@ -32,7 +32,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = ServiceException.class)
     public BaseResponse<String> serviceException(ServiceException e){
-        log.info("serviceExceptionHandler");
+        log.error("发生异常:{}",e.getMessage(),e);
         return BaseResponse.error(HttpStatus.INTERNAL_SERVER_ERROR.value(),e.getMessage(),"");
     }
 }

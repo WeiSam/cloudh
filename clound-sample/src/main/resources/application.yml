@@ -52,7 +52,10 @@ spring:
     listener:
       simple:
         acknowledge-mode: manual
+    #消息发送到交换机是否触发回调函数 none:不,correlated:回调
     publisher-confirm-type: correlated
+    #是否开启交换机路由队列失败回调,路由失败才触发
+    publisher-returns: true
 
 sam:
   json:
