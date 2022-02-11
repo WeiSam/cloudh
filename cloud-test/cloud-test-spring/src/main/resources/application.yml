@@ -1,5 +1,10 @@
 server:
   port: 1122
+  tomcat:
+    # tomcat最大线程数，默认为200
+    max-threads: 10
+    # tomcat最大连接数,默认1000.实际连接数过大时会拒绝请求
+    max-connections: 15
 
 spring:
   application:

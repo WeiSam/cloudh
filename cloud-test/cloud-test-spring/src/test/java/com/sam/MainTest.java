@@ -9,6 +9,7 @@ import org.springframework.beans.MutablePropertyValues;
 import org.springframework.core.ResolvableType;
 import org.springframework.web.bind.WebDataBinder;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -75,5 +76,10 @@ public class MainTest {
     public void test101() {
         ConcurrentHashMap<String, String> map = new ConcurrentHashMap<>();
         map.put("","");
+        System.out.println(testNull(null));
+    }
+
+    public String testNull(@NotNull String str){
+        return str;
     }
 }
