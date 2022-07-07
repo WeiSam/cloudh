@@ -5,6 +5,7 @@ import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft_6455;
 import org.java_websocket.handshake.ServerHandshake;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 import java.net.URI;
 import java.nio.ByteBuffer;
@@ -12,17 +13,17 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 @Slf4j
-//@Component
+@Component
 public class WebsocketClient {
     
-    private static String WS = "ws://127.0.0.1:1111/websocket/";
+    private static String WS = "ws://192.168.78.146:19800/nonsense/position/change";
     boolean isConnect = false;
     boolean isMessage = false;
 
     @Bean
     public WebSocketClient getWebSocketClient() {
         try {
-            WebSocketClient webSocketClient = new WebSocketClient(new URI(WS+"123456"),
+            WebSocketClient webSocketClient = new WebSocketClient(new URI(WS),
                     new Draft_6455()) {
                 @Override
                 public void onOpen(ServerHandshake handshakedata) {
@@ -53,7 +54,7 @@ public class WebsocketClient {
 
                 @Override
                 public void onError(Exception ex) {
-                    log.info("[websocket] 连接错误={}", ex.getMessage());
+                    log.info("[websocket] 连接错误={}", ex.getMessage(),ex);
                     isConnect = false;
                     isMessage = false;
                 }
@@ -61,7 +62,7 @@ public class WebsocketClient {
 
             //如果断线，则重连并重新发送验证信息
             Timer t = new Timer();
-            t.scheduleAtFixedRate(new TimerTask() {
+/*            t.scheduleAtFixedRate(new TimerTask() {
                 @Override
                 public void run() {
                     if (!isConnect && !isMessage) {
@@ -85,8 +86,8 @@ public class WebsocketClient {
                         log.info("[websocket] 再次发送请求");
                     }
                 }
-            }, 3000, 60000);
-//            webSocketClient.connect();
+            }, 3000, 60000);*/
+            webSocketClient.connect();
             return webSocketClient;
         } catch (Exception e) {
             e.printStackTrace();

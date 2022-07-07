@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TestTask05 {
 
-    @Scheduled(cron = "0/2 * * * * ?")
+//    @Scheduled(cron = "0/2 * * * * ?")
     public void run() throws InterruptedException {
         log.info("开始执行,threadName = {}",Thread.currentThread().getName());
         Thread.sleep(5000);

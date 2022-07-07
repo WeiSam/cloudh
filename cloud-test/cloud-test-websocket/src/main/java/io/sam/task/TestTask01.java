@@ -10,7 +10,7 @@ public class TestTask01 {
 
     private int count = 0;
 
-    @Scheduled(cron = "0/2 * * * * ?")
+//    @Scheduled(cron = "0/2 * * * * ?")
     public void run() throws InterruptedException {
         if (count > 0){
             Thread.sleep(900000000);
