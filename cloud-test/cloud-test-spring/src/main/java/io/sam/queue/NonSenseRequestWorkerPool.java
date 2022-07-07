@@ -51,6 +51,6 @@ public class NonSenseRequestWorkerPool {
         threadPool = new ThreadPoolExecutor(2,10,10000, TimeUnit.SECONDS,
                 new LinkedBlockingQueue<>(100),
                 new ThreadFactoryBuilder().setNamePrefix("NonSenseRequestWorkerPool-").build(),
-                new ThreadPoolExecutor.DiscardOldestPolicy());;
+                new ThreadPoolExecutor.DiscardOldestPolicy());
     }
 }

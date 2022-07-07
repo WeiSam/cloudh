@@ -7,6 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.aop.framework.AopProxyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.metrics.MetricsEndpoint;
+
+import java.util.Objects;
 
 /**
  * @author zhuweimu
@@ -29,4 +32,5 @@ public class SpringAspectTest extends BaseTest {
     public void testExposeProxy() {
         iocServiceTest.testExposeProxy();
     }
+
 }

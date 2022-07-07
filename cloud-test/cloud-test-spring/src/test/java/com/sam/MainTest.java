@@ -82,4 +82,12 @@ public class MainTest {
     public String testNull(@NotNull String str){
         return str;
     }
+
+    @Test
+    public void testAdd() {
+        int count = 0;
+        while (true){
+            System.out.println(count++);
+        }
+    }
 }
