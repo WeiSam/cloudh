@@ -1,5 +1,7 @@
 package service;
 
+import model.OrderInfo;
+
 /**
  * @author zhuweimu
  * @classname OrderService
@@ -8,5 +10,5 @@ package service;
  */
 public interface OrderService {
 
-
+    OrderInfo getOrder(Long seconds);
 }

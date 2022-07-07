@@ -1,5 +1,10 @@
 server:
   port: 6061
+  tomcat:
+    accesslog:
+      enabled: true
+      directory: F:\tomcat\logs
+      file-date-format: yyyy-MM-dd_HH-mm-ss
 
 spring:
   application:
@@ -10,22 +15,27 @@ dubbo:
   # Dubbo 应用配置
   application:
     name: cloud-dubbo-provider # 应用名
+    dump-directory: user.home # 设置线程池不够jstack线程信息目录
   # Dubbo 注册中心配
   registry:
     address: zookeeper://127.0.0.1:2181 # 注册中心地址。个鞥多注册中心，可见 http://dubbo.apache.org/zh-cn/docs/user/references/registry/introduction.html 文档。
     register: true  # 是否注册到注册中心
-  # Dubbo 服务提供者协议配置
+  # Dubbo 服务提供者协议配置,应用级别,优先级更高
   protocol:
-    port: -1 # 协议端口。使用 -1 表示随机端口。
+    port: 10088 # 协议端口。使用 -1 表示随机端口。
     name: dubbo # 使用 `dubbo://` 协议。更多协议，可见 http://dubbo.apache.org/zh-cn/docs/user/references/protocol/introduction.html 文档
+    threads: 1 #优先级更高
+    threadpool: limited
   # Dubbo 服务提供者配置
   provider:
-    timeout: 30000 # 【重要】远程服务调用超时时间，单位：毫秒。默认为 1000 毫秒，胖友可以根据自己业务修改
+    timeout: 3000 # 【重要】远程服务调用超时时间，单位：毫秒。默认为 1000 毫秒，胖友可以根据自己业务修改
     group: 5555
+    #threads: 1
   consumer:
     timeout: 30000
   config-center:
     timeout: 30000
+
 
 
 
