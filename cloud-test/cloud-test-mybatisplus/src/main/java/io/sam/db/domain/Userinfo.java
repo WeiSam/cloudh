@@ -8,9 +8,9 @@ import java.util.Date;
 import lombok.Data;
 
 /**
- * @description 
- * @date 2021/9/6 15:39
  * @author zhuweimu
+ * @description
+ * @date 2022/2/25 9:20
  */
 @Data
 @TableName(value = "t_userinfo")

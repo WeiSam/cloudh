@@ -11,6 +11,7 @@ import io.sam.db.service.UserinfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -30,13 +31,31 @@ public class UserinfoServiceTest extends BaseTest {
 
     @Test
     public void test01() {
-        List<Userinfo> userinfos = userinfoService.list();
-        log.info("{}", JSON.toJSONString(userinfos));
-        List<Userinfo> userinfos1 = userinfoService.list(new QueryWrapper<Userinfo>().eq("id", 99));
-        log.info(JSON.toJSONString(userinfos1));
+//        List<Userinfo> userinfos = userinfoService.list();
+//        log.info("{}", JSON.toJSONString(userinfos));
+        List<Userinfo> userinfos1 = userinfoService.list(new QueryWrapper<Userinfo>().eq("id", 5011));
+        log.info(JSON.toJSONString(userinfoService.getById(85011)));
     }
 
     @Test
     public void test02() {
     }
+
+    @Test
+    public void test002() {
+        add();
+    }
+
+    @Transactional
+    public void add(){
+        Userinfo userinfo1 = userinfoMapper.selectById(85011);
+        log.info("USER:{}", JSON.toJSONString(userinfo1));
+        Userinfo userinfo = new Userinfo();
+        userinfo.setName("yyuyeh");
+        userinfo.setAge(178);
+        userinfoService.save(userinfo);
+        userinfo1 = userinfoMapper.selectById(85012);
+        log.info("USER:{}", JSON.toJSONString(userinfo1));
+    }
+
 }
