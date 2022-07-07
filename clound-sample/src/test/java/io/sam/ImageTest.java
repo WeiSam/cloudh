@@ -3,7 +3,14 @@ package io.sam;
 import cn.hutool.core.img.Img;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.IoUtil;
+import cn.hutool.core.io.StreamProgress;
 import cn.hutool.core.util.NumberUtil;
+import cn.hutool.core.util.RandomUtil;
+import cn.hutool.core.util.StrUtil;
+import cn.hutool.http.HttpException;
+import cn.hutool.http.HttpRequest;
+import cn.hutool.http.HttpResponse;
+import cn.hutool.http.HttpUtil;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnails;
 import org.junit.Test;
@@ -143,6 +150,103 @@ public class ImageTest {
             return inStream;
         } catch (Exception e) {
             return null;
+        }
+    }
+
+    static boolean flag = true;
+    @Test
+    public void test0001() {
+
+        HttpUtil.downloadFile("http://192.168.37.163:14444/default/video/2022-01-18/all.mp4", new File("E:\\all.mp4"), new StreamProgress() {
+            @Override
+            public void start() {
+                log.info("开始下载");
+            }
+
+            @Override
+            public void progress(long progressSize) {
+
+                int randomInt = RandomUtil.randomInt(100, 500);
+                if (randomInt > 450) {
+                    log.info("下载中:{}",progressSize);
+                }
+                try {
+                    if (flag) {
+//                        log.info("==================开始休眠==========================");
+                        Thread.sleep(1000*1);
+                        flag = false;
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void finish() {
+                log.info("下载完成");
+            }
+        });
+    }
+
+    @Test
+    public void test0() {
+
+        String body = "{\"fileName\":\"/home/gosun_record/20220318/f356c9a47aaa4c39bfc26cbf83cbbd9e_20220318-034531_65.mp4\"}";
+        ImageTest.downloadFile2("http://192.168.78.214:15999/vcs/record/download",body, new File("E:\\all00.mp4"),-1, new StreamProgress() {
+            @Override
+            public void start() {
+                log.info("开始下载");
+            }
+
+            @Override
+            public void progress(long progressSize) {
+
+            }
+
+            @Override
+            public void finish() {
+                log.info("下载完成");
+            }
+        });
+
+    }
+
+    public static long downloadFile(String url,String body, File destFile, int timeout, StreamProgress streamProgress) {
+        if (StrUtil.isBlank(url)) {
+            throw new NullPointerException("[url] is null!");
+        }
+        if (null == destFile) {
+            throw new NullPointerException("[destFile] is null!");
+        }
+        final HttpResponse response = HttpRequest
+                .post(url)
+                .header("authorization","Auth123456")
+                .body(body,"application/json")
+                .timeout(timeout)
+                .executeAsync();
+        if (false == response.isOk()) {
+            throw new HttpException("Server response error with status code: [{}]", response.getStatus());
+        }
+        return response.writeBody(destFile, streamProgress);
+    }
+
+    public static long downloadFile2(String url,String body, File destFile, int timeout, StreamProgress streamProgress) {
+
+        if (StrUtil.isBlank(url)) {
+            throw new NullPointerException("[url] is null!");
+        } else if (null == destFile) {
+            throw new NullPointerException("[destFile] is null!");
+        } else {
+            HttpResponse response = HttpRequest.post(url)
+                    .header("authorization","Auth123456")
+                    .body(body,"application/json")
+                    .timeout(timeout)
+                    .executeAsync();
+            if (!response.isOk()) {
+                throw new HttpException("Server response error with status code: [{}]", new Object[]{response.getStatus()});
+            } else {
+                return response.writeBody(destFile, streamProgress);
+            }
         }
     }
 }

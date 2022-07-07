@@ -140,45 +140,58 @@ public class JiNanController {
                 "}";
     }
 
-    @PostMapping("/GoAnalyse/ppa/queryTrack")
+    @PostMapping("/gocloud/govideo/ppa/queryTrack")
     public String queryTrack(){
         return "{\n" +
-                "    \"description\": \"String\",\n" +
-                "    \"trackInfo\": [\n" +
-                "        {\n" +
-                "            \"roomId\": 0,\n" +
-                "            \"deviceInfo\": [\n" +
-                "                {\n" +
-                "                    \"deviceId\": \"1\",\n" +
-                "                    \"cameraDetail\": \"192.168.35.140\",\n" +
-                "                    \"captureUrl\": \"String\"\n" +
+                "    \"type\": \"String\",\n" +
+                "    \"action\": \"String\",\n" +
+                "    \"sequenceId\": \"String\",\n" +
+                "    \"token\": \"String\",\n" +
+                "    \"message\": {\n" +
+                "        \"trackInfo\": [\n" +
+                "            {\n" +
+                "                \"roomId\": 0,\n" +
+                "                \"deviceInfo\": [\n" +
+                "                    {\n" +
+                "                        \"cameraDetail\": \"192.168.78.31\"\n" +
+                "                    }\n" +
+                "                ],\n" +
+                "                \"startTime\": \"2022-03-30 19:57:31\",\n" +
+                "                \"videoClip\": {\n" +
+                "                    \"startTime\": \"2022-03-30 19:57:31\",\n" +
+                "                    \"endTime\": \"2022-03-30 20:57:31\"\n" +
                 "                }\n" +
-                "            ],\n" +
-                "            \"startTime\": \"1990-06-22 17:12:10\",\n" +
-                "            \"endTime\": \"1990-06-22 17:15:10\",\n" +
-                "            \"videoClip\": {\n" +
-                "                \"startTime\": \"2021-04-09 16:31:14\",\n" +
-                "                \"endTime\": \"2021-04-09 16:39:14\"\n" +
-                "            }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"roomId\": 0,\n" +
-                "            \"deviceInfo\": [\n" +
-                "                {\n" +
-                "                    \"deviceId\": \"1\",\n" +
-                "                    \"cameraDetail\": \"192.168.35.134\",\n" +
-                "                    \"captureUrl\": \"String\"\n" +
+                "            },\n" +
+                "            {\n" +
+                "                \"roomId\": 0,\n" +
+                "                \"deviceInfo\": [\n" +
+                "                    {\n" +
+                "                        \"cameraDetail\": \"192.168.78.30\"\n" +
+                "                    }\n" +
+                "                ],\n" +
+                "                \"videoClip\": {\n" +
+                "                    \"startTime\": \"2022-03-30 21:57:31\",\n" +
+                "                    \"endTime\": \"2022-03-30 21:58:31\"\n" +
                 "                }\n" +
-                "            ],\n" +
-                "            \"startTime\": \"1990-06-22 17:20:10\",\n" +
-                "            \"endTime\": \"1990-06-22 17:25:10\",\n" +
-                "            \"videoClip\": {\n" +
-                "                \"startTime\": \"2021-04-09 17:31:14\",\n" +
-                "                \"endTime\": \"2021-04-09 17:39:14\"\n" +
+                "            },\n" +
+                "            {\n" +
+                "                \"roomId\": 0,\n" +
+                "                \"deviceInfo\": [\n" +
+                "                    {\n" +
+                "                        \"cameraDetail\": \"192.168.78.28\"\n" +
+                "                    }\n" +
+                "                ],\n" +
+                "                \"startTime\": \"2022-03-30 19:57:31\",\n" +
+                "                \"videoClip\": {\n" +
+                "                    \"startTime\": \"2022-03-30 22:57:31\",\n" +
+                "                    \"endTime\": \"2022-03-30 22:58:31\"\n" +
+                "                }\n" +
                 "            }\n" +
-                "        }\n" +
-                "    ],\n" +
-                "    \"errorCode\": \"0\"\n" +
+                "        ],\n" +
+                "        \"errorCode\": \"0\",\n" +
+                "        \"description\": \"String\",\n" +
+                "        \"operResult\": 0\n" +
+                "    }\n" +
                 "}";
     }
 }

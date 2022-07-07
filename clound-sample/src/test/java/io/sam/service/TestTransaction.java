@@ -59,6 +59,23 @@ public class TestTransaction extends BaseTest {
     }
 
     @Test
+    public void test002() {
+        add();
+    }
+
+//    @Transactional
+    public void add(){
+        Userinfo userinfo1 = userinfoMapper.selectByPrimaryKey(5010);
+        log.info("USER:{}", JSON.toJSONString(userinfo1));
+        Userinfo userinfo = new Userinfo();
+        userinfo.setName("yyuyeh");
+        userinfo.setAge(178);
+        userinfoService.insertSelective(userinfo);
+        userinfo1 = userinfoService.selectByPrimaryKey(5011);
+        log.info("USER:{}", JSON.toJSONString(userinfo1));
+    }
+
+    @Test
     public void test02() throws InterruptedException {
         int count = 20;
         CountDownLatch countDownLatch = new CountDownLatch(count);

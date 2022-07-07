@@ -112,7 +112,7 @@ public class SpringUtilsTest {
     @Test
     public void testClassPathResource() throws IOException {
         ClassPathResource classPathResource = new ClassPathResource("application.yml");
-        System.out.println(classPathResource.getPath());
+        System.out.println(classPathResource.getURL().getPath());
         //获取yml配置有问题
         Properties properties = PropertiesLoaderUtils.loadProperties(classPathResource);
 

@@ -20,6 +20,7 @@ public interface UserinfoMapper {
     int insertSelective(Userinfo record);
 
     Userinfo selectByPrimaryKey(Integer id);
+    Userinfo selectAge(Integer age);
 
     int updateByPrimaryKeySelective(Userinfo record);
 

@@ -3,6 +3,7 @@ package io.sam.db.domain;
 import java.util.Date;
 import lombok.Data;
 import lombok.experimental.Accessors;
+import org.springframework.data.annotation.Id;
 
 /**
  * @author zhuweimu
@@ -12,6 +13,7 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class Userinfo {
+    @Id
     private Integer id;
 
     private String name;
