@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import io.sam.db.mapper.UserinfoMapper;
 import io.sam.db.domain.Userinfo;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author zhuweimu
@@ -44,6 +45,22 @@ public class UserinfoService {
 
     public int updateByPrimaryKey(Userinfo record) {
         return userinfoMapper.updateByPrimaryKey(record);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void addAndUpdate() throws Exception {
+        Userinfo userinfo = new Userinfo();
+        userinfo.setName("yyuyeh");
+        userinfo.setAge(178);
+        userinfoMapper.insertSelective(userinfo);
+        update(userinfo);
+    }
+    public void update(Userinfo userinfo) throws Exception {
+        userinfo.setName("更新"+userinfo.getName());
+        userinfoMapper.updateByPrimaryKey(userinfo);
+        if (true){
+            throw new Exception("");
+        }
     }
 
 }

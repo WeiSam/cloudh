@@ -8,6 +8,7 @@ import io.sam.db.service.UserinfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
 
@@ -27,7 +28,6 @@ public class TestTransaction extends BaseTest {
 
     @Autowired
     UserinfoMapper userinfoMapper;
-
 
     /**
      * 自动装配
@@ -59,8 +59,25 @@ public class TestTransaction extends BaseTest {
     }
 
     @Test
-    public void test002() {
-        add();
+    @Transactional
+    @Rollback(value = false)
+    public void test002() throws Exception {
+//        add();
+        addAndUpdate();
+    }
+
+    @Test
+    public void addAndUpdate() throws Exception {
+        userinfoService.addAndUpdate();
+
+    }
+
+    public void update(Userinfo userinfo) throws Exception {
+        userinfo.setName("更新"+userinfo.getName());
+        userinfoMapper.updateByPrimaryKey(userinfo);
+//        if (true){
+//            throw new Exception("");
+//        }
     }
 
 //    @Transactional
