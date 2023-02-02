@@ -1,6 +1,7 @@
 package io.sam.db.domain;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * @classname AccountTbl
@@ -9,6 +10,7 @@ import lombok.Data;
  * @author zhuweimu
  */
 @Data
+@Accessors(chain = true)
 public class AccountTbl {
     private Integer id;
 

@@ -1,5 +1,6 @@
 package io.sam.mymapper;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.binding.MapperMethod;
 
 import java.lang.invoke.MethodHandles;
@@ -15,6 +16,7 @@ import java.util.Map;
  * @description
  * @date 2020/11/9 17:42
  */
+@Slf4j
 public class MyMapperProxy<T> implements InvocationHandler {
 
     private final Class<T> mapperInterface;
@@ -27,6 +29,7 @@ public class MyMapperProxy<T> implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        log.info("执行MyMapperProxy代理方法");
         if (Object.class.equals(method.getDeclaringClass())) {
             return method.invoke(this, args);
         }else if(isDefaultMethod(method)){

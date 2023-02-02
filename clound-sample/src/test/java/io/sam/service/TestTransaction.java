@@ -5,6 +5,7 @@ import io.sam.BaseTest;
 import io.sam.db.domain.Userinfo;
 import io.sam.db.mapper.UserinfoMapper;
 import io.sam.db.service.UserinfoService;
+import io.sam.service.impl.OutServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,8 @@ public class TestTransaction extends BaseTest {
     @Autowired
     UserinfoMapper userinfoMapper;
 
+    @Autowired
+    OutServiceImpl outService;
     /**
      * 自动装配
      * 自动装配类：
@@ -109,5 +112,10 @@ public class TestTransaction extends BaseTest {
         countDownLatch.await();
 
         log.info("执行结束");
+    }
+
+    @Test
+    public void testPropagation() throws Exception {
+        outService.outM();
     }
 }

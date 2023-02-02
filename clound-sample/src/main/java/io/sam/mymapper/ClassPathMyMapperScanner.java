@@ -3,6 +3,7 @@ package io.sam.mymapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
+import org.springframework.beans.factory.config.ConstructorArgumentValues;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
@@ -45,7 +46,9 @@ public class ClassPathMyMapperScanner extends ClassPathBeanDefinitionScanner {
 
             // the mapper interface is the original class of the bean
             // but, the actual class of the bean is MapperFactoryBean
-            definition.getConstructorArgumentValues().addGenericArgumentValue(beanClassName); // issue #59
+            ConstructorArgumentValues constructorArgumentValues = definition.getConstructorArgumentValues();
+            constructorArgumentValues
+                    .addGenericArgumentValue(beanClassName); // issue #59
             definition.setBeanClass(this.mapperFactoryBeanClass);
 
             boolean explicitFactoryUsed = false;
