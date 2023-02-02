@@ -1,7 +1,11 @@
 package io.sam;
 
+import com.alibaba.fastjson.JSON;
 import org.junit.Test;
 
+import java.util.BitSet;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -35,5 +39,22 @@ public class MainTest {
         Pattern r = Pattern.compile(pattern);
         Matcher m = r.matcher(str);
         System.out.println(m.matches());
+        BitSet bitSet = BitSet.valueOf(new long[100000]);
+        BitSet bs = new BitSet();
+    }
+
+    @Test
+    public void testBit() {
+        System.out.println(Integer.toBinaryString(1<<6));
+    }
+
+    @Test
+    public void test0001() {
+        Set<String> set = new HashSet<>();
+        set.add("12345");
+        set.add("abc");
+        set.add("adfsdg");
+        set.remove("abc");
+        System.out.println(JSON.toJSONString(set));
     }
 }

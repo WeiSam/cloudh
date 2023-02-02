@@ -49,6 +49,11 @@
             <artifactId>jol-core</artifactId>
             <version>RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy-agent</artifactId>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 
