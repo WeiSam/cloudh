@@ -29,9 +29,9 @@ import java.util.concurrent.*;
 public class FutureTest {
 
     ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(10,10,10000, TimeUnit.SECONDS,
-            new LinkedBlockingDeque<>(10),
+            new LinkedBlockingDeque<>(100),
             new ThreadFactoryBuilder().setNamePrefix("FutureTest-").build(),
-            new ThreadPoolExecutor.DiscardOldestPolicy());
+            new ThreadPoolExecutor.AbortPolicy());
 
     /**
      * Future 调用get()方法时才执行线程
@@ -141,13 +141,16 @@ public class FutureTest {
                     .runAsync(() -> {
                         log.info("[{}]开始执行任务1", finalI);
                         try {
-                            TimeUnit.SECONDS.sleep(3);
+                            TimeUnit.SECONDS.sleep(5);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
+                        if (finalI == 0) {
+                            int ii = 100/0;
+                        }
                         log.info("[{}]结束任务1",finalI);
                     }, threadPoolExecutor)
-                    .thenAcceptAsync(aVoid -> {
+                    .thenAccept(aVoid -> {
                         log.info("[{}]开始执行任务2", finalI);
                         try {
                             TimeUnit.SECONDS.sleep(2);
@@ -165,9 +168,12 @@ public class FutureTest {
                         }
                         log.info("[{}]结束任务3",finalI);
                         return "任务全部结束"+finalI;
-                    }));
+                    })).whenCompleteAsync((s, throwable) -> {
+                        log.error("[{}]发生异常:{}",finalI,s,throwable);
+                    },threadPoolExecutor);
             futures.add(voidCompletableFuture);
         }
+        log.info("主线程执行");
         log.info("主线程执行");
         futures.forEach(task -> System.out.println(task.join()));
         log.info("主线程执行结束");
