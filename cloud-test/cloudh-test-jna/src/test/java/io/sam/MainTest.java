@@ -5,6 +5,7 @@ import io.sam.sdk.WindowTrackSdkLibrary;
 import io.sam.service.StaticService;
 import io.sam.service.StaticService02;
 import io.sam.service.TrackSdkService;
+import io.sam.utils.BufferUtils;
 import io.sam.utils.ByteUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -119,4 +120,25 @@ public class MainTest {
         System.out.println(code);
     }
 
+    @Test
+    public void test08() {
+        IntBuffer intBuffer = IntBuffer.allocate(1);
+        intBuffer.put(100);
+        System.out.println(intBuffer.get(0));
+        intBuffer.clear();
+        System.out.println(intBuffer.get(0));
+        intBuffer.put(200);
+        System.out.println(intBuffer.get(0));
+        System.out.println(intBuffer.get(0));
+    }
+
+    @Test
+    public void test09() throws Exception {
+        String str = "埃及地方";
+        ByteBuffer byteBuffer = ByteBuffer.allocateDirect(100);
+        byteBuffer.put(str.getBytes());
+        String result = BufferUtils.directBufferToString(byteBuffer,str.getBytes().length);
+        System.out.println(result);
+
+    }
 }
