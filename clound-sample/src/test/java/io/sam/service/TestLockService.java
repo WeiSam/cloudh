@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import sam.ImportTestConfig;
 import sam.TestModel;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @author zhuweimu
  * @classname TestLockService
@@ -23,8 +25,14 @@ public class TestLockService extends BaseTest {
 
     @Test
     public void testLock() throws InterruptedException {
-        for (int i=0;i<10;i++){
+        for (int i=0;i<3;i++){
+            int finalI = 1+i*2;
             new Thread(() -> {
+                try {
+                    TimeUnit.SECONDS.sleep(finalI);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 log.info(lockTestService.getKey("123454"));
             }).start();
         }
