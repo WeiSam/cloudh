@@ -4,7 +4,12 @@ import common.BaseResponse;
 import io.sam.annotation.DisLock;
 import io.sam.enums.LockServiceType;
 import lombok.extern.slf4j.Slf4j;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author zhuweimu
@@ -16,12 +21,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class LockTestServiceImpl {
 
-    @DisLock(prefix = "LockTestServiceImpl",key = "#key",lockServiceType = LockServiceType.CURATOR)
-    public String getKey(String key){
+    @Autowired
+    RedissonClient redissonClient;
 
+//    @DisLock(prefix = "LockTestServiceImpl",key = "#key",keepTime = 1,lockServiceType = LockServiceType.REDISSON)
+    public String getKey(String key){
         try {
             log.info("获取锁成功！！！");
-            Thread.sleep(3000);
+            TimeUnit.SECONDS.sleep(30);
             log.info("执行成功！！");
         } catch (InterruptedException e) {
             e.printStackTrace();

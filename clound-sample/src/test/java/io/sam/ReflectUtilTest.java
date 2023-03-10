@@ -246,6 +246,8 @@ public class ReflectUtilTest {
         Thread.sleep(100);
         stopWatch.stop();
         log.info("getLastTaskTimeMillis:{}",stopWatch.getLastTaskTimeMillis());
+        Thread.sleep(200);
+        log.info("getTotalTimeMillis:{}",stopWatch.getTotalTimeMillis());
         stopWatch.start("2");
         Thread.sleep(200);
         stopWatch.stop();

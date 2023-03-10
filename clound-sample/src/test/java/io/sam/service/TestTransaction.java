@@ -118,4 +118,15 @@ public class TestTransaction extends BaseTest {
     public void testPropagation() throws Exception {
         outService.outM();
     }
+
+    @Test
+    public void testMandatoryPropagation() throws Exception {
+        //外层不存在事务，则抛出异常
+        outService.notTransactional();
+    }
+
+    @Test
+    public void testMandatoryPropagation2() throws Exception {
+        outService.hasTransactional();
+    }
 }

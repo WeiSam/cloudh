@@ -37,4 +37,21 @@ public class OutServiceImpl {
             throw new RuntimeException("外层事务异常");
         }
     }
+
+    public void notTransactional() throws Exception {
+        Userinfo userinfo = new Userinfo()
+                .setId(10000001)
+                .setName("jkdjfks");
+        userinfoService.insertSelective(userinfo);
+        inService.mandatory(userinfo.getId());
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void hasTransactional() throws Exception {
+        Userinfo userinfo = new Userinfo()
+                .setId(10000001)
+                .setName("jkdjfks");
+        userinfoService.insertSelective(userinfo);
+        inService.mandatory(userinfo.getId());
+    }
 }

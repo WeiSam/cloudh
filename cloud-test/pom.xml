@@ -24,6 +24,7 @@
         <module>cloudh-test-netty</module>
         <module>cloudh-test-jna</module>
         <module>cloud-test-rocketmq</module>
+        <module>cloud-test-all</module>
     </modules>
 
     <properties>

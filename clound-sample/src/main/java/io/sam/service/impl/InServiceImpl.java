@@ -26,4 +26,10 @@ public class InServiceImpl {
             throw new RuntimeException("内层事务异常");
         }
     }
+
+    @Transactional(propagation = Propagation.MANDATORY,rollbackFor = Exception.class)
+    public void mandatory(Integer userId) throws Exception {
+        AccountTbl accountTbl = new AccountTbl().setId(userId).setMoney(1000);
+        accountTblService.insert(accountTbl);
+    }
 }
