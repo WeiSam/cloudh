@@ -41,8 +41,15 @@ public class AccountTblService{
 
     @Cacheable(value = "Acount",key = "#id",unless = "#result == null ")
     public AccountTbl selectByPrimaryKey(Integer id) {
+        return selectByPrimaryKeyNotCache(id);
+    }
+
+    public AccountTbl selectByPrimaryKeyNotCache(Integer id) {
         log.info("查询数据库");
-        return accountTblMapper.selectByPrimaryKey(id);
+        if (id == 1) {
+            return null;
+        }
+        return new AccountTbl();
     }
 
     

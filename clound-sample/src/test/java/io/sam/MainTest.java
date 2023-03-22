@@ -2,6 +2,7 @@ package io.sam;
 import cn.hutool.bloomfilter.BitMapBloomFilter;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.crypto.digest.MD5;
+import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.ValueFilter;
 import eunms.EnumPaymentType;
@@ -14,6 +15,7 @@ import io.sam.dto.UserDto;
 import io.sam.dto.YanTaiRepositoryResp;
 import io.sam.enums.OderType;
 import io.sam.service.TestFunctional;
+import javafx.util.Pair;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.util.DateUtil;
 import org.junit.Test;
@@ -34,6 +36,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -419,6 +422,94 @@ public class MainTest {
         // 所以任何一个商品id都会被固定路由到同样的一个内存队列中去的
         int index = (count - 1) & hash;
         return index;
+    }
+
+    @Test
+    public void test0001() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        System.out.println(new BigDecimal("12.3456").setScale(2,BigDecimal.ROUND_HALF_UP));
+        System.out.println(simpleDateFormat.format(new Date()));
+    }
+
+    @Test
+    public void testMain() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        Long totalTime = 1000*60*30L;
+        Long M10 = 1000*60*10L;
+        long startTime = System.currentTimeMillis();
+        HashMap<String,List<CarDate>> carMap = new HashMap<>();
+
+
+        Thread thread = new Thread(() -> {
+            while (true){
+                System.out.println("输入车牌号:");
+                Scanner scanner = new Scanner(System.in);
+                String line = scanner.nextLine();
+                if (line != null) {
+                    String carNum = line.replaceAll("\\s*", "");
+                    if (carNum.length() <= 0) {
+                        continue;
+                    }
+                    if (!carMap.containsKey(carNum)) {
+                        ArrayList<CarDate> dates = new ArrayList<>();
+                        CarDate date = new CarDate(new Date(),null);
+                        dates.add(date);
+                        carMap.put(carNum,dates);
+                    }else {
+                        List<CarDate> dates = carMap.get(carNum);
+                        CarDate lastDate = dates.get(dates.size() - 1);
+                        //说明重新进入
+                        if (lastDate.getEndTime() != null) {
+                            CarDate newDate = new CarDate(new Date(),null);
+                            dates.add(newDate);
+                        }else {
+                            lastDate.setEndTime(new Date());
+                        }
+                    }
+                }
+            }
+        });
+        thread.setDaemon(true);
+        thread.start();
+        //执行
+        try {
+            TimeUnit.MINUTES.sleep(1);
+//            TimeUnit.SECONDS.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(JSON.toJSONString(carMap));
+        for (Map.Entry<String, List<CarDate>> car : carMap.entrySet()) {
+            List<CarDate> dateList = car.getValue();
+        }
+    }
+
+    private static class CarDate {
+        private Date startTime;
+        private Date endTime;
+
+        public CarDate(Date startTime, Date endTime) {
+            this.startTime = startTime;
+            this.endTime = endTime;
+        }
+
+        public Date getStartTime() {
+            return startTime;
+        }
+
+        public void setStartTime(Date startTime) {
+            this.startTime = startTime;
+        }
+
+        public Date getEndTime() {
+            return endTime;
+        }
+
+        public void setEndTime(Date endTime) {
+            this.endTime = endTime;
+        }
     }
 }
 
