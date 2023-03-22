@@ -1,6 +1,8 @@
 package io.sam;
 
+import io.sam.mymapper.MyMapperProxy;
 import io.sam.proxy.cglib.CglibInterceptorProxy;
+import io.sam.service.MyMapperNameTest;
 import io.sam.service.impl.TestService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -10,6 +12,7 @@ import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.InvocationHandler;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 
 /**
  * @author zhuweimu
@@ -44,11 +47,19 @@ public class CglibProxyTest {
         enhancer.setCallbackFilter(new CallbackFilter() {
             @Override
             public int accept(Method method) {
-                return 1;
+                return 2;
             }
         });
         // 创建代理对象
         TestService testService = (TestService) enhancer.create();
-        testService.test("InvocationHandler");
+//        testService.test("InvocationHandler");
+        testService.testFinal();
+    }
+
+    @Test
+    public void testJdk() {
+        MyMapperNameTest myMapperNameTest = (MyMapperNameTest)Proxy.newProxyInstance(MyMapperNameTest.class.getClassLoader(),new Class[] {MyMapperNameTest.class},new MyMapperProxy(null,null));
+        System.out.println(myMapperNameTest.age());
+        System.out.println(myMapperNameTest.name());
     }
 }

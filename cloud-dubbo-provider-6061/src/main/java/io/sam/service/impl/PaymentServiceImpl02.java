@@ -4,6 +4,8 @@ import model.Payment;
 import org.apache.dubbo.config.annotation.DubboService;
 import service.PaymentService;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @author zhuweimu
  * @classname PaymentServiceImpl
@@ -14,6 +16,11 @@ import service.PaymentService;
 public class PaymentServiceImpl02 implements PaymentService {
     @Override
     public Payment getPaymentById(Long id) {
+        try {
+            TimeUnit.SECONDS.sleep(id);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return Payment.builder().id(id+100000).build();
     }
 }

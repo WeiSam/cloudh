@@ -8,3 +8,6 @@
 cloudh.iml
 **/*.log
 *.log
+/logs/
+/**/logs/
+**/*/logs/

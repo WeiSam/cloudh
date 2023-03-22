@@ -47,11 +47,11 @@ public class TestMybatisService extends BaseTest {
         sqlSession.close();
         stopWatch.stop();
 
+        System.out.println("getLastTaskTimeMillis: "+stopWatch.getLastTaskTimeMillis());
         stopWatch.start("xml拼接");
         int insertCount = this.userinfoMapper.batchInsert(list);
         stopWatch.stop();
-
-
+        System.out.println("getLastTaskTimeMillis: "+stopWatch.getLastTaskTimeMillis());
         log.info("批量处理耗时:{}",stopWatch.getTaskInfo()[0].getTimeMillis());
         log.info("xml拼接处理,count = {},耗时:{}",insertCount,stopWatch.getTaskInfo()[1].getTimeMillis());
 

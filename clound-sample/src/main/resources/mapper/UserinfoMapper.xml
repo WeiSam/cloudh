@@ -127,4 +127,12 @@
       (#{record.name},#{record.password},#{record.age},#{record.num},#{record.createTime},#{record.updateTime})
     </foreach>
   </insert>
+
+  <select id="selectAge" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from t_userinfo
+    where age = #{age}
+  </select>
 </mapper>

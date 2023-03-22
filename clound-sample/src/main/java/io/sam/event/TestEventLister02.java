@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TestEventLister02 {
 
-    @Async
+    @Async("asyncServiceExecutor")//此注解无效
     @EventListener
     public void process(TestInfoEvent event) {
         UserDto source = (UserDto)event.getSource();

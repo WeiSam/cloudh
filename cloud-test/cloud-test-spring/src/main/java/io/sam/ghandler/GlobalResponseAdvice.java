@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * @date 2021/7/28 9:59
  */
 @Slf4j
-//@RestControllerAdvice
+@RestControllerAdvice
 public class GlobalResponseAdvice implements ResponseBodyAdvice<Object> {
     /**
      * Whether this component supports the given controller method return type

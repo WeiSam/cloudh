@@ -26,5 +26,7 @@ public class SpringUtilsTest {
         ResolvableType[] generics = resolvableType.getGenerics();
         ResolvableType[] interfaces = resolvableType.getInterfaces();
         System.out.println(JSON.toJSONString(generics));
+
+
     }
 }

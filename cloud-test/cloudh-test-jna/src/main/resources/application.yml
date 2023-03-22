@@ -1,0 +1,16 @@
+server:
+  port: 2222
+  tomcat:
+    # tomcat最大线程数，默认为200
+    max-threads: 10
+    # tomcat最大连接数,默认1000.实际连接数过大时会拒绝请求
+    max-connections: 200
+
+spring:
+  application:
+    name: cloudh-test-jna
+
+debug: true
+
+
+

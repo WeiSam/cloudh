@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.*;
 
 /**
@@ -26,10 +28,10 @@ import java.util.concurrent.*;
 @Slf4j
 public class FutureTest {
 
-    ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(2,10,10000, TimeUnit.SECONDS,
-            new LinkedBlockingQueue<>(100),
+    ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(10,10,10000, TimeUnit.SECONDS,
+            new LinkedBlockingDeque<>(100),
             new ThreadFactoryBuilder().setNamePrefix("FutureTest-").build(),
-            new ThreadPoolExecutor.DiscardOldestPolicy());
+            new ThreadPoolExecutor.AbortPolicy());
 
     /**
      * Future 调用get()方法时才执行线程
@@ -74,7 +76,7 @@ public class FutureTest {
         //创建异步实例
         CompletableFuture<Object> task1 = CompletableFuture.supplyAsync(FutureTest::bookFlight,threadPoolExecutor);
         CompletableFuture<Object> task2 = CompletableFuture.supplyAsync(FutureTest.this::bookHotel,threadPoolExecutor);
-        Thread.sleep(10000);
+//        Thread.sleep(10000);
         //创建同步执行
         CompletableFuture<String> task3 = task2.thenCombine(task1, FutureTest.this::callTaxi2);
         String task3Result = task3.join();
@@ -118,12 +120,91 @@ public class FutureTest {
     private static Object bookFlight() {
         log.info("订购航班开始");
         try {
-            Thread.sleep(2000);
+            Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         log.info("订购航班完成");
         return "12879738878274";
+    }
+
+    @Test
+    public void testOrder() {
+        List<String> tasks = new ArrayList<>();
+        tasks.add("任务1");
+        tasks.add("任务2");
+        tasks.add("任务3");
+        List<CompletableFuture<String>> futures = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            int finalI = i;
+            CompletableFuture<String> voidCompletableFuture = CompletableFuture
+                    .runAsync(() -> {
+                        log.info("[{}]开始执行任务1", finalI);
+                        try {
+                            TimeUnit.SECONDS.sleep(5);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        if (finalI == 0) {
+                            int ii = 100/0;
+                        }
+                        log.info("[{}]结束任务1",finalI);
+                    }, threadPoolExecutor)
+                    .thenAccept(aVoid -> {
+                        log.info("[{}]开始执行任务2", finalI);
+                        try {
+                            TimeUnit.SECONDS.sleep(2);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        log.info("[{}]结束任务2",finalI);
+                    })
+                    .thenCompose(aVoid -> CompletableFuture.supplyAsync(() -> {
+                        log.info("[{}]开始执行任务3", finalI);
+                        try {
+                            TimeUnit.SECONDS.sleep(2);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        log.info("[{}]结束任务3",finalI);
+                        return "任务全部结束"+finalI;
+                    })).whenCompleteAsync((s, throwable) -> {
+                        log.error("[{}]发生异常:{}",finalI,s,throwable);
+                    },threadPoolExecutor);
+            futures.add(voidCompletableFuture);
+        }
+        log.info("主线程执行");
+        log.info("主线程执行");
+        futures.forEach(task -> System.out.println(task.join()));
+        log.info("主线程执行结束");
+    }
+
+    @Test
+    public void testOrder2() {
+
+        CompletableFuture.supplyAsync(() -> {
+            log.info("我媳妇儿正在炒菜");
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return "红烧排骨、清蒸鲈鱼";
+        }).thenCompose(dish -> CompletableFuture.supplyAsync(() -> {  //接着上一个任务结束之后，开启一个异步任务
+            log.info("媳妇儿通知我吃她做好的菜："+dish);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }));
+
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 

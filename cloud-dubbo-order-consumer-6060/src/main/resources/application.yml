@@ -15,19 +15,26 @@ dubbo:
   # Dubbo 注册中心配
   registry:
     address: zookeeper://127.0.0.1:2181 # 注册中心地址。个鞥多注册中心，可见 http://dubbo.apache.org/zh-cn/docs/user/references/registry/introduction.html 文档。
+    check: false
   # Dubbo 服务提供者协议配置
   protocol:
     port: -1 # 协议端口。使用 -1 表示随机端口。
     name: dubbo # 使用 `dubbo://` 协议。更多协议，可见 http://dubbo.apache.org/zh-cn/docs/user/references/protocol/introduction.html 文档
   # Dubbo 服务提供者配置
   provider:
-    timeout: 600000 # 【重要】远程服务调用超时时间，单位：毫秒。默认为 1000 毫秒，胖友可以根据自己业务修改
+    timeout: 30000 # 【重要】远程服务调用超时时间，单位：毫秒。默认为 1000 毫秒，胖友可以根据自己业务修改
+    threads: 200
+    threadname: PRO_TEST
+    group: 5555
   consumer:
-    timeout: 600000
+    timeout: 3000
     group: 5555   # 消费时调用分组服务
+    check: false
     retries: 0
+    threads: 1
   config-center:
     timeout: 30000
+    check: false #启动时不检查提供者是否存在
 
 
 

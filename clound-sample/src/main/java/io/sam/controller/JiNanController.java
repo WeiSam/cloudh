@@ -139,46 +139,4 @@ public class JiNanController {
                 "    }\n" +
                 "}";
     }
-
-    @PostMapping("/GoAnalyse/ppa/queryTrack")
-    public String queryTrack(){
-        return "{\n" +
-                "    \"description\": \"String\",\n" +
-                "    \"trackInfo\": [\n" +
-                "        {\n" +
-                "            \"roomId\": 0,\n" +
-                "            \"deviceInfo\": [\n" +
-                "                {\n" +
-                "                    \"deviceId\": \"1\",\n" +
-                "                    \"cameraDetail\": \"192.168.35.140\",\n" +
-                "                    \"captureUrl\": \"String\"\n" +
-                "                }\n" +
-                "            ],\n" +
-                "            \"startTime\": \"1990-06-22 17:12:10\",\n" +
-                "            \"endTime\": \"1990-06-22 17:15:10\",\n" +
-                "            \"videoClip\": {\n" +
-                "                \"startTime\": \"2021-04-09 16:31:14\",\n" +
-                "                \"endTime\": \"2021-04-09 16:39:14\"\n" +
-                "            }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"roomId\": 0,\n" +
-                "            \"deviceInfo\": [\n" +
-                "                {\n" +
-                "                    \"deviceId\": \"1\",\n" +
-                "                    \"cameraDetail\": \"192.168.35.134\",\n" +
-                "                    \"captureUrl\": \"String\"\n" +
-                "                }\n" +
-                "            ],\n" +
-                "            \"startTime\": \"1990-06-22 17:20:10\",\n" +
-                "            \"endTime\": \"1990-06-22 17:25:10\",\n" +
-                "            \"videoClip\": {\n" +
-                "                \"startTime\": \"2021-04-09 17:31:14\",\n" +
-                "                \"endTime\": \"2021-04-09 17:39:14\"\n" +
-                "            }\n" +
-                "        }\n" +
-                "    ],\n" +
-                "    \"errorCode\": \"0\"\n" +
-                "}";
-    }
 }

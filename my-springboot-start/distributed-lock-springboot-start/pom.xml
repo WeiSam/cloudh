@@ -28,9 +28,11 @@
             <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>
 
+        <!--配置文件解析器,主要解析配置文件,提示等-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
+            <!--编译时使用,不会传递给工程-->
             <optional>true</optional>
         </dependency>
 

@@ -1,5 +1,7 @@
 package com.sam;
 
+import cn.hutool.extra.qrcode.QrCodeUtil;
+import cn.hutool.extra.qrcode.QrConfig;
 import com.alibaba.fastjson.JSON;
 import io.sam.bean.UserBean;
 import io.sam.task.TestTask01;
@@ -9,6 +11,11 @@ import org.springframework.beans.MutablePropertyValues;
 import org.springframework.core.ResolvableType;
 import org.springframework.web.bind.WebDataBinder;
 
+import javax.validation.constraints.NotNull;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -72,8 +79,41 @@ public class MainTest {
     }
 
     @Test
-    public void test101() {
+    public void test101() throws IOException {
         ConcurrentHashMap<String, String> map = new ConcurrentHashMap<>();
         map.put("","");
+        System.out.println(testNull(null));
+        //获取Desktop实例
+        Desktop desktop = Desktop.getDesktop();
+        desktop.browse(URI.create("https://www.baidu.com"));
+    }
+
+    public String testNull(@NotNull String str){
+        return str;
+    }
+
+    @Test
+    public void testQr() {
+        QrCodeUtil.generate("京津冀快递，分局是看空间的"
+                ,new QrConfig(300,300),new File("F:\\文档测试\\图片.jpg"));
+
+        QrCodeUtil.generate("京津冀快递，分局是看空间的"
+                ,new QrConfig(300,300));
+    }
+
+    @Test
+    public void test001() {
+        int size = 230;
+        int byteSize;
+        if (size <= 100) {
+            byteSize = 1;
+        }else if(size <= 200){
+            byteSize = 2;
+        }else if(size <= 300){
+            byteSize = 3;
+        }else {
+            byteSize = 5;
+        }
+        System.out.println(byteSize);
     }
 }

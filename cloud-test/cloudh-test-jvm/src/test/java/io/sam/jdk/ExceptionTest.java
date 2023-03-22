@@ -81,13 +81,30 @@ public class ExceptionTest {
         List<Integer> list = new ArrayList<>();
         try {
             list.add(1);
-            int i = 1/0;
-        }catch (Exception e){
+            int i = 1 / 0;
+        } catch (Exception e) {
             list.add(2);
             return list;
-        }finally {
+        } finally {
             list.add(3);
         }
         return list;
+    }
+    public void testThrow() throws Exception {
+        try {
+            log.info("{}",throwT(1));
+        } catch (Exception e) {
+            log.info("发生异常");
+            throw e;
+        }finally {
+            log.info("执行finally");
+        }
+    }
+
+    public String throwT(int num) throws Exception {
+        if (num == 1) {
+            throw new Exception("异常");
+        }
+        return "成功";
     }
 }

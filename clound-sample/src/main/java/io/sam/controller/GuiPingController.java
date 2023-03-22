@@ -34,7 +34,7 @@ public class GuiPingController {
         return new GuiPingResponse();
     }
 
-    @OperateLog(logOpt = "test",logBizDesc = "test",record = "#userDto.name")
+    @OperateLog(logOpt = "test",logBizDesc = "test",record = "#userDto.name+'_'+#userDto.age")
     @PostMapping(value = "bazxsjjk/service/getToken")
     public GuiPingResponse getToken(@RequestBody UserDto userDto, @RequestParam("username") String username, @RequestParam("password") String password) throws Exception {
         log.info("{},{}",username,password);

@@ -12,6 +12,7 @@ public class MyMypperFactoryBean<T> implements FactoryBean<T> {
 
     private Class<T> mapperInterface;
 
+    //创建工厂bean时，默认有此参数的构造方法
     public MyMypperFactoryBean(Class<T> mapperInterface) {
         this.mapperInterface = mapperInterface;
     }

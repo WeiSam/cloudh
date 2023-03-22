@@ -238,4 +238,22 @@ public class ReflectUtilTest {
         DictionaryUtils.getDicFieldValue(populationConfig);
         System.out.println(JSON.toJSONString(populationConfig.getDicConfigMap()));
     }
+
+    @Test
+    public void testStopWatch() throws InterruptedException {
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+        Thread.sleep(100);
+        stopWatch.stop();
+        log.info("getLastTaskTimeMillis:{}",stopWatch.getLastTaskTimeMillis());
+        Thread.sleep(200);
+        log.info("getTotalTimeMillis:{}",stopWatch.getTotalTimeMillis());
+        stopWatch.start("2");
+        Thread.sleep(200);
+        stopWatch.stop();
+        log.info("getLastTaskTimeMillis:{}",stopWatch.getLastTaskTimeMillis());
+        Thread.sleep(100);
+        log.info("1:{},2:{},all:{}",stopWatch.getTaskInfo()[0].getTimeMillis(),stopWatch.getTaskInfo()[1].getTimeMillis(),stopWatch.getTotalTimeMillis());
+
+    }
 }

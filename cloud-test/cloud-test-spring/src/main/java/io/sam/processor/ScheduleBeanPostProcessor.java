@@ -3,6 +3,7 @@ package io.sam.processor;
 import org.springframework.aop.framework.AopProxyUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.scheduling.annotation.Scheduled;
 
@@ -12,6 +13,7 @@ import org.springframework.scheduling.annotation.Scheduled;
  * @description
  * @date 2021/3/22 11:13
  */
+//@Configuration
 public class ScheduleBeanPostProcessor implements BeanPostProcessor {
 
     @Override

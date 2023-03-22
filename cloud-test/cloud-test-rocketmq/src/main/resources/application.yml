@@ -1,0 +1,27 @@
+server:
+  port: 1155
+
+spring:
+  application:
+    name: cloud-test-mybatisplus
+
+  datasource:
+    # 当前数据源操作类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    # mysql驱动类
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/fescar?useUnicode=true&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: gosuncn
+    enable: true
+
+test:
+  name: sam
+
+rocketmq:
+  name-server: 192.168.37.163:9876
+  producer:
+    group: cloud-test
+
+
+

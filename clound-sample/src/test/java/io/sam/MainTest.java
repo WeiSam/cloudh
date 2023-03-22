@@ -29,6 +29,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
+import java.nio.ByteBuffer;
 import java.security.Key;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -93,7 +94,14 @@ public class MainTest {
     public void testStream(){
         List<UserDto> userDtos = new ArrayList<>();
         Map<String, UserDto> userDtoMap = userDtos.stream().collect(Collectors.toMap(UserDto::getName, Function.identity()));
-        System.out.println(userDtoMap);
+        System.out.println(userDtoMap.get("123"));
+        userDtos.add(new UserDto().setName("sam"));
+        userDtos.add(new UserDto().setName("sam"));
+        userDtos.add(new UserDto().setName("sam1"));
+        userDtos.add(new UserDto().setName("sam2"));
+        Map<String, Long> longMap = userDtos.stream()
+                .collect(Collectors.groupingBy(UserDto::getName, Collectors.counting()));
+        System.out.println(JSON.toJSONString(longMap));
     }
 
     @Test
@@ -233,6 +241,7 @@ public class MainTest {
         Date date2 = sdf.parse("2020-12-19 12:30:00");
         System.out.println(date1.equals(date2));
         System.out.println( d.whenAmISet );
+        System.out.println( d.whenAmISet1 );
     }
 
     @Test

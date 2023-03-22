@@ -107,4 +107,15 @@ public class TestController {
         return BaseResponse.success(str);
     }
 
+    @GetMapping("testMaxThread/{seconds}")
+    public BaseResponse<String> testMaxThread(@PathVariable Integer seconds){
+        log.info("当前线程:{},锁对象:{}",Thread.currentThread().getName(),lock);
+        try {
+            Thread.sleep(1000*seconds);
+        }catch (Exception e){
+            log.error("异常",e);
+        }
+        return BaseResponse.success();
+    }
+
 }

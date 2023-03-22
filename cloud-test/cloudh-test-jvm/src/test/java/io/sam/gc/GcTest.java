@@ -1,6 +1,10 @@
 package io.sam.gc;
 
 import org.junit.Test;
+import sun.nio.ch.DirectBuffer;
+
+import java.nio.ByteBuffer;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author zhuweimu
@@ -54,5 +58,25 @@ public class GcTest {
         array = null;
         byte [] array1 = new byte[128 * K];
         byte [] array2 = new byte[2 * M];
+    }
+
+    @Test
+    public void testHeap() throws InterruptedException {
+        try {
+            for (int i = 0; i < 1; i++) {
+                ByteBuffer byteBuffer = ByteBuffer.allocateDirect(1024*1024*100);
+                TimeUnit.SECONDS.sleep(1);
+                ((DirectBuffer)byteBuffer).cleaner().clean();
+                TimeUnit.SECONDS.sleep(2);
+                ((DirectBuffer)byteBuffer).cleaner().clean();
+                TimeUnit.SECONDS.sleep(5);
+                ((DirectBuffer)byteBuffer).cleaner().clean();
+                System.out.println("内存回收结束");
+            }
+            TimeUnit.SECONDS.sleep(60*2);
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
     }
 }
