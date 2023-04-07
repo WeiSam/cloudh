@@ -5,9 +5,13 @@ spring:
     gateway:
       routes:
         - id: order-routh
-          uri: http://localhost:8022
+          uri: lb://cloud-consumer-order
           predicates:
             - Path=/order/**
+        - id: order-routh-userId
+          uri: lb://cloud-consumer-order
+          predicates:
+            - Path=/order/config/getConfigPort
       discovery:
         locator:
           enabled: true #开启从注册中心创建动态路由，微服务

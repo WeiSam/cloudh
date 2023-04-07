@@ -6,6 +6,7 @@ server:
 
 data:
   age: 89
+  env: 100
 
 eureka:
   client:
