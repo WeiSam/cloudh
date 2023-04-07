@@ -23,7 +23,7 @@ public class LockTest {
     private static int count1 = 0;
     private static int count2 = 0;
 
-    ReentrantLock lock = new ReentrantLock();
+    public static final ReentrantLock lock = new ReentrantLock();
 
     Condition emptyLock = lock.newCondition();
     Condition notEmptyLock = lock.newCondition();
@@ -149,5 +149,22 @@ public class LockTest {
         //调用intern(),先从常量池中找,存在则返回字符串的引用,不存在则创建一个引用对象,引用地址为堆中的字符串地址
         log.info("{}",str1.intern() == str3);
         log.info("{}",str1 == str3.intern());
+    }
+
+    @Test
+    public void test05() throws InterruptedException {
+        new Thread(() -> {
+            lock.lock();
+            try {
+                System.out.println("获取锁");
+                TimeUnit.SECONDS.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+        Thread.sleep(1000);
+        lock.lock();
+//        System.out.println(lock.tryLock());
+        lock.unlock();
     }
 }
