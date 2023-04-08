@@ -11,6 +11,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.AnnotationUtils;
 
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -39,7 +40,7 @@ public class DistributedLockInterceptor {
         //生成key
         String key = keyGenerator.generate(pjp);
         LockResult lockResult = null;
-        DisLock disLock = method.getAnnotation(DisLock.class);
+        DisLock disLock = AnnotationUtils.findAnnotation(method,DisLock.class);
         LockService lockService = lockServiceMap.get(disLock.lockServiceType().getValue());
         try {
             if (lockService == null) {
