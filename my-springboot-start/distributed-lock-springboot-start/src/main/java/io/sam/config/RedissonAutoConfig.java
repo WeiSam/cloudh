@@ -54,7 +54,7 @@ public class RedissonAutoConfig {
     }
 
     @Bean
-    @ConditionalOnProperty(name="redisson.master-name")
+    @ConditionalOnProperty(name={"redisson.master-name"})
     RedissonClient redissonSentinel() {
         Config config = new Config();
         SentinelServersConfig serverConfig = config.useSentinelServers().addSentinelAddress(redissonProperties.getSentinelAddresses())
