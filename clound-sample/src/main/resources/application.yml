@@ -111,6 +111,8 @@ debug: false
 mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    cache-enabled: false
+    local-cache-scope: statement
 
 
 stu:

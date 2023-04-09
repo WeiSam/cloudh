@@ -29,6 +29,8 @@
         <module>spring-design-patterns</module>
         <module>cloud-dubbo-order-consumer-6060</module>
         <module>cloud-dubbo-provider-6061</module>
+        <module>springboot-dubbo-seata-zk</module>
+        <module>springboot-dubbo-seata-zk-xa</module>
     </modules>
     <packaging>pom</packaging>
 
