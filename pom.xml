@@ -60,7 +60,7 @@
         <mybatis.spring.boot.version>2.1.3</mybatis.spring.boot.version>
         <cloud.config.version>2.2.3</cloud.config.version>
         <shardingsphere.version>4.1.1</shardingsphere.version>
-        <dubbo.version>2.7.7</dubbo.version>
+        <dubbo.version>2.7.21</dubbo.version>
         <curator.version>2.13.0</curator.version>
         <tkmybatis.version>2.1.5</tkmybatis.version>
         <mybatisplus.version>3.4.2</mybatisplus.version>
