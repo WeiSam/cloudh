@@ -29,9 +29,8 @@
         <module>spring-design-patterns</module>
         <module>cloud-dubbo-order-consumer-6060</module>
         <module>cloud-dubbo-provider-6061</module>
-        <module>cloud-test/cloud-test-dubbo</module>
-        <module>cloud-test/cloudh-test-jackson</module>
-        <module>cloud-test/cloudh-test-jvm</module>
+        <module>springboot-dubbo-seata-zk</module>
+        <module>springboot-dubbo-seata-zk-xa</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -252,7 +251,8 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                     <encoding>UTF-8</encoding>
-                    <skip>true</skip>
+                    <!--true 编译会忽略test 不生成test-classes-->
+<!--                    <skip>true</skip>-->
                 </configuration>
                 <version>3.8.1</version>
             </plugin>

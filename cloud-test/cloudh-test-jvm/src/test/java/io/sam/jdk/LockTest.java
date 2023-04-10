@@ -9,6 +9,9 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -135,6 +138,15 @@ public class LockTest {
         Date date2 = new Date();
         System.out.println(date2.after(date1));
 
+    }
+
+    @Test
+    public void testLock01() throws InterruptedException {
+        lock.lock();
+        log.info("加锁成功");
+        TimeUnit.SECONDS.sleep(1000);
+        lock.unlock();
+        log.info("释放锁");
     }
 
     @Test

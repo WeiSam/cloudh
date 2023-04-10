@@ -46,7 +46,10 @@ public class AccountTblService{
 
     public AccountTbl selectByPrimaryKeyNotCache(Integer id) {
         log.info("查询数据库");
-        return accountTblMapper.selectByPrimaryKey(id);
+        if (id == 1) {
+            return null;
+        }
+        return new AccountTbl();
     }
 
     

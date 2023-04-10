@@ -5,10 +5,25 @@ server:
       enabled: true
       directory: F:\tomcat\logs
       file-date-format: yyyy-MM-dd_HH-mm-ss
+    max-threads: 800
 
 spring:
   application:
     name: cloud-dubbo-provider
+  datasource:
+    # 当前数据源操作类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    # mysql驱动类
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mysql_test?useUnicode=true&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+    druid:
+      filters: stat,wall,logback
+      initial-size: 500
+      min-idle: 600
+      max-active: 800
+      max-wait: 60000
 
 # dubbo 配置项，对应 DubboConfigurationProperties 配置类
 dubbo:
@@ -22,13 +37,13 @@ dubbo:
     register: true  # 是否注册到注册中心
   # Dubbo 服务提供者协议配置,应用级别,优先级更高
   protocol:
-    port: 10088 # 协议端口。使用 -1 表示随机端口。
+    port: -1 # 协议端口。使用 -1 表示随机端口。
     name: dubbo # 使用 `dubbo://` 协议。更多协议，可见 http://dubbo.apache.org/zh-cn/docs/user/references/protocol/introduction.html 文档
     threads: 1 #优先级更高
     threadpool: limited
   # Dubbo 服务提供者配置
   provider:
-    timeout: 3000 # 【重要】远程服务调用超时时间，单位：毫秒。默认为 1000 毫秒，胖友可以根据自己业务修改
+    timeout: 30000 # 【重要】远程服务调用超时时间，单位：毫秒。默认为 1000 毫秒，胖友可以根据自己业务修改
     group: 5555
     #threads: 1
   consumer:
