@@ -1,8 +1,11 @@
 package io.sam.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import io.sam.Intercepts.TableNameIntercept;
+import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +18,15 @@ import javax.sql.DataSource;
 @ConditionalOnProperty(value = "spring.datasource.enable",havingValue = "true")
 public class DataSourceConfig {
 
+    //会依赖注入Spring容器中所有的mybatis的Interceptor拦截器
+    @Autowired(required = false)
+    private Interceptor[] interceptors;
+
+    @Bean
+    public TableNameIntercept tableNameIntercept(){
+        return new TableNameIntercept();
+    }
+
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource druidDataSource() {
@@ -22,12 +34,13 @@ public class DataSourceConfig {
         return druidDataSource;
     }
 
-    @Bean
+/*    @Bean
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
         factoryBean.setDataSource(dataSource);
+        factoryBean.setPlugins(interceptors);
         factoryBean.setMapperLocations(new PathMatchingResourcePatternResolver()
             .getResources("classpath:mapper/*.xml"));
         return factoryBean.getObject();
-    }
+    }*/
 }

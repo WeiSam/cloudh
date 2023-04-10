@@ -10,14 +10,16 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     # mysql驱动类
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mysql_test?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
+    url: jdbc:mysql://localhost:13306/mysql-test?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
     username: root
-    password: 123456
+    password: gosuncn
     enable: true
 
 
 
 test:
   name: sam
-
-
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mapper/*.xml

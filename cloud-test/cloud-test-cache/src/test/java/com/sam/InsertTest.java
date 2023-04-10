@@ -40,4 +40,9 @@ public class InsertTest extends BaseTest{
 
         System.out.println("执行结束");
     }
+
+    @Test
+    public void test1() {
+        TTest tTest = tTestMapper.selectByPrimaryKey(1);
+    }
 }

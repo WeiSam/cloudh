@@ -1,16 +1,18 @@
-package service;
+package io.sam.db.service;
 
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
 import io.sam.db.domain.TTest;
 import io.sam.db.mapper.TTestMapper;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+
 /**
  * @desc 
  * @date 2021/8/29 21:28
  * @author zhuweimu
  */
 @Service
-public class TTestService{
+public class TTestService {
 
     @Resource
     private TTestMapper tTestMapper;
