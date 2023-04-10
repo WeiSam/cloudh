@@ -91,6 +91,8 @@ public class MainTest {
     public void testStream(){
         List<UserDto> userDtos = new ArrayList<>();
         Map<String, UserDto> userDtoMap = userDtos.stream().collect(Collectors.toMap(UserDto::getName, Function.identity()));
+        userDtoMap.put("123",new UserDto().setName("sam"));
+
         System.out.println(userDtoMap.get("123"));
         userDtos.add(new UserDto().setName("sam"));
         userDtos.add(new UserDto().setName("sam"));
@@ -99,6 +101,13 @@ public class MainTest {
         Map<String, Long> longMap = userDtos.stream()
                 .collect(Collectors.groupingBy(UserDto::getName, Collectors.counting()));
         System.out.println(JSON.toJSONString(longMap));
+
+        List<String> strings = userDtos.parallelStream().map(UserDto::getName).collect(Collectors.toList());
+        UserDto userDto = userDtoMap.get(null);
+        String name = Optional.ofNullable(userDtoMap.get("123"))
+                .map(UserDto::getName)
+                .orElse("");
+        System.out.println("姓名："+name);
     }
 
     @Test

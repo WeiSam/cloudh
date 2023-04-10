@@ -18,7 +18,7 @@ import java.util.stream.IntStream;
  */
 public class StreamTest {
 
-    private static CopyOnWriteArrayList copyOnWriteArrayList = new CopyOnWriteArrayList();
+    private static CopyOnWriteArrayList<Integer> copyOnWriteArrayList = new CopyOnWriteArrayList<Integer>();
     private static List<Integer> list1 = new ArrayList<>();
     private static List<Integer> list2 = new ArrayList<>();
     private static List<Integer> list3 = new ArrayList<>();
