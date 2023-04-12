@@ -1,6 +1,9 @@
 package io.sam.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import io.sam.Intercepts.ParameterIntercept;
+import io.sam.Intercepts.ResultSetIntercept;
+import io.sam.Intercepts.StatementIntercept;
 import io.sam.Intercepts.TableNameIntercept;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -25,6 +28,21 @@ public class DataSourceConfig {
     @Bean
     public TableNameIntercept tableNameIntercept(){
         return new TableNameIntercept();
+    }
+
+    @Bean
+    public ParameterIntercept parameterIntercept(){
+        return new ParameterIntercept();
+    }
+
+    @Bean
+    public ResultSetIntercept resultSetIntercept(){
+        return new ResultSetIntercept();
+    }
+
+    @Bean
+    public StatementIntercept statementIntercept(){
+        return new StatementIntercept();
     }
 
     @Bean

@@ -30,6 +30,13 @@ import java.util.Properties;
 public class TableNameIntercept implements Interceptor {
 
     public static final List<String> TABLE_NAMES = Arrays.asList("t_user","t_user_detai");
+
+    /**
+     * 拦截逻辑处理
+     * @param invocation
+     * @return
+     * @throws Throwable
+     */
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
         Object[] args = invocation.getArgs();
@@ -121,11 +128,20 @@ public class TableNameIntercept implements Interceptor {
 
     }
 
+    /**
+     * 重要，返回动态代理对象
+     * @param target
+     * @return
+     */
     @Override
     public Object plugin(Object target) {
         return Plugin.wrap(target, this);
     }
 
+    /**
+     * 设置属性值
+     * @param properties
+     */
     @Override
     public void setProperties(Properties properties) {
 
