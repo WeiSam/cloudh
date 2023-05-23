@@ -1,24 +1,32 @@
 package io.sam;
 
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.io.StreamProgress;
+import cn.hutool.core.lang.Snowflake;
+import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpException;
 import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
+import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSON;
 import cn.hutool.json.JSONUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import sun.misc.Contended;
 
 import java.io.File;
+import java.io.FileReader;
 import java.math.BigDecimal;
+import java.util.HashMap;
 
 /**
  * @author zhuweimu
  * @desc
  * @date 2022/11/29 11:02
  */
+@Slf4j
 public @Contended class HutoolTest {
 
     @Test
@@ -240,5 +248,23 @@ public @Contended class HutoolTest {
                 return response.writeBody(destFile, streamProgress);
             }
         }
+    }
+
+    @Test
+    public void testId() {
+        long id = IdUtil.getSnowflakeNextId();
+        Snowflake snowflake = IdUtil.getSnowflake(2, 10);
+        long id2 = snowflake.nextId();
+        log.info("{}",id);
+        log.info("{}",id2);
+    }
+
+    @Test
+    public void testUp() {
+        HashMap<String, Object> paramMap = new HashMap<>();
+        //文件上传只需将参数中的键指定（默认file），值设为文件对象即可，对于使用者来说，文件上传与普通表单提交并无区别
+        paramMap.put("file", FileUtil.file("E:\\IdeaProjects\\easyexcel\\easyexcel-test\\target\\test-classes\\mergeWrite1681883305409.xlsx"));
+        String result= HttpUtil.post("192.168.78.193/upload", paramMap);
+        log.info("{}",result);
     }
 }
