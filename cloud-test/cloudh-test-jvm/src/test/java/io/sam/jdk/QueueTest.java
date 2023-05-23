@@ -1,8 +1,11 @@
 package io.sam.jdk;
 
+import io.sam.dto.UserDto;
 import org.junit.Test;
 
 import java.util.PriorityQueue;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.PriorityBlockingQueue;
 
 /**
  * @author zhuweimu
@@ -26,5 +29,12 @@ public class QueueTest {
         for (int i = 0; i < 7; i++) {
             System.out.println(priorityQueue.poll());
         }
+    }
+
+    @Test
+    public void testBlockingQueue() {
+        ArrayBlockingQueue<UserDto> arrayBlockingQueue = new ArrayBlockingQueue<>(16);
+
+        PriorityBlockingQueue<UserDto> priorityBlockingQueue = new PriorityBlockingQueue<>();
     }
 }
